@@ -28,7 +28,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead class="text-bold text-center">
                         <tr>
-                            <th style="width: 40px; color:blue">No</th>
+                            {{-- <th style="width: 40px; color:blue">No</th> --}}
                             <th style="width: 40px; color:blue">ID</th>
                             <th>@sortablelink('Nama Customer')</th>
                             <th>@sortablelink('Merek')</th>
@@ -42,20 +42,40 @@
                     <tbody>
                         @if ($bookings->count())
                             @php($no = 1)
-                            @foreach ($bookings as $key => $row)
+                            @foreach ($bookings as $row)
                                 <tr>
-                                    <td class="text-center">{{ $no++ }}</td>
+                                    {{-- <td class="text-center">{{ $no++ }}</td> --}}
                                     <td class="text-center">{{ $row->id }}</td>
-                                    <td>{{ $row->nama }}</td>
-                                    <td>{{ $row->isi }}</td>
+                                    <td>{{ $row->user->nama }}</td>
+                                    <td>{{ $row->kendaraan->merek }}</td>
+                                    <td>{{ $row->model }}</td>
+                                    <td>{{ $row->nopol }}</td>
+                                    <td>{{ $row->tgl_masuk }}</td>
                                     <td>
-                                        <a href="{{ route('booking.show', $row->id) }}"
-                                            class="btn btn-success">Detail</a><br>
-                                        {{-- <a href="{{ route('booking.edit', $row->id) }}" class="btn btn-warning mt-2">Edit</a><br> --}}
+                                        @if ($row->status == 'Booked')
+                                            <div class="text-white rounded-pill py-2 px-2 badge bg-secondary">
+                                                {{ $row->status }}</div>
+                                        @elseif ($row->status == 'Done')
+                                            <div class="text-white rounded-pill py-2 px-2 badge bg-success">
+                                                {{ $row->status }}</div>
+                                        @elseif ($row->status == 'In Queue')
+                                            <div class="text-white rounded-pill py-2 px-2 badge bg-warning">
+                                                {{ $row->status }}</div>
+                                        @elseif ($row->status == 'Proccessed')
+                                            <div class="text-white rounded-pill py-2 px-2 badge bg-info">
+                                                {{ $row->status }}</div>
+                                        @elseif ($row->status == 'Canceled')
+                                            <div class="text-white rounded-pill py-2 px-2 badge bg-danger">
+                                                {{ $row->status }}</div>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
                                         <form action="{{ route('booking.destroy', $row->id) }}" method="post">
+                                            <a href="{{ route('booking.show', $row->id) }}"
+                                                class="btn btn-success">Detail</a>
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger mt-2">Hapus</button>
+                                            {{-- <button type="submit" class="btn btn-danger ml-2">Hapus</button> --}}
                                         </form>
                                     </td>
                                 </tr>

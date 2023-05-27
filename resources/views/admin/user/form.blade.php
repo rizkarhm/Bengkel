@@ -43,7 +43,7 @@
                         <div class="form-group">
                             <label for="role">Role<span class="text-danger">*</span></label>
                             <select name="role" id="role" class="custom-select">
-                                <option value="" selected disabled hidden>-- Pilih Role --</option>
+                                <option value="" selected disabled hidden>Pilih Role</option>
                                 <option value="Customer" @selected(isset($users) ? $users->role == 'Customer' : old('role') == 'Customer')>Customer
                                 </option>
                                 <option value="Admin" @selected(isset($users) ? $users->role == 'Admin' : old('role') == 'Admin')>Admin

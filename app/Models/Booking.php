@@ -16,12 +16,18 @@ class Booking extends Model
         'nopol',
         'tgl_masuk',
         'tgl_selesai',
-        'status'
+        'status',
+        'pic_id'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function kendaraan()
+    {
+        return $this->belongsTo(Kendaraan::class);
     }
 
     public function feedback()
