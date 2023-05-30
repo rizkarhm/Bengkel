@@ -46,30 +46,10 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="nopol">Nomor Polisi<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="nopol" name="nopol" disabled
-                            placeholder="cth: B 1975 AK" value="{{ isset($bookings) ? $bookings->nopol : old('nopol') }}">
-                        @error('nopol')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
                         <label for="tgl_masuk">Tanggal Masuk<span class="text-danger">*</span></label>
                         <input type="date" class="form-control" id="tgl_masuk" name="tgl_masuk" disabled
                             value="{{ isset($bookings) ? $bookings->tgl_masuk : old('tgl_masuk') }}">
                         @error('tgl_masuk')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="pic_id">PIC<span class="text-danger">*</span></label>
-                        <select name="pic_id" id="pic_id" class="custom-select" disabled>
-                            <option value="" selected disabled hidden>Pilih PIC</option>
-                            @foreach ($pic as $pic_id)
-                                <option value="{{ $bookings->pic_id }}" @selected(isset($bookings) ? $pic_id->id == $bookings->pic_id : '')>{{ $pic_id->nama }}</option>
-                            @endforeach
-                        </select>
-                        @error('pic_id')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
@@ -89,6 +69,18 @@
                             </option>
                         </select>
                         @error('status')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group" id="pic_id" style="display:none">
+                        <label for="pic_id">PIC</label>
+                        <select name="pic_id" id="pic_id" class="custom-select" disabled>
+                            <option value="" selected disabled hidden>Pilih PIC</option>
+                            @foreach ($pic as $pic_id)
+                                <option value="{{ $bookings->pic_id }}" @selected(isset($bookings) ? $pic_id->id == $bookings->pic_id : '')>{{ $pic_id->nama }}</option>
+                            @endforeach
+                        </select>
+                        @error('pic_id')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>

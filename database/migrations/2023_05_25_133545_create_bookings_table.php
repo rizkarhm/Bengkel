@@ -18,7 +18,7 @@ return new class extends Migration
             // $table->string('booking_id');
             $table->bigInteger('user_id')->unsigned(); //pic dan cust
             $table->bigInteger('kendaraan_id')->unsigned();
-            $table->bigInteger('pic_id')->unsigned();
+            $table->bigInteger('pic_id')->unsigned()->nullable();
             $table->string('model');
             $table->string('nopol');
             $table->date('tgl_masuk');

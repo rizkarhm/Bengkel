@@ -21,9 +21,9 @@ class BookingController extends Controller
     {
         //get data user all
         $users = User::all();
-        //get data user dengan role customer 
+        //get data user dengan role customer
         $cust = $users->intersect(User::whereIn('role', ['Customer'])->get());
-        //get data user dengan role magang & mekanik 
+        //get data user dengan role magang & mekanik
         $pic = $users->intersect(User::whereIn('role', ['Magang', 'Mekanik'])->get());
 
         //get data kendaraan all
@@ -50,8 +50,8 @@ class BookingController extends Controller
             'kendaraan_id' => $request->kendaraan_id,
             'model' => $request->model,
             'nopol' => $request->nopol,
-            'tgl_masuk' => $request->tgl_masuk,            
-            'tgl_keluar' => '',            
+            'tgl_masuk' => $request->tgl_masuk,
+            'tgl_keluar' => '',
             'pic_id' => $request->pic_id,
             'status' => $request->status,
         ]);
@@ -65,9 +65,9 @@ class BookingController extends Controller
     {
         //get data user all
         $users = User::all();
-        //get data user dengan role customer 
+        //get data user dengan role customer
         $cust = $users->intersect(User::whereIn('role', ['customer'])->get());
-        //get data user dengan role magang & mekanik 
+        //get data user dengan role magang & mekanik
         $pic = $users->intersect(User::whereIn('role', ['Magang', 'Mekanik'])->get());
 
         //get data kendaraan all
@@ -79,15 +79,35 @@ class BookingController extends Controller
 
         return view('admin.booking.show', [
             'bookings' => $booking,
-            'cust' => $cust, 
-            'pic' => $pic, 
+            'cust' => $cust,
+            'pic' => $pic,
             'kendaraans' => $kendaraans
         ]);
     }
 
     public function edit($id)
     {
-        //
+        //get data user all
+        $users = User::all();
+        //get data user dengan role customer
+        $cust = $users->intersect(User::whereIn('role', ['customer'])->get());
+        //get data user dengan role magang & mekanik
+        $pic = $users->intersect(User::whereIn('role', ['Magang', 'Mekanik'])->get());
+
+        //get data kendaraan all
+        $kendaraans = Kendaraan::all();
+
+        $booking = Booking::find($id);
+        if (!$booking) return redirect()->route('booking.index')
+            ->with('error', 'Booking dengan id' . $id . ' tidak ditemukan');
+
+        return view('admin.booking.form', [
+            'bookings' => $booking,
+            'cust' => $cust,
+            'pic' => $pic,
+            'kendaraans' => $kendaraans
+        ]);
+
     }
 
     public function update(Request $request, $id)
