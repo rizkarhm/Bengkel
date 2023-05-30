@@ -61,22 +61,25 @@
                             <h6 class="m-0 font-weight-bold text-danger bold mb-2 mt-4">
                                 {{ isset($users) ? 'Isi jika Anda ingin merubah password' : '' }}</h6>
                         </i>
-                        <div class="form-group">
-                            <label for="password">Password<span class="text-danger">*</span></label>
-                            <input type="password" class="form-control" id="password" name="password"
-                                value="{{ old('password') }}">
-                            @error('password')
+                        <div class="row gx-3 mb-3">
+                            <div class="form-group col-md-6">
+                                <label for="password">Password<span class="text-danger">*</span></label>
+                                <input type="password" class="form-control" id="password" name="password"
+                                    value="{{ old('password') }}">
+                                @error('password')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="password_confirmation">Konfirmasi Password<span
+                                        class="text-danger">*</span></label>
+                                <input type="password" class="form-control" id="password_confirmation"
+                                    name="password_confirmation" value="{{ old('password_confirmation') }}">
+                            </div>
+                            @error('password_confirmation')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="password_confirmation">Konfirmasi Password<span class="text-danger">*</span></label>
-                            <input type="password" class="form-control" id="password_confirmation"
-                                name="password_confirmation" value="{{ old('password_confirmation') }}">
-                        </div>
-                        @error('password_confirmation')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">{{ isset($kontaks) ? 'Update' : 'Simpan' }}</button>

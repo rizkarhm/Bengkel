@@ -55,8 +55,7 @@
                                         @endif
                                     </td>
                                     <td>{{ $row->merek }}</td>
-                                    <td>
-
+                                    <td class="text-center">
                                         {{-- <a href="{{ route('kendaraan.edit', $row->id) }}" class="btn btn-warning mt-2">Edit</a><br> --}}
                                         <form action="{{ route('kendaraan.destroy', $row->id) }}" method="post">
                                             <a href="{{ route('kendaraan.edit', $row->id) }}"

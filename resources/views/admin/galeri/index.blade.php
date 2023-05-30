@@ -55,8 +55,7 @@
                                         @endif
                                     </td>
                                     <td>{{ $row->keterangan }}</td>
-                                    <td>
-
+                                    <td class="text-center">
                                         {{-- <a href="{{ route('galeri.edit', $row->id) }}" class="btn btn-warning mt-2">Edit</a><br> --}}
                                         <form action="{{ route('galeri.destroy', $row->id) }}" method="post">
                                             <a href="{{ route('galeri.edit', $row->id) }}"

@@ -65,7 +65,7 @@
                                             @endif
 
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <form action="{{ route('user.destroy', $row) }}" method="post"
                                                 class="form-inline">
                                                 <a href="{{ route('user.show', $row) }}" class="btn btn-success">Detail</a>
@@ -82,7 +82,7 @@
                 </table>
             </div>
             <div class="footer">
-                <h5 class="text-danger">*confirmation delete data</h5>
+                <h5 class="text-danger">*confirmation delete data | user yang memiliki kaitan dengan tabel lain tidak dapat dihapus</h5>
             </div>
         </div>
     </div>

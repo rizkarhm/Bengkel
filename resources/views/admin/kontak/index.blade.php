@@ -47,8 +47,7 @@
                                     <td class="text-center">{{ $no++ }}</td>
                                     <td>{{ $row->nama }}</td>
                                     <td>{{ $row->isi }}</td>
-                                    <td>
-
+                                    <td class="text-center">
                                         {{-- <a href="{{ route('kontak.edit', $row->id) }}" class="btn btn-warning mt-2">Edit</a><br> --}}
                                         <form action="{{ route('kontak.destroy', $row->id) }}" method="post">
                                             <a href="{{ route('kontak.show', $row->id) }}"

@@ -18,7 +18,7 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="user_id">NamaCustomer<span class="text-danger">*</span></label>
+                            <label for="user_id">Nama Customer<span class="text-danger">*</span></label>
                             <select name="user_id" id="user_id" class="custom-select">
                                 <option value="" selected disabled hidden>Pilih Customer</option>
                                 @foreach ($cust as $customer)

@@ -6,6 +6,7 @@ use App\Models\Booking;
 use App\Models\Kendaraan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class BookingController extends Controller
 {
@@ -30,44 +31,107 @@ class BookingController extends Controller
         //get data kendaraan all
         $kendaraans = Kendaraan::all();
 
-        return view('admin.booking.form',  compact('cust', 'kendaraans', 'pic'));
+        return view('admin.booking.create',  compact('cust', 'kendaraans', 'pic'));
     }
 
+    //Store to Booking only
+    // public function store(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'user_id' => 'required',
+    //         'kendaraan_id' => 'required',
+    //         'model' => 'required',
+    //         'nopol' => 'required|min:7',
+    //         'tgl_masuk' => 'required|date',
+    //         'tgl_selesai' => 'nullable',
+    //         'pic_id' => 'nullable',
+    //         'status' => 'required'
+    //     ]);
+
+    //     if ($request->status == "Done"){
+    //         $tglKeluar = date('Y-m-d');
+    //     } else if ($request->status == "Canceled"){
+    //         $tglKeluar = "-";
+    //     } else {
+    //         $tglKeluar = null;
+    //     }
+
+    //     Booking::create([
+    //         'user_id' => $request->user_id,
+    //         'kendaraan_id' => $request->kendaraan_id,
+    //         'model' => $request->model,
+    //         'nopol' => $request->nopol,
+    //         'tgl_masuk' => $request->tgl_masuk,
+    //         'tgl_selesai' => $tglKeluar,
+    //         'pic_id' => $request->pic_id,
+    //         'status' => $request->status,
+    //     ]);
+
+    //     return redirect()->route('booking.index')
+    //         ->with('success', 'Berhasil menambah appointment baru');
+    // }
+
+    //Store Booking + Create customer
     public function store(Request $request)
     {
         $this->validate($request, [
-            'user_id' => 'required',
+            //validasi new customer
+            'nama' => 'required',
+            'telepon' => 'required|unique:users',
+            'alamat' => 'nullable',
+
+            //validasi new booking
             'kendaraan_id' => 'required',
             'model' => 'required',
             'nopol' => 'required|min:7',
             'tgl_masuk' => 'required|date',
-            'tgl_selesai' => 'nullable',
-            'pic_id' => 'nullable',
-            'status' => 'required'
         ]);
 
-        if ($request->status == "Done"){
+        if ($request->status == "Done") {
             $tglKeluar = date('Y-m-d');
-        } else if ($request->status == "Canceled"){
+        } else if ($request->status == "Canceled") {
             $tglKeluar = "-";
         } else {
             $tglKeluar = null;
         }
 
-        Booking::create([
-            'user_id' => $request->user_id,
-            'kendaraan_id' => $request->kendaraan_id,
-            'model' => $request->model,
-            'nopol' => $request->nopol,
-            'tgl_masuk' => $request->tgl_masuk,
-            'tgl_selesai' => $tglKeluar,
-            'pic_id' => $request->pic_id,
-            'status' => $request->status,
-        ]);
+        $user_id = $request->user_id;
+        if ($user_id == "new_customer") {
+            $create_user = User::create([
+                'nama' => $request->nama,
+                'telepon' => $request->telepon,
+                'alamat' => $request->alamat,
+                'password' => Hash::make('customer123'),
+                'role' => 'Customer'
+            ]);
+
+            Booking::create([
+                'user_id' => $create_user->id,
+                'kendaraan_id' => $request->kendaraan_id,
+                'model' => $request->model,
+                'nopol' => $request->nopol,
+                'tgl_masuk' => $request->tgl_masuk,
+                'tgl_selesai' => $tglKeluar,
+                'pic_id' => $request->pic_id,
+                'status' => 'Booked',
+            ]);
+        } else {
+            Booking::create([
+                'user_id' => $user_id,
+                'kendaraan_id' => $request->kendaraan_id,
+                'model' => $request->model,
+                'nopol' => $request->nopol,
+                'tgl_masuk' => $request->tgl_masuk,
+                'tgl_selesai' => $tglKeluar,
+                'pic_id' => $request->pic_id,
+                'status' => 'Booked',
+            ]);
+        }
 
         return redirect()->route('booking.index')
             ->with('success', 'Berhasil menambah appointment baru');
     }
+
 
 
     public function show($id)
@@ -116,7 +180,6 @@ class BookingController extends Controller
             'pic' => $pic,
             'kendaraans' => $kendaraans
         ]);
-
     }
 
     public function update(Request $request, $id)
@@ -132,9 +195,9 @@ class BookingController extends Controller
             'status' => 'required'
         ]);
 
-        if ($request->status == "Done"){
+        if ($request->status == "Done") {
             $tglKeluar = date('Y-m-d');
-        } else if ($request->status == "Canceled"){
+        } else if ($request->status == "Canceled") {
             $tglKeluar = "-";
         } else {
             $tglKeluar = null;

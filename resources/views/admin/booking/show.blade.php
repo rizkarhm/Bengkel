@@ -13,6 +13,7 @@
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-body">
+                    @if (auth()->user()->role != 'Customer' )
                     <div class="form-group">
                         <label for="user_id">Nama Customer<span class="text-danger">*</span></label>
                         <select name="user_id" id="user_id" class="custom-select" disabled>
@@ -26,6 +27,7 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    @endif
                     <div class="form-group">
                         <label for="kendaraan_id">Merek Kendaraan<span class="text-danger">*</span></label>
                         <select name="kendaraan_id" id="kendaraan_id" class="custom-select" disabled>
@@ -82,6 +84,7 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    @if (auth()->user()->role != 'Customer' )
                     <div class="form-group" id="pic_id" style="display:none">
                         <label for="pic_id">PIC</label>
                         <select name="pic_id" id="pic_id" class="custom-select" disabled>
@@ -99,6 +102,7 @@
                 <div class="card-footer">
                     <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning">Edit Book Appointment</a>
                 </div>
+                @endif
             </div>
         </div>
     </div>
