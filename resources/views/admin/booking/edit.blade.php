@@ -1,18 +1,16 @@
 @extends('layouts.app')
 
-@section('title', isset($bookings) ? 'Form Edit Appointment' : 'Form Buat Appointment')
+@section('title', 'Form Edit Appointment' )
 
 @section('contents')
     <ol class="breadcrumb px-3 py-2 rounded mb-4">
         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
         <li class="breadcrumb-item"><a href="{{ route('booking.index') }}">Data Booking</a></li>
-        <li class="breadcrumb-item active">
-            {{ isset($bookings) ? 'Edit' : 'Tambah' }}</li>
+        <li class="breadcrumb-item active">Edit</li>
     </ol>
-    <form action="{{ isset($bookings) ? route('booking.update', $bookings->id) : route('booking.store') }}" method="post">
+    <form action="{{ route('booking.update', $bookings->id) }}" method="post">
         @csrf
 
-        {{-- if user exist, method edit: put --}}
         @method(isset($bookings) ? 'PUT' : '')
 
         <div class="row">
@@ -20,7 +18,7 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="user_id">Nama Customer<span class="text-danger">*</span></label>
+                            <label for="user_id">NamaCustomer<span class="text-danger">*</span></label>
                             <select name="user_id" id="user_id" class="custom-select">
                                 <option value="" selected disabled hidden>Pilih Customer</option>
                                 @foreach ($cust as $customer)
@@ -100,7 +98,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">{{ isset($kontaks) ? 'Update' : 'Simpan' }}</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </div>
             </div>

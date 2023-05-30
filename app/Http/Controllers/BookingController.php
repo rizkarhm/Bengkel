@@ -11,7 +11,8 @@ class BookingController extends Controller
 {
     public function index()
     {
-        $bookings = Booking::all();
+        $data = Booking::all();
+        $bookings = $data->intersect(Booking::whereIn('status', ['Booked', 'In Queue', 'Proccessed'])->get());
         return view('admin.booking.index', [
             'bookings' => $bookings
         ]);
@@ -40,10 +41,18 @@ class BookingController extends Controller
             'model' => 'required',
             'nopol' => 'required|min:7',
             'tgl_masuk' => 'required|date',
-            'tgl_keluar' => 'nullable',
+            'tgl_selesai' => 'nullable',
             'pic_id' => 'nullable',
             'status' => 'required'
         ]);
+
+        if ($request->status == "Done"){
+            $tglKeluar = date('Y-m-d');
+        } else if ($request->status == "Canceled"){
+            $tglKeluar = "-";
+        } else {
+            $tglKeluar = null;
+        }
 
         Booking::create([
             'user_id' => $request->user_id,
@@ -51,7 +60,7 @@ class BookingController extends Controller
             'model' => $request->model,
             'nopol' => $request->nopol,
             'tgl_masuk' => $request->tgl_masuk,
-            'tgl_keluar' => '',
+            'tgl_selesai' => $tglKeluar,
             'pic_id' => $request->pic_id,
             'status' => $request->status,
         ]);
@@ -101,7 +110,7 @@ class BookingController extends Controller
         if (!$booking) return redirect()->route('booking.index')
             ->with('error', 'Booking dengan id' . $id . ' tidak ditemukan');
 
-        return view('admin.booking.form', [
+        return view('admin.booking.edit', [
             'bookings' => $booking,
             'cust' => $cust,
             'pic' => $pic,
@@ -112,11 +121,49 @@ class BookingController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'user_id' => 'required',
+            'kendaraan_id' => 'required',
+            'model' => 'required',
+            'nopol' => 'required|min:7',
+            'tgl_masuk' => 'required|date',
+            'tgl_selesai' => 'nullable',
+            'pic_id' => 'nullable',
+            'status' => 'required'
+        ]);
+
+        if ($request->status == "Done"){
+            $tglKeluar = date('Y-m-d');
+        } else if ($request->status == "Canceled"){
+            $tglKeluar = "-";
+        } else {
+            $tglKeluar = null;
+        }
+
+        $booking = Booking::find($id);
+        $booking->user_id = $request->user_id;
+        $booking->kendaraan_id = $request->kendaraan_id;
+        $booking->model = $request->model;
+        $booking->nopol = $request->nopol;
+        $booking->tgl_masuk = $request->tgl_masuk;
+        $booking->tgl_selesai = $tglKeluar;
+        $booking->pic_id = $request->pic_id;
+        $booking->status = $request->status;
+
+        $booking->save();
+
+        return redirect()->route('booking.index')
+            ->with('success', 'Berhasil mengubah data booking');
     }
 
     public function destroy($id)
     {
-        //
+        $booking = Booking::find($id);
+
+        if ($booking) {
+            $booking->delete();
+            return redirect()->route('booking.index')
+                ->with('success', 'Berhasil menghapus data booking');
+        }
     }
 }

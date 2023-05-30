@@ -32,10 +32,10 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('booking.index') }}">
+        <a class="nav-link" href="{{ route('history.index') }}">
             <i class="fas fa-fw fa-clock"></i>
             <span>Riwayat Service</span></a>
-    </li>  
+    </li>
 
     @if (auth()->user()->role != 'Customer' )
         <li class="nav-item">

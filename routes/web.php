@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\UserController;
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('user', UserController::class);
     Route::resource('booking', BookingController::class);
+    Route::resource('history', HistoryController::class);
     Route::resource('galeri', GaleriController::class);
     Route::resource('kontak', KontakController::class);
     Route::resource('feedback', FeedbackController::class);

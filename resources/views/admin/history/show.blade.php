@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Booking')
+@section('title', 'Detail Riwayat Service')
 
 @section('contents')
     <ol class="breadcrumb px-3 py-2 rounded mb-4">
         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
         <li class="breadcrumb-item"><a href="{{ route('booking.index') }}">Data Booking</a></li>
-        <li class="breadcrumb-item active">Detail</li>
+        <li class="breadcrumb-item active">Riwayat</li>
     </ol>
 
     <div class="row">
@@ -64,6 +64,14 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="tgl_selesai">Tanggal Selesai<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="tgl_selesai" name="tgl_selesai" disabled
+                            value="{{ isset($bookings) ? $bookings->tgl_selesai : old('tgl_selesai') }}">
+                        @error('tgl_selesai')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="status">Status<span class="text-danger">*</span></label>
                         <select name="status" id="status" class="custom-select" disabled>
                             <option value="" selected disabled hidden>Pilih Status</option>
@@ -82,10 +90,10 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="form-group" id="pic_id" style="display:none">
+                    <div class="form-group" id="pic_id">
                         <label for="pic_id">PIC</label>
                         <select name="pic_id" id="pic_id" class="custom-select" disabled>
-                            <option value="" selected disabled hidden>Pilih PIC</option>
+                            <option value="" selected disabled hidden>-</option>
                             @foreach ($pic as $pic_id)
                                 <option value="{{ $bookings->pic_id }}" @selected(isset($bookings) ? $pic_id->id == $bookings->pic_id : '')>{{ $pic_id->nama }}
                                 </option>
@@ -95,9 +103,6 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                </div>
-                <div class="card-footer">
-                    <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning">Edit Book Appointment</a>
                 </div>
             </div>
         </div>

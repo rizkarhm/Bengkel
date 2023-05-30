@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('model');
             $table->string('nopol');
             $table->date('tgl_masuk');
-            $table->date('tgl_selesai')->nullable();
+            $table->string('tgl_selesai')->nullable();
             $table->string('status');
             $table->timestamps();
 
