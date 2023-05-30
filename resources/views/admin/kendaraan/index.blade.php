@@ -72,7 +72,7 @@
                 </table>
             </div>
             <div class="footer">
-                <h5 class="text-danger">*confirmation delete data</h5>
+                <h5 class="text-danger">*confirmation delete data | kendaraan yang memiliki kaitan dengan tabel lain tidak dapat dihapus</h5>
             </div>
         </div>
     </div>
