@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Data User')
+@section('title', 'Data Customer')
 
 @section('contents')
     <ol class="breadcrumb px-3 py-2 rounded mb-4">
         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-        <li class="breadcrumb-item active">Users</li>
+        <li class="breadcrumb-item active">Customer</li>
     </ol>
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex">
@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </form>
-            <a href="{{ route('user.create') }}" class="btn btn-primary">Tambah User</a>
+            {{-- <a href="{{ route('user.create') }}" class="btn btn-primary">Tambah User</a> --}}
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -34,9 +34,9 @@
                     <thead class="text-bold text-center">
                         <tr>
                             <th style="width: 40px; color:blue">No</th>
-                            <th>@sortablelink('nama')</th>
-                            <th>@sortablelink('telepon')</th>
-                            <th>@sortablelink('role')</th>
+                            <th>@sortablelink('Nama')</th>
+                            <th>@sortablelink('Telepon')</th>
+                            <th>@sortablelink('Tanggal Bergabung')</th>
                             <th style="width: 200px; color:blue">Aksi</th>
                         </tr>
                     </thead>
@@ -50,20 +50,7 @@
                                         <td data-index="{{ $row->id }}">{{ $row->nama }}</td>
                                         <td>{{ $row->telepon }}</td>
                                         <td>
-                                            @if ($row->role == 'Admin')
-                                                <div class="text-white rounded-pill py-2 px-2 badge bg-primary">
-                                                    {{ $row->role }}</div>
-                                            @elseif ($row->role == 'Customer')
-                                                <div class="text-white rounded-pill py-2 px-2 badge bg-success">
-                                                    {{ $row->role }}</div>
-                                            @elseif ($row->role == 'Mekanik')
-                                                <div class="text-white rounded-pill py-2 px-2 badge bg-warning">
-                                                    {{ $row->role }}</div>
-                                            @elseif ($row->role == 'Magang')
-                                                <div class="text-white rounded-pill py-2 px-2 badge bg-danger">
-                                                    {{ $row->role }}</div>
-                                            @endif
-
+                                            {{ $row->created_at }}
                                         </td>
                                         <td class="text-center">
                                             <form action="{{ route('user.destroy', $row) }}" method="post"

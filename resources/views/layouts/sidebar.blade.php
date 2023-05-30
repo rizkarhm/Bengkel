@@ -76,11 +76,15 @@
     <div class="sidebar-heading">
         User Management
     </div>
-
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('customer.index') }}">
+            <i class="fas fa-fw fa-user-alt"></i>
+            <span>Customer</span></a>
+    </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('user.index') }}">
-            <i class="fas fa-fw fa-user-alt"></i>
-            <span>User</span></a>
+            <i class="fas fa-fw fa-users"></i>
+            <span>Users</span></a>
     </li>
     @endif
 

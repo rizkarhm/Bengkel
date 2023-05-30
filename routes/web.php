@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\HistoryController;
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
 
     Route::resource('user', UserController::class);
+    Route::resource('customer', CustomerController::class);
     Route::resource('booking', BookingController::class);
     Route::resource('history', HistoryController::class);
     Route::resource('galeri', GaleriController::class);
