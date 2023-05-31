@@ -31,13 +31,13 @@
                     </div>
                 @endif
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead class="text-bold text-center">
+                    <thead class="text-bold text-center" style="color:blue">
                         <tr>
                             <th style="width: 40px; color:blue">No</th>
-                            <th>@sortablelink('Nama')</th>
-                            <th>@sortablelink('Nomor Whatsapp')</th>
-                            <th>@sortablelink('Role')</th>
-                            <th style="width: 200px; color:blue">Aksi</th>
+                            <th>Nama</th>
+                            <th>Nomor Whatsapp</th>
+                            <th>Role</th>
+                            <th style="width: 200px;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

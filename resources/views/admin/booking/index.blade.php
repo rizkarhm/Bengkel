@@ -31,17 +31,16 @@
                     </div>
                 @endif
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead class="text-bold text-center">
+                    <thead class="text-bold text-center" style="color:blue">
                         <tr>
-                            {{-- <th style="width: 40px; color:blue">No</th> --}}
-                            <th style="width: 40px; color:blue">ID</th>
-                            <th>@sortablelink('Nama Customer')</th>
-                            <th>@sortablelink('Merek')</th>
-                            <th>@sortablelink('Model')</th>
-                            <th>@sortablelink('Nomor Polisi')</th>
-                            <th>@sortablelink('Tanggal Masuk')</th>
-                            <th>@sortablelink('Status')</th>
-                            <th style="width: 200px; color:blue">Aksi</th>
+                            <th style="width: 40px;">ID</th>
+                            <th>Nama Customer</th>
+                            <th>Merek</th>
+                            <th>Model</th>
+                            <th>Nomor Polisi</th>
+                            <th>Tanggal Masuk</th>
+                            <th>Status</th>
+                            <th style="width: 200px;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

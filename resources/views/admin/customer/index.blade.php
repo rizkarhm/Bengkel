@@ -31,13 +31,13 @@
                     </div>
                 @endif
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead class="text-bold text-center">
+                    <thead class="text-bold text-center" style="color:blue">
                         <tr>
-                            <th style="width: 40px; color:blue">No</th>
-                            <th>@sortablelink('Nama')</th>
-                            <th>@sortablelink('Nomor Whatsapp')</th>
-                            <th>@sortablelink('Tanggal Bergabung')</th>
-                            <th style="width: 200px; color:blue">Aksi</th>
+                            <th style="width: 40px;">No</th>
+                            <th>Nama</th>
+                            <th>Nomor Whatsapp</th>
+                            <th>Tanggal Bergabung</th>
+                            <th style="width: 200px;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,13 +53,7 @@
                                             {{ $row->created_at }}
                                         </td>
                                         <td class="text-center">
-                                            <form action="{{ route('user.destroy', $row) }}" method="post"
-                                                class="form-inline">
-                                                <a href="{{ route('user.show', $row) }}" class="btn btn-success">Detail</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger ml-2">Hapus</button>
-                                            </form>
+                                            <a href="{{ route('user.show', $row->id) }}" class="btn btn-success">Detail</a>
                                         </td>
                                     </tr>
                                 @endif

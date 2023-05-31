@@ -31,12 +31,12 @@
                     </div>
                 @endif
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead class="text-bold text-center">
+                    <thead class="text-bold text-center" style="color:blue">
                         <tr>
-                            <th style="width: 40px; color:blue">No</th>
-                            <th style="color:blue">Logo</th>
-                            <th>@sortablelink('merek Kendaraan')</th>
-                            <th style="width: 200px; color:blue">Aksi</th>
+                            <th style="width: 40px;">No</th>
+                            <th>Logo</th>
+                            <th>Merek Kendaraan</th>
+                            <th style="width: 200px;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
