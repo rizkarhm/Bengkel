@@ -35,7 +35,7 @@
                         <tr>
                             <th style="width: 40px; color:blue">No</th>
                             <th>@sortablelink('Nama')</th>
-                            <th>@sortablelink('Telepon')</th>
+                            <th>@sortablelink('Nomor Whatsapp')</th>
                             <th>@sortablelink('Tanggal Bergabung')</th>
                             <th style="width: 200px; color:blue">Aksi</th>
                         </tr>

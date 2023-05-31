@@ -34,9 +34,9 @@
                     <thead class="text-bold text-center">
                         <tr>
                             <th style="width: 40px; color:blue">No</th>
-                            <th>@sortablelink('nama')</th>
-                            <th>@sortablelink('telepon')</th>
-                            <th>@sortablelink('role')</th>
+                            <th>@sortablelink('Nama')</th>
+                            <th>@sortablelink('Nomor Whatsapp')</th>
+                            <th>@sortablelink('Role')</th>
                             <th style="width: 200px; color:blue">Aksi</th>
                         </tr>
                     </thead>

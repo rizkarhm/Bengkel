@@ -103,6 +103,16 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    @if ($bookings->keterangan != null)
+                        <div class="form-group">
+                            <label for="keterangan">Keterangan Pembatalan<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="model" name="model" disabled
+                                value="{{ isset($bookings) ? $bookings->keterangan : old('keterangan') }}">
+                            @error('keterangan')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

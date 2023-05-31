@@ -25,6 +25,11 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p class="mb-0">{{ $message }}</p>
+                    </div>
+                @endif
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead class="text-bold text-center">
                         <tr>

@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="user_id">Nama Customer<span class="text-danger">*</span></label>
-                            <select name="user_id" id="user_id" class="custom-select">
+                            <select name="user_id" id="user_id_edit" class="custom-select">
                                 <option value="" selected disabled hidden>Pilih Customer</option>
                                 @foreach ($cust as $customer)
                                     <option value="{{ $customer->id }}" @selected(isset($bookings) ? $customer->id == $bookings->user_id : '')>{{ $customer->nama }}</option>
@@ -93,6 +93,14 @@
                                 @endforeach
                             </select>
                             @error('pic_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group" id="pesan" style="display:none">
+                            <label for="pesan">Keterangan Pembatalan<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="pesan" name="pesan"
+                                value="{{ isset($bookings) ? $bookings->pesan : old('pesan') }}">
+                            @error('pesan')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

@@ -18,14 +18,13 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="user_id">Pilih Customer<span class="text-danger">*</span></label>
-                        <select name="user_id" id="user_id" class="custom-select">
+                        <select name="user_id" id="cust_id" class="custom-select">
                             <option value="" selected disabled hidden>Pilih Customer</option>
                             @foreach ($cust as $customer)
-                                <option value="{{ $customer->id }}" @selected(old('user_id') == $customer->id)>{{ $customer->id }} - {{ $customer->nama }}</option>
+                                <option value="{{ $customer->id }}" @selected(old('user_id') == $customer->id)>{{ $customer->nama }}</option>
                                 @endforeach
                                 <option value="new_customer">Customer Baru</option>
                         </select>
-
                         @error('user_id')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -33,7 +32,7 @@
                     <div class="form-group">
                         <label for="nama">Nama Lengkap<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="nama" name="nama"
-                            value="{{ isset($users) ? $users->nama : old('nama') }}">
+                            value="{{ isset($users) ? $users->nama : old('nama') }}" disabled>
                         @error('nama')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -41,15 +40,17 @@
                     <div class="form-group">
                         <label for="telepon">Nomor Whatsapp<span class="text-danger">*</span></label>
                         <input type="number" class="form-control" id="telepon" name="telepon"
-                            value="{{ isset($users) ? $users->telepon : old('telepon') }}">
+                            value="{{ isset($users) ? $users->telepon : old('telepon') }}" disabled>
                         @error('telepon')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <textarea type="text" row=5 class="form-control" id="alamat" name="alamat">{{ isset($users) ? $users->alamat : old('alamat') }}</textarea>
-
+                        <textarea type="text" row=5 class="form-control" id="alamat"  disabled name="alamat">{{ isset($users) ? $users->alamat : old('alamat') }}</textarea>
+                        @error('alamat')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group" style="display: none">
                         <label for="role">Role<span class="text-danger">*</span></label>
@@ -128,7 +129,7 @@
                     </div>
                     <div class="form-group" style="display: none">
                         <label for="status">Status<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="model" name="model"
+                        <input type="text" class="form-control" id="status" name="status"
                          value="Booked">
                         </select>
                         @error('status')

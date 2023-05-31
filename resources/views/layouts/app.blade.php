@@ -90,6 +90,7 @@
     <!-- Page level plugins -->
     <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
 
+    {{-- Search --}}
     <script>
         $(document).ready(function() {
             $("#cari").on("keyup", function() {
@@ -106,13 +107,21 @@
         });
     </script>
 
+    {{-- Input berdasarkan status --}}
     <script>
         $(document).ready(function() {
             $('#status').change(function() {
                 var selectedStatus = $(this).val();
                 if (selectedStatus === 'Proccessed') {
                     $('#pic_id').show();
-                } else {
+                } else if (selectedStatus === 'Canceled'){
+                    $('#pesan').show();
+                    $('#pic_id').hide();
+                    $('#pic_id').val('');
+                }
+                else {
+                    $('#pesan').hide();
+                    $('#pesan').val('');
                     $('#pic_id').hide();
                     $('#pic_id').val('');
                 }
@@ -120,6 +129,30 @@
         });
     </script>
 
-</body>
+    {{-- On Change form data customer in booking --}}
+    <script>
+        $(document).ready(function() {
+            $('#cust_id').change(function() {
+                var selectedStatus = $(this).val();
+                if (selectedStatus === 'new_customer') {
+                    $('#nama').prop("disabled", false);
+                    $('#telepon').prop("disabled", false);
+                    $('#alamat').prop("disabled", false);
+                } else {
+                    $('#nama').prop("disabled", true);
+                    $('#telepon').prop("disabled", true);
+                    $('#alamat').prop("disabled", true);
+                    // $('#nama').val('-');
+                    // $('#telepon').val('0');
+                    // $('#alamat').val('-');
+                }
+            })
+        });
+    </script>
 
+    {{-- Add default value for tgl masuk as today --}}
+    <script>
+        $('#tgl_masuk').val(new Date().toJSON().slice(0, 10));
+    </script>
+</body>
 </html>

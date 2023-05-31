@@ -24,6 +24,7 @@ return new class extends Migration
             $table->date('tgl_masuk');
             $table->string('tgl_selesai')->nullable();
             $table->string('status');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
 
             $table->softDeletes();

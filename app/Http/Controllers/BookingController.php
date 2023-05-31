@@ -74,18 +74,7 @@ class BookingController extends Controller
     //Store Booking + Create customer
     public function store(Request $request)
     {
-        $this->validate($request, [
-            //validasi new customer
-            'nama' => 'required',
-            'telepon' => 'required|unique:users',
-            'alamat' => 'nullable',
 
-            //validasi new booking
-            'kendaraan_id' => 'required',
-            'model' => 'required',
-            'nopol' => 'required|min:7',
-            'tgl_masuk' => 'required|date',
-        ]);
 
         if ($request->status == "Done") {
             $tglKeluar = date('Y-m-d');
@@ -97,6 +86,19 @@ class BookingController extends Controller
 
         $user_id = $request->user_id;
         if ($user_id == "new_customer") {
+            $this->validate($request, [
+                //validasi new customer
+                'nama' => 'required',
+                'telepon' => 'required|unique:users',
+                'alamat' => 'nullable',
+
+                //validasi new booking
+                'kendaraan_id' => 'required',
+                'model' => 'required',
+                'nopol' => 'required|min:7',
+                'tgl_masuk' => 'required|date',
+            ]);
+
             $create_user = User::create([
                 'nama' => $request->nama,
                 'telepon' => $request->telepon,
@@ -116,6 +118,19 @@ class BookingController extends Controller
                 'status' => 'Booked',
             ]);
         } else {
+            $this->validate($request, [
+                //validasi new customer
+                // 'nama' => 'required',
+                // 'telepon' => 'required|unique:users',
+                // 'alamat' => 'nullable',
+
+                //validasi new booking
+                'kendaraan_id' => 'required',
+                'model' => 'required',
+                'nopol' => 'required|min:7',
+                'tgl_masuk' => 'required|date',
+            ]);
+
             Booking::create([
                 'user_id' => $user_id,
                 'kendaraan_id' => $request->kendaraan_id,
@@ -192,6 +207,7 @@ class BookingController extends Controller
             'tgl_masuk' => 'required|date',
             'tgl_selesai' => 'nullable',
             'pic_id' => 'nullable',
+            'keterangan' => 'nullable',
             'status' => 'required'
         ]);
 
@@ -212,6 +228,7 @@ class BookingController extends Controller
         $booking->tgl_selesai = $tglKeluar;
         $booking->pic_id = $request->pic_id;
         $booking->status = $request->status;
+        $booking->keterangan = $request->pesan;
 
         $booking->save();
 
