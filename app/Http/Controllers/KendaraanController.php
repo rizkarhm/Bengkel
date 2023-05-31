@@ -11,7 +11,7 @@ class KendaraanController extends Controller
 {
     public function index()
     {
-        $kendaraans = Kendaraan::all();
+        $kendaraans = Kendaraan::orderBy('id', 'asc')->paginate(10);
         return view('admin.kendaraan.index', [
             'kendaraans' => $kendaraans
         ]);

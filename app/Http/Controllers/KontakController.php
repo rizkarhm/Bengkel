@@ -10,13 +10,10 @@ class KontakController extends Controller
 {
     public function index()
     {
-        // $kontaks = Kontak::all();
-        // return view('admin.kontak.index', [
-        //     'kontaks' => $kontaks
-        // ]);
-
-        $kontaks = Kontak::sortable()->paginate(10);
-        return view('admin.kontak.index', compact('kontaks'));
+        $kontaks = Kontak::orderBy('id', 'asc')->paginate(10);
+        return view('admin.kontak.index', [
+            'kontaks' => $kontaks
+        ]);
     }
 
     public function create()

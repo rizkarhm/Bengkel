@@ -10,9 +10,9 @@ class UserController extends Controller
 {
     public function index()
     {
-        //using sortable plugin show per 10 data
-        $users = User::sortable()->paginate(10);
-        $users = $users->intersect(User::whereIn('role', ['Mekanik', 'Admin', 'Magang'])->get());
+        // $users = User::all();
+        $users = User::orderBy('id', 'asc')->paginate(10);
+        // $users = $users->intersect(User::whereIn('role', ['Mekanik', 'Admin', 'Magang'])->get());
         return view('admin.user.index', compact('users'));
     }
 

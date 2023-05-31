@@ -51,9 +51,18 @@
                         @enderror
                     </div>
                 </div>
-                <div class="card-footer">
-                    <a href="{{ route('user.edit', $users) }}" class="btn btn-warning">Edit User</a>
-                </div>
+
+                @if (auth()->user()->telepon != $users->telepon)
+                    <div class="card-footer">
+                        <form action="{{ route('user.destroy', $users->id) }}" method="post">
+                            <a href="{{ route('user.edit', $users) }}" class="btn btn-warning">Edit</a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger ml-2">Hapus</button>
+
+                        </form>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

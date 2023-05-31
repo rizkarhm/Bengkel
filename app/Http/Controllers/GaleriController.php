@@ -10,7 +10,7 @@ class GaleriController extends Controller
 {
     public function index()
     {
-        $galeris = Galeri::all();
+        $galeris = Galeri::orderBy('id', 'asc')->paginate(10);
         return view('admin.galeri.index', [
             'galeris' => $galeris
         ]);

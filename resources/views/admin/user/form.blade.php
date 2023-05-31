@@ -82,7 +82,9 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">{{ isset($kontaks) ? 'Update' : 'Simpan' }}</button>
+                            <button type="submit"
+                                class="btn btn-primary">{{ isset($users) ? 'Update' : 'Simpan' }}</button>
+                      
                     </div>
                 </div>
             </div>

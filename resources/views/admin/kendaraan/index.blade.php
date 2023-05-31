@@ -12,8 +12,8 @@
             <!-- Topbar Search -->
             <form class="d-none d-sm-inline-block form-inline mr-auto md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
-                    <input type="text" class="form-control border-2 small" placeholder="Cari"  id="cari" aria-label="Search"
-                        aria-describedby="basic-addon2">
+                    <input type="text" class="form-control border-2 small" placeholder="Cari" id="cari"
+                        aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button">
                             <i class="fas fa-search fa-sm"></i>
@@ -47,10 +47,12 @@
                                     <td class="text-center">{{ $no++ }}</td>
                                     <td class="text-center">
                                         @if ($row->gambar)
-                                            <img src="{{ asset('storage/' . $row->gambar) }}" class="img-account-profile rounded rounded-4 mb-2 img-fluid"
+                                            <img src="{{ asset('storage/' . $row->gambar) }}"
+                                                class="img-account-profile rounded rounded-4 mb-2 img-fluid"
                                                 style="height:80px" />
                                         @else
-                                            <img src="{{ asset('img/no-image.png') }}" class="img-account-profile rounded rounded-4 mb-2 img-fluid"
+                                            <img src="{{ asset('img/no-image.png') }}"
+                                                class="img-account-profile rounded rounded-4 mb-2 img-fluid"
                                                 style="height:80px" />
                                         @endif
                                     </td>
@@ -71,9 +73,18 @@
                     </tbody>
                 </table>
             </div>
-            <div class="footer">
-                <h5 class="text-danger">*confirmation delete data | kendaraan yang memiliki kaitan dengan tabel lain tidak dapat dihapus</h5>
-            </div>
+            @if ($kendaraans->count() != 0)
+                <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+                    <div class="datatable-info">Showing {{ $kendaraans->firstItem() }} to {{ $kendaraans->lastItem() }} of
+                        {{ $kendaraans->total() }} entries</div>
+                    <nav class="datatable-pagination">
+                        {!! $kendaraans->links() !!}</nav>
+                </div>
+            @endif
         </div>
+    </div>
+    <div class="footer">
+        <h5 class="text-danger">*confirmation delete data | kendaraan yang memiliki kaitan dengan tabel lain tidak dapat
+            dihapus</h5>
     </div>
 @endsection

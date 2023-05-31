@@ -15,7 +15,7 @@ class CustomerController extends Controller
     public function index()
     {
         //using sortable plugin show per 10 data
-        $users = User::sortable()->paginate(10);
+        $users = User::all();
         $users = $users->intersect(User::whereIn('role', ['Customer'])->get());
         return view('admin.customer.index', compact('users'));
     }

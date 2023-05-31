@@ -12,8 +12,8 @@
             <!-- Topbar Search -->
             <form class="d-none d-sm-inline-block form-inline mr-auto md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
-                    <input type="text" class="form-control border-2 small" placeholder="Cari" id="cari" aria-label="Search"
-                        aria-describedby="basic-addon2">
+                    <input type="text" class="form-control border-2 small" placeholder="Cari" id="cari"
+                        aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button">
                             <i class="fas fa-search fa-sm"></i>
@@ -47,10 +47,12 @@
                                     <td class="text-center">{{ $no++ }}</td>
                                     <td class="text-center">
                                         @if ($row->gambar)
-                                            <img src="{{ asset('storage/' . $row->gambar) }}" class="img-account-profile rounded rounded-4 mb-2 img-fluid"
+                                            <img src="{{ asset('storage/' . $row->gambar) }}"
+                                                class="img-account-profile rounded rounded-4 mb-2 img-fluid"
                                                 style="height:80px" />
                                         @else
-                                            <img src="{{ asset('img/no-image.png') }}" class="img-account-profile rounded rounded-4 mb-2 img-fluid"
+                                            <img src="{{ asset('img/no-image.png') }}"
+                                                class="img-account-profile rounded rounded-4 mb-2 img-fluid"
                                                 style="height:80px" />
                                         @endif
                                     </td>
@@ -58,8 +60,7 @@
                                     <td class="text-center">
                                         {{-- <a href="{{ route('galeri.edit', $row->id) }}" class="btn btn-warning mt-2">Edit</a><br> --}}
                                         <form action="{{ route('galeri.destroy', $row->id) }}" method="post">
-                                            <a href="{{ route('galeri.edit', $row->id) }}"
-                                                class="btn btn-warning">Edit</a>
+                                            <a href="{{ route('galeri.edit', $row->id) }}" class="btn btn-warning">Edit</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Hapus</button>
@@ -71,9 +72,17 @@
                     </tbody>
                 </table>
             </div>
-            <div class="footer">
-                <h5 class="text-danger">*confirmation delete data</h5>
+            @if ($galeris->count() != 0)
+            <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+                <div class="datatable-info">Showing {{ $galeris->firstItem() }} to {{ $galeris->lastItem() }} of
+                    {{ $galeris->total() }} entries</div>
+                <nav class="datatable-pagination">
+                    {!! $galeris->links() !!}</nav>
             </div>
+            @endif
         </div>
+    </div>
+    <div class="footer">
+        <h5 class="text-danger">*confirmation delete data</h5>
     </div>
 @endsection

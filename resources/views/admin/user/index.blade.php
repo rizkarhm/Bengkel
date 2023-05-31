@@ -12,8 +12,8 @@
             <!-- Topbar Search -->
             <form class="d-none d-sm-inline-block form-inline mr-auto md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
-                    <input type="text" class="form-control border-2 small" placeholder="Cari" id="cari" aria-label="Search"
-                        aria-describedby="basic-addon2">
+                    <input type="text" class="form-control border-2 small" placeholder="Cari" id="cari"
+                        aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button">
                             <i class="fas fa-search fa-sm"></i>
@@ -41,49 +41,51 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($users->count())
-                            @php($no = 1)
-                            @foreach ($users as $key => $row)
-                                @if (auth()->user()->telepon != $row->telepon)
-                                    <tr>
-                                        <td class="text-center">{{ $no++ }}</td>
-                                        <td data-index="{{ $row->id }}">{{ $row->nama }}</td>
-                                        <td>{{ $row->telepon }}</td>
-                                        <td>
-                                            @if ($row->role == 'Admin')
-                                                <div class="text-white rounded-pill py-2 px-2 badge bg-primary">
-                                                    {{ $row->role }}</div>
-                                            @elseif ($row->role == 'Customer')
-                                                <div class="text-white rounded-pill py-2 px-2 badge bg-success">
-                                                    {{ $row->role }}</div>
-                                            @elseif ($row->role == 'Mekanik')
-                                                <div class="text-white rounded-pill py-2 px-2 badge bg-warning">
-                                                    {{ $row->role }}</div>
-                                            @elseif ($row->role == 'Magang')
-                                                <div class="text-white rounded-pill py-2 px-2 badge bg-danger">
-                                                    {{ $row->role }}</div>
-                                            @endif
+                        @php($no = 1)
+                        @foreach ($users as $key => $row)
+                            <tr>
+                                <td class="text-center">{{ $no++ }}</td>
+                                <td data-index="{{ $row->id }}">{{ $row->nama }}</td>
+                                <td>{{ $row->telepon }}</td>
+                                <td>
+                                    @if ($row->role == 'Admin')
+                                        <div class="text-white rounded-pill py-2 px-2 badge bg-primary">
+                                            {{ $row->role }}</div>
+                                    @elseif ($row->role == 'Customer')
+                                        <div class="text-white rounded-pill py-2 px-2 badge bg-success">
+                                            {{ $row->role }}</div>
+                                    @elseif ($row->role == 'Mekanik')
+                                        <div class="text-white rounded-pill py-2 px-2 badge bg-warning">
+                                            {{ $row->role }}</div>
+                                    @elseif ($row->role == 'Magang')
+                                        <div class="text-white rounded-pill py-2 px-2 badge bg-danger">
+                                            {{ $row->role }}</div>
+                                    @endif
 
-                                        </td>
-                                        <td class="text-center">
-                                            <form action="{{ route('user.destroy', $row) }}" method="post"
-                                                class="form-inline">
-                                                <a href="{{ route('user.show', $row) }}" class="btn btn-success">Detail</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger ml-2">Hapus</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endif
-                            @endforeach
-                        @endif
+                                </td>
+                                <td class="text-center">
+
+                                    <a href="{{ route('user.show', $row->id) }}" class="btn btn-success">Detail</a>
+
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
-            <div class="footer">
-                <h5 class="text-danger">*confirmation delete data | user yang memiliki kaitan dengan tabel lain tidak dapat dihapus</h5>
-            </div>
+            @if ($users->count() != 0)
+                <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+                    <div class="datatable-info">Showing {{ $users->firstItem() }} to {{ $users->lastItem() }} of
+                        {{ $users->total() }} entries</div>
+                    <nav class="datatable-pagination">
+                        {!! $users->links() !!}</nav>
+                </div>
+            @endif
         </div>
+    </div>
+
+    <div class="footer">
+        <h5 class="text-danger">*confirmation delete data | user yang memiliki kaitan dengan tabel lain tidak dapat
+            dihapus</h5>
     </div>
 @endsection

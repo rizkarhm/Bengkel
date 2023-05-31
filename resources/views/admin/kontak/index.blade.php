@@ -12,8 +12,8 @@
             <!-- Topbar Search -->
             <form class="d-none d-sm-inline-block form-inline mr-auto md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
-                    <input type="text" class="form-control border-2 small" placeholder="Cari"  id="cari" aria-label="Search"
-                        aria-describedby="basic-addon2">
+                    <input type="text" class="form-control border-2 small" placeholder="Cari" id="cari"
+                        aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button">
                             <i class="fas fa-search fa-sm"></i>
@@ -63,9 +63,17 @@
                     </tbody>
                 </table>
             </div>
-            <div class="footer">
-                <h5 class="text-danger">*confirmation delete data</h5>
-            </div>
+            @if ($kontaks->count() != 0)
+                <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+                    <div class="datatable-info">Showing {{ $kontaks->firstItem() }} to {{ $kontaks->lastItem() }} of
+                        {{ $kontaks->total() }} entries</div>
+                    <nav class="datatable-pagination">
+                        {!! $kontaks->links() !!}</nav>
+                </div>
+            @endif
         </div>
+    </div>
+    <div class="footer">
+        <h5 class="text-danger">*confirmation delete data</h5>
     </div>
 @endsection
