@@ -70,7 +70,7 @@ class UserController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'telepon' => 'required|munique:users,telepon,' . $id,
+            'telepon' => 'required|unique:users,telepon,' . $id,
             'alamat' => 'nullable',
             'password' => 'sometimes|nullable|confirmed|min:8',
             'role' => 'required'
