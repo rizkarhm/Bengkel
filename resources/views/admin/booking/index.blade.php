@@ -166,9 +166,17 @@
                     </tbody>
                 </table>
             </div>
-            <div class="footer">
-                <h5 class="text-danger">*confirmation delete data</h5>
-            </div>
+            @if ($all->count() != 0)
+                <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+                    <div class="datatable-info">Showing {{ $all->firstItem() }} to {{ $all->lastItem() }} of
+                        {{ $all->total() }} entries</div>
+                    <nav class="datatable-pagination">
+                        {!! $all->links() !!}</nav>
+                </div>
+            @endif
         </div>
+    </div>
+    <div class="footer">
+        <h5 class="text-danger">*confirmation delete data</h5>
     </div>
 @endsection

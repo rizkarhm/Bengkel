@@ -15,6 +15,9 @@ class BookingController extends Controller
         //get all data
         $all = Booking::all();
 
+        //all with paginate
+        $all = Booking::orderBy('id', 'asc')->paginate(10);
+
         //get user id
         $user = auth()->user()->id;
 
