@@ -1,31 +1,34 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Riwayat Service')
+@section('title', 'Detail Booking')
 
 @section('contents')
     <ol class="breadcrumb px-3 py-2 rounded mb-4">
         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
         <li class="breadcrumb-item"><a href="{{ route('booking.index') }}">Data Booking</a></li>
-        <li class="breadcrumb-item active">Riwayat</li>
+        <li class="breadcrumb-item active">Detail</li>
     </ol>
 
     <div class="row">
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-body">
-                    <div class="form-group">
-                        <label for="user_id">Nama Customer</label>
-                        <select name="user_id" id="user_id" class="custom-select" disabled>
-                            <option value="" selected disabled hidden>Pilih Customer</option>
-                            @foreach ($cust as $customer)
-                                <option value="{{ $bookings->user_id }}" @selected(isset($bookings) ? $customer->id == $bookings->user_id : '')>{{ $customer->nama }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('user_id')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
+                    @if (auth()->user()->role != 'Customer')
+                        <div class="form-group">
+                            <label for="user_id">Nama Customer</label>
+                            <select name="user_id" id="user_id" class="custom-select" disabled>
+                                <option value="" selected disabled hidden>Pilih Customer</option>
+                                @foreach ($cust as $customer)
+                                    <option value="{{ $bookings->user_id }}" @selected(isset($bookings) ? $customer->id == $bookings->user_id : '')>
+                                        {{ $customer->nama }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('user_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    @endif
                     <div class="form-group">
                         <label for="kendaraan_id">Merek Kendaraan</label>
                         <select name="kendaraan_id" id="kendaraan_id" class="custom-select" disabled>
@@ -63,14 +66,24 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="tgl_selesai">Tanggal Selesai</label>
-                        <input type="text" class="form-control" id="tgl_selesai" name="tgl_selesai" disabled
-                            value="{{ isset($bookings) ? $bookings->tgl_selesai : old('tgl_selesai') }}">
-                        @error('tgl_selesai')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
+
+                    @if (auth()->user()->role != 'Customer')
+                        <div class="form-group" id="pic_id">
+                            <label for="pic_id">PIC</label>
+                            <select name="pic_id" id="pic_id" class="custom-select" disabled>
+                                <option value="" selected disabled hidden>Pilih PIC</option>
+                                @foreach ($pic as $pic_id)
+                                    <option value="{{ $bookings->pic_id }}" @selected(isset($bookings) ? $pic_id->id == $bookings->pic_id : '')>
+                                        {{ $pic_id->nama }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('pic_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    @endif
+
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select name="status" id="status" class="custom-select" disabled>
@@ -90,30 +103,28 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="form-group" id="pic_id">
-                        <label for="pic_id">PIC</label>
-                        <select name="pic_id" id="pic_id" class="custom-select" disabled>
-                            <option value="" selected disabled hidden>-</option>
-                            @foreach ($pic as $pic_id)
-                                <option value="{{ $bookings->pic_id }}" @selected(isset($bookings) ? $pic_id->id == $bookings->pic_id : '')>{{ $pic_id->nama }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('pic_id')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    @if ($bookings->keterangan != null)
-                        <div class="form-group">
-                            <label for="keterangan">Keterangan Pembatalan</label>
-                            <input type="text" class="form-control" id="model" name="model" disabled
-                                value="{{ isset($bookings) ? $bookings->keterangan : old('keterangan') }}">
-                            @error('keterangan')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    @endif
+
+                    @if (auth()->user()->role != 'Customer')
+                        @if ($bookings->status == 'Done')
+                            <div class="form-group" id="penanganan">
+                                <label for="penanganan">Penanganan</label>
+                                <textarea disabled type="text" class="form-control" id="penanganan" name="penanganan" value="">{{ isset($bookings) ? $bookings->penanganan : '' }}</textarea>
+                                @error('penanganan')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        @elseif ($bookings->status == 'Canceled')
+                            <div class="form-group" id="pesan">
+                                <label for="pesan">Keterangan Pembatalan</label>
+                                <input type="text" class="form-control" id="pesan" name="pesan" disabled
+                                    value="{{ isset($bookings) ? $bookings->ket_pembatalan : old('pesan') }}">
+                                @error('pesan')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        @endif
                 </div>
+                @endif
             </div>
         </div>
     </div>
