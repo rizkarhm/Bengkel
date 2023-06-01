@@ -23,7 +23,7 @@ class BookingSeeder extends Seeder
                 'nopol' => 'N 9182 GJ',
                 'tgl_masuk' => '2023-06-01',
                 'tgl_selesai' => '',
-                'pic_id' => '3',
+                'pic_id' => null,
                 'status' => 'Booked',
                 'penanganan' => '',
                 'ket_pembatalan' => ''
