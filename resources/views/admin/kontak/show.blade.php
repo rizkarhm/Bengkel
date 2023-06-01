@@ -13,7 +13,7 @@
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="nama">Nama Kontak<span class="text-danger">*</span></label>
+                        <label for="nama">Nama Kontak</label>
                         <input type="text" class="form-control" id="nama" name="nama" disabled
                             value="{{ isset($kontaks) ? $kontaks->nama : old('nama') }}">
                         @error('nama')
@@ -21,7 +21,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="isi">Data<span class="text-danger">*</span></label>
+                        <label for="isi">Data</label>
                         <input type="text" class="form-control" id="isi" name="isi" disabled
                             value="{{ isset($kontaks) ? $kontaks->isi : old('isi') }}">
                         @error('isi')

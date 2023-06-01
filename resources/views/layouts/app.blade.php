@@ -22,9 +22,7 @@
     <!-- Icon web tab -->
     <link rel="icon" href="{{ asset('img/logo_only.svg') }}">
 
-</head>
-
-<body id="page-top">
+    <!-- jQuery UI libra>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -111,19 +109,26 @@
     <script>
         $(document).ready(function() {
             $('#status').change(function() {
-                var selectedStatus = $(this).val();
+            var selectedStatus = $(this).val();
                 if (selectedStatus === 'Proccessed') {
                     $('#pic_id').show();
-                } else if (selectedStatus === 'Canceled'){
-                    $('#pesan').show();
+                    $('#penanganan').hide();
+                    $('#ket_pembatalan').hide();
+                } else if (selectedStatus === 'Canceled') {
+                    $('#pic_id').show();
+                    $('#penanganan').hide();
+                    $('#ket_pembatalan').show();
+                } else if (selectedStatus === 'Done') {
+                    $('#pic_id').show();
+                    $('#penanganan').show();
+                    $('#ket_pembatalan').hide();
+                } else {
                     $('#pic_id').hide();
                     $('#pic_id').val('');
-                }
-                else {
-                    $('#pesan').hide();
-                    $('#pesan').val('');
-                    $('#pic_id').hide();
-                    $('#pic_id').val('');
+                    $('#penanganan').hide();
+                    $('#penanganan').val('');
+                    $('#ket_pembatalan').hide();
+                    $('#ket_pembatalan').val('');
                 }
             })
         });
@@ -154,5 +159,6 @@
     <script>
         $('#tgl_masuk').val(new Date().toJSON().slice(0, 10));
     </script>
-</body>
+    </body>
+
 </html>

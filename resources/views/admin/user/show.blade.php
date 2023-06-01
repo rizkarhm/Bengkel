@@ -13,7 +13,7 @@
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="nama">Nama Lengkap<span class="text-danger">*</span></label>
+                        <label for="nama">Nama Lengkap</label>
                         <input type="text" class="form-control" id="nama" name="nama"
                             value="{{ isset($users) ? $users->nama : '' }}" disabled>
                         @error('nama')
@@ -21,7 +21,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="telepon">Nomor Whatsapp<span class="text-danger">*</span></label>
+                        <label for="telepon">Nomor Whatsapp</label>
                         <input type="number" class="form-control" id="telepon" name="telepon"
                             value="{{ isset($users) ? $users->telepon : '' }}" disabled>
                         @error('telepon')
@@ -34,7 +34,7 @@
 
                     </div>
                     <div class="form-group">
-                        <label for="role">Role<span class="text-danger">*</span></label>
+                        <label for="role">Role</label>
                         <select name="role" id="role" class="custom-select" disabled>
                             <option value="" selected disabled hidden>-- Pilih Role --</option>
                             <option value="Customer" {{ isset($users) ? ($users->role ? 'selected' : '') : '' }}>

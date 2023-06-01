@@ -14,7 +14,7 @@
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="user_id">Nama Customer<span class="text-danger">*</span></label>
+                        <label for="user_id">Nama Customer</label>
                         <select name="user_id" id="user_id" class="custom-select" disabled>
                             <option value="" selected disabled hidden>Pilih Customer</option>
                             @foreach ($cust as $customer)
@@ -27,7 +27,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="kendaraan_id">Merek Kendaraan<span class="text-danger">*</span></label>
+                        <label for="kendaraan_id">Merek Kendaraan</label>
                         <select name="kendaraan_id" id="kendaraan_id" class="custom-select" disabled>
                             <option value="" selected disabled hidden>Pilih Merek Kendaraan</option>
                             @foreach ($kendaraans as $merek)
@@ -40,7 +40,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="model">Model Kendaraan<span class="text-danger">*</span></label>
+                        <label for="model">Model Kendaraan</label>
                         <input type="text" class="form-control" id="model" name="model" disabled
                             placeholder="cth: HR-V 2017" value="{{ isset($bookings) ? $bookings->model : old('model') }}">
                         @error('model')
@@ -48,7 +48,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="nopol">Nomor Polisi<span class="text-danger">*</span></label>
+                        <label for="nopol">Nomor Polisi</label>
                         <input type="text" class="form-control" id="nopol" name="nopol" disabled
                             value="{{ isset($bookings) ? $bookings->nopol : old('nopol') }}">
                         @error('nopol')
@@ -56,7 +56,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="tgl_masuk">Tanggal Masuk<span class="text-danger">*</span></label>
+                        <label for="tgl_masuk">Tanggal Masuk</label>
                         <input type="date" class="form-control" id="tgl_masuk" name="tgl_masuk" disabled
                             value="{{ isset($bookings) ? $bookings->tgl_masuk : old('tgl_masuk') }}">
                         @error('tgl_masuk')
@@ -64,7 +64,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="tgl_selesai">Tanggal Selesai<span class="text-danger">*</span></label>
+                        <label for="tgl_selesai">Tanggal Selesai</label>
                         <input type="text" class="form-control" id="tgl_selesai" name="tgl_selesai" disabled
                             value="{{ isset($bookings) ? $bookings->tgl_selesai : old('tgl_selesai') }}">
                         @error('tgl_selesai')
@@ -72,7 +72,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="status">Status<span class="text-danger">*</span></label>
+                        <label for="status">Status</label>
                         <select name="status" id="status" class="custom-select" disabled>
                             <option value="" selected disabled hidden>Pilih Status</option>
                             <option value="Booked" @selected(isset($bookings) ? $bookings->status == 'Booked' : old('status') == 'Booked')>Booked
@@ -105,7 +105,7 @@
                     </div>
                     @if ($bookings->keterangan != null)
                         <div class="form-group">
-                            <label for="keterangan">Keterangan Pembatalan<span class="text-danger">*</span></label>
+                            <label for="keterangan">Keterangan Pembatalan</label>
                             <input type="text" class="form-control" id="model" name="model" disabled
                                 value="{{ isset($bookings) ? $bookings->keterangan : old('keterangan') }}">
                             @error('keterangan')

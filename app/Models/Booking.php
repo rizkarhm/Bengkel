@@ -17,7 +17,9 @@ class Booking extends Model
         'tgl_masuk',
         'tgl_selesai',
         'status',
-        'pic_id'
+        'pic_id',
+        'ket_pembatalan',
+        'penanganan',
     ];
 
     public function user()

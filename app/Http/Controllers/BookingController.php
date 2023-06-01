@@ -12,10 +12,26 @@ class BookingController extends Controller
 {
     public function index()
     {
-        $data = Booking::all();
-        $bookings = $data->intersect(Booking::whereIn('status', ['Booked', 'In Queue', 'Proccessed'])->get());
+        //get all data
+        $all = Booking::all();
+
+        //get user id
+        $user = auth()->user()->id;
+
+        //admin
+        // $bookings = Booking::where('status', ['Booked', 'In Queue', 'Proccessed'])->get();
+        $bookings = $all->intersect(Booking::whereIn('status', ['Booked', 'In Queue', 'Proccessed'])->get());
+
+        //customer
+        $bookings_user = Booking::where('user_id', $user)->get();
+
+        //mekanik dan magang
+        $bookings_pic = Booking::where('pic_id', $user)->get();
         return view('admin.booking.index', [
-            'bookings' => $bookings
+            'all' => $all,
+            'bookings' => $bookings,
+            'bookings_user' => $bookings_user,
+            'bookings_pic' => $bookings_pic,
         ]);
     }
 
@@ -207,14 +223,19 @@ class BookingController extends Controller
             'tgl_masuk' => 'required|date',
             'tgl_selesai' => 'nullable',
             'pic_id' => 'nullable',
-            'keterangan' => 'nullable',
+            'ket_pembatalan' => 'nullable',
+            'penanganan' => 'nullable',
             'status' => 'required'
         ]);
 
         if ($request->status == "Done") {
             $tglKeluar = date('Y-m-d');
+            $ket_pembatalan = null;
+            $penanganan = $request->penanganan;
         } else if ($request->status == "Canceled") {
             $tglKeluar = "-";
+            $ket_pembatalan = $request->ket_pembatalan;
+            $penanganan = null;
         } else {
             $tglKeluar = null;
         }
@@ -228,7 +249,8 @@ class BookingController extends Controller
         $booking->tgl_selesai = $tglKeluar;
         $booking->pic_id = $request->pic_id;
         $booking->status = $request->status;
-        $booking->keterangan = $request->pesan;
+        $booking->penanganan = $penanganan;
+        $booking->ket_pembatalan = $ket_pembatalan;
 
         $booking->save();
 
