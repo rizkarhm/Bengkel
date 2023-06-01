@@ -21,7 +21,9 @@
                     </div>
                 </div>
             </form>
-            <a href="{{ route('booking.create') }}" class="btn btn-primary">Buat Appointment</a>
+            @if (auth()->user()->role != 'Magang')
+                <a href="{{ route('booking.create') }}" class="btn btn-primary">Buat Appointment</a>
+            @endif
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -46,42 +48,7 @@
                     <tbody>
                         @if (isset($all))
                             @php($no = 1)
-
-                            @if (auth()->user()->role == 'Admin' || 'Mekanik')
-                                @foreach ($all as $row)
-                                    <tr>
-                                        {{-- <td class="text-center">{{ $no++ }}</td> --}}
-                                        <td class="text-center">{{ $row->id }}</td>
-                                        <td>{{ $row->user->nama }}</td>
-                                        <td>{{ $row->kendaraan->merek }}</td>
-                                        <td>{{ $row->model }}</td>
-                                        <td>{{ $row->nopol }}</td>
-                                        <td>{{ $row->tgl_masuk }}</td>
-                                        <td>
-                                            @if ($row->status == 'Booked')
-                                                <div class="text-white rounded-pill py-2 px-2 badge bg-secondary">
-                                                    {{ $row->status }}</div>
-                                            @elseif ($row->status == 'Done')
-                                                <div class="text-white rounded-pill py-2 px-2 badge bg-success">
-                                                    {{ $row->status }}</div>
-                                            @elseif ($row->status == 'In Queue')
-                                                <div class="text-white rounded-pill py-2 px-2 badge bg-warning">
-                                                    {{ $row->status }}</div>
-                                            @elseif ($row->status == 'Proccessed')
-                                                <div class="text-white rounded-pill py-2 px-2 badge bg-info">
-                                                    {{ $row->status }}</div>
-                                            @elseif ($row->status == 'Canceled')
-                                                <div class="text-white rounded-pill py-2 px-2 badge bg-danger">
-                                                    {{ $row->status }}</div>
-                                            @endif
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="{{ route('booking.show', $row->id) }}"
-                                            class="btn btn-success">Detail</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @elseif (auth()->user()->role == 'Customer')
+                            @if (auth()->user()->role == 'Customer')
                                 @foreach ($bookings_user as $row)
                                     <tr>
                                         {{-- <td class="text-center">{{ $no++ }}</td> --}}
@@ -115,13 +82,12 @@
                                                     class="btn btn-success">Detail</a>
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger ml-2">Hapus</button>
+                                                {{-- <button type="submit" class="btn btn-danger ml-2">Hapus</button> --}}
                                             </form>
                                         </td>
                                     </tr>
                                 @endforeach
-
-                                @elseif (auth()->user()->role == 'Magang' )
+                            @elseif (auth()->user()->role == 'Magang')
                                 @foreach ($bookings_pic as $row)
                                     <tr>
                                         {{-- <td class="text-center">{{ $no++ }}</td> --}}
@@ -155,8 +121,42 @@
                                                     class="btn btn-success">Detail</a>
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger ml-2">Hapus</button>
+                                                {{-- <button type="submit" class="btn btn-danger ml-2">Hapus</button> --}}
                                             </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                @foreach ($all as $row)
+                                    <tr>
+                                        {{-- <td class="text-center">{{ $no++ }}</td> --}}
+                                        <td class="text-center">{{ $row->id }}</td>
+                                        <td>{{ $row->user->nama }}</td>
+                                        <td>{{ $row->kendaraan->merek }}</td>
+                                        <td>{{ $row->model }}</td>
+                                        <td>{{ $row->nopol }}</td>
+                                        <td>{{ $row->tgl_masuk }}</td>
+                                        <td>
+                                            @if ($row->status == 'Booked')
+                                                <div class="text-white rounded-pill py-2 px-2 badge bg-secondary">
+                                                    {{ $row->status }}</div>
+                                            @elseif ($row->status == 'Done')
+                                                <div class="text-white rounded-pill py-2 px-2 badge bg-success">
+                                                    {{ $row->status }}</div>
+                                            @elseif ($row->status == 'In Queue')
+                                                <div class="text-white rounded-pill py-2 px-2 badge bg-warning">
+                                                    {{ $row->status }}</div>
+                                            @elseif ($row->status == 'Proccessed')
+                                                <div class="text-white rounded-pill py-2 px-2 badge bg-info">
+                                                    {{ $row->status }}</div>
+                                            @elseif ($row->status == 'Canceled')
+                                                <div class="text-white rounded-pill py-2 px-2 badge bg-danger">
+                                                    {{ $row->status }}</div>
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{ route('booking.show', $row->id) }}"
+                                                class="btn btn-success">Detail</a>
                                         </td>
                                     </tr>
                                 @endforeach

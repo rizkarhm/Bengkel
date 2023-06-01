@@ -66,6 +66,14 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="tgl_selesai">Tanggal Selesai</label>
+                        <input type="date" class="form-control" id="tgl_selesai" name="tgl_selesai" disabled
+                            value="{{ isset($bookings) ? $bookings->tgl_selesai : old('tgl_selesai') }}">
+                        @error('tgl_selesai')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
 
                     @if (auth()->user()->role != 'Customer')
                         <div class="form-group" id="pic_id">
@@ -104,32 +112,32 @@
                         @enderror
                     </div>
 
-                    @if (auth()->user()->role != 'Customer')
-                        @if ($bookings->status == 'Done')
-                            <div class="form-group" id="penanganan">
-                                <label for="penanganan">Penanganan</label>
-                                <textarea disabled type="text" class="form-control" id="penanganan" name="penanganan" value="">{{ isset($bookings) ? $bookings->penanganan : '' }}</textarea>
-                                @error('penanganan')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        @elseif ($bookings->status == 'Canceled')
-                            <div class="form-group" id="pesan">
-                                <label for="pesan">Keterangan Pembatalan</label>
-                                <input type="text" class="form-control" id="pesan" name="pesan" disabled
-                                    value="{{ isset($bookings) ? $bookings->ket_pembatalan : old('pesan') }}">
-                                @error('pesan')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        @endif
+                    @if ($bookings->status == 'Done')
+                        <div class="form-group" id="penanganan">
+                            <label for="penanganan">Penanganan</label>
+                            <textarea disabled type="text" class="form-control" id="penanganan" name="penanganan" value="">{{ isset($bookings) ? $bookings->penanganan : '' }}</textarea>
+                            @error('penanganan')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    @elseif ($bookings->status == 'Canceled')
+                        <div class="form-group" id="pesan">
+                            <label for="pesan">Keterangan Pembatalan</label>
+                            <input type="text" class="form-control" id="pesan" name="pesan" disabled
+                                value="{{ isset($bookings) ? $bookings->ket_pembatalan : old('pesan') }}">
+                            @error('pesan')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    @endif
                 </div>
-                @if (auth()->user()->role != 'Magang')
-                    <div class="card-footer">
-                        <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning">Edit Book
-                            Appointment</a>
-                    </div>
-                @endif
+                @if (auth()->user()->role != 'Customer')
+                    @if (auth()->user()->role != 'Magang')
+                        <div class="card-footer">
+                            <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning">Edit Book
+                                Appointment</a>
+                        </div>
+                    @endif
                 @endif
             </div>
         </div>
