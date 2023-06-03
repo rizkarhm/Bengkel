@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Data Kontak')
+@section('title', 'Data Feedback')
 
 @section('contents')
     <ol class="breadcrumb px-3 py-2 rounded mb-4">
         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-        <li class="breadcrumb-item active">Master Data Kontak</li>
+        <li class="breadcrumb-item active">Feedback</li>
     </ol>
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex">
@@ -21,40 +21,41 @@
                     </div>
                 </div>
             </form>
-            <a href="{{ route('kontak.create') }}" class="btn btn-primary">Tambah Kontak</a>
+            {{-- <a href="{{ route('kontak.create') }}" class="btn btn-primary">Tambah Kontak</a> --}}
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead class="text-bold text-center">
+                    <thead class="text-bold text-center" style="color:blue">
                         <tr>
-                            <th style="width: 40px; color:blue">No</th>
-                            <th>@sortablelink('Jenis Kontak')</th>
-                            <th>@sortablelink('Data Kontak')</th>
+                            {{-- <th style="width: 40px;">No</th> --}}
+                            <th style="width: 100px;">ID Booking</th>
+                            <th>Nama Customer</th>
+                            <th style="width: 60px;">Rating</th>
+                            <th>Feedback</th>
                             <th style="width: 200px; color:blue">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($kontaks->count())
-                            @php($no = 1)
-                            @foreach ($kontaks as $key => $row)
-                                <tr>
-                                    <td class="text-center">{{ $no++ }}</td>
-                                    <td>{{ $row->nama }}</td>
-                                    <td>{{ $row->isi }}</td>
-                                    <td>
-                                        <a href="{{ route('kontak.show', $row->id) }}"
-                                            class="btn btn-success">Detail</a><br>
-                                        {{-- <a href="{{ route('kontak.edit', $row->id) }}" class="btn btn-warning mt-2">Edit</a><br> --}}
-                                        <form action="{{ route('kontak.destroy', $row->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger mt-2">Hapus</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @endif
+                        @php($no = 1)
+                        @foreach ($feedbacks as $key => $row)
+                            <tr>
+                                {{-- <td class="text-center">{{ $no++ }}</td> --}}
+                                <td>{{ $row->booking_id }}</td>
+                                <td>{{ $row->booking->user->nama }}</td>
+                                <td>{{ $row->rating }}</td>
+                                <td>{{ $row->feedback }}</td>
+                                <td class="text-center">
+                                    <form action="{{ route('feedback.destroy', $row->id) }}" method="post">
+                                        <a href="{{ route('feedback.show', $row->id) }}"
+                                            class="btn btn-success">Detail</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger ml-2">Hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

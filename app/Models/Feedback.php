@@ -9,8 +9,13 @@ class Feedback extends Model
 {
     use HasFactory;
 
-    public function bookings()
+    // public function bookings()
+    // {
+    //     return $this->hasMany(Booking::class);
+    // }
+
+    public function booking()
     {
-        return $this->hasMany(Booking::class);
+        return $this->belongsTo(Booking::class);
     }
 }
