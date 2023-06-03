@@ -5,7 +5,7 @@
 @section('contents')
     <ol class="breadcrumb px-3 py-2 rounded mb-4">
         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-        <li class="breadcrumb-item active">Riwayat Book Appointment</li>
+        <li class="breadcrumb-item active">Riwayat Booking</li>
     </ol>
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex">
