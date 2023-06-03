@@ -14,6 +14,12 @@
             <div class="card shadow mb-4">
                 <div class="card-header">Detail Booking</div>
                 <div class="card-body">
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-danger">
+                            <p class="mb-0">{{ $message }}</p>
+                        </div>
+                    @endif
+
                     @if (auth()->user()->role != 'Customer')
                         <div class="form-group">
                             <label for="user_id">Nama Customer</label>
@@ -132,14 +138,13 @@
                         </div>
                     @endif
                 </div>
-                @if (auth()->user()->role != 'Customer')
-                    @if (auth()->user()->role != 'Magang')
-                        <div class="card-footer">
-                            <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning">Edit Book
-                                Appointment</a>
-                        </div>
-                    @endif
+                {{-- @if (auth()->user()->role != 'Customer') --}}
+                @if (auth()->user()->role != 'Magang')
+                    <div class="card-footer">
+                        <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning">Edit Data Booking</a>
+                    </div>
                 @endif
+                {{-- @endif --}}
             </div>
         </div>
     </div>

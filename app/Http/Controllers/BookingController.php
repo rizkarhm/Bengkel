@@ -212,15 +212,28 @@ class BookingController extends Controller
         $kendaraans = Kendaraan::all();
 
         $booking = Booking::find($id);
+
         if (!$booking) return redirect()->route('booking.index')
             ->with('error', 'Booking dengan id' . $id . ' tidak ditemukan');
 
-        return view('admin.booking.edit', [
-            'bookings' => $booking,
-            'cust' => $cust,
-            'pic' => $pic,
-            'kendaraans' => $kendaraans
-        ]);
+        $status = $booking->status;
+        if ($status == 'Proccessed') {
+            return redirect()->route('booking.show', $booking->id)
+                ->with('error', 'Data booking dengan status Proccessed tidak dapat diubah');
+        } else if ($status == 'Done') {
+            return redirect()->route('booking.show', $booking->id)
+                ->with('error', 'Data booking dengan status Done tidak dapat diubah');
+        } else if ($status == 'Canceled') {
+            return redirect()->route('booking.show', $booking->id)
+                ->with('error', 'Data booking dengan status Canceled tidak dapat diubah');
+        } else {
+            return view('admin.booking.edit', [
+                'bookings' => $booking,
+                'cust' => $cust,
+                'pic' => $pic,
+                'kendaraans' => $kendaraans
+            ]);
+        }
     }
 
     public function update(Request $request, $id)
@@ -277,13 +290,13 @@ class BookingController extends Controller
 
         if ($status == 'Proccessed') {
             return redirect()->route('booking.index')
-                ->with('error', 'Data booking dengan status Proccessed tidak dihapus');
+                ->with('error', 'Data booking dengan status Proccessed tidak dapat dihapus');
         } else if ($status == 'Done') {
             return redirect()->route('booking.index')
-                ->with('error', 'Data booking dengan status Done tidak dihapus');
+                ->with('error', 'Data booking dengan status Done tidak dapat dihapus');
         } else if ($status == 'Canceled') {
             return redirect()->route('booking.index')
-                ->with('error', 'Data booking dengan status Canceled tidak dihapus');
+                ->with('error', 'Data booking dengan status Canceled tidak dapat dihapus');
         } else {
             if ($booking) {
                 $booking->delete();
