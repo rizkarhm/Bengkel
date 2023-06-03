@@ -31,6 +31,10 @@
                     <div class="alert alert-success">
                         <p class="mb-0">{{ $message }}</p>
                     </div>
+                @elseif($message = Session::get('error'))
+                    <div class="alert alert-danger">
+                        <p class="mb-0">{{ $message }}</p>
+                    </div>
                 @endif
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead class="text-bold text-center" style="color:blue">
@@ -82,7 +86,7 @@
                                                     class="btn btn-success">Detail</a>
                                                 @csrf
                                                 @method('DELETE')
-                                                {{-- <button type="submit" class="btn btn-danger ml-2">Hapus</button> --}}
+                                                <button type="submit" class="btn btn-danger ml-2">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -155,8 +159,16 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('booking.show', $row->id) }}"
-                                                class="btn btn-success">Detail</a>
+                                            {{-- <a href="{{ route('booking.show', $row->id) }}"
+                                                class="btn btn-success">Detail</a> --}}
+
+                                            <form action="{{ route('booking.destroy', $row->id) }}" method="post">
+                                                <a href="{{ route('booking.show', $row->id) }}"
+                                                    class="btn btn-success">Detail</a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger ml-2">Hapus</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

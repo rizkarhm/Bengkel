@@ -50,7 +50,11 @@ class BookingController extends Controller
         //get data kendaraan all
         $kendaraans = Kendaraan::all();
 
-        return view('admin.booking.create',  compact('cust', 'kendaraans', 'pic'));
+        if (auth()->user()->role == 'Customer') {
+            return view('admin.booking.create-customer',  compact('cust', 'kendaraans', 'pic'));
+        } else {
+            return view('admin.booking.create',  compact('cust', 'kendaraans', 'pic'));
+        }
     }
 
     //Store to Booking only
@@ -93,8 +97,6 @@ class BookingController extends Controller
     //Store Booking + Create customer
     public function store(Request $request)
     {
-
-
         if ($request->status == "Done") {
             $tglKeluar = date('Y-m-d');
         } else if ($request->status == "Canceled") {
@@ -103,7 +105,12 @@ class BookingController extends Controller
             $tglKeluar = null;
         }
 
-        $user_id = $request->user_id;
+        if (auth()->user()->role == 'Customer') {
+            $user_id = auth()->user()->id;
+        } else {
+            $user_id = $request->user_id;
+        }
+
         if ($user_id == "new_customer") {
             $this->validate($request, [
                 //validasi new customer
@@ -241,6 +248,8 @@ class BookingController extends Controller
             $penanganan = null;
         } else {
             $tglKeluar = null;
+            $ket_pembatalan = null;
+            $penanganan = null;
         }
 
         $booking = Booking::find($id);
@@ -264,11 +273,23 @@ class BookingController extends Controller
     public function destroy($id)
     {
         $booking = Booking::find($id);
+        $status = $booking->status;
 
-        if ($booking) {
-            $booking->delete();
+        if ($status == 'Proccessed') {
             return redirect()->route('booking.index')
-                ->with('success', 'Berhasil menghapus data booking');
+                ->with('error', 'Data booking dengan status Proccessed tidak dihapus');
+        } else if ($status == 'Done') {
+            return redirect()->route('booking.index')
+                ->with('error', 'Data booking dengan status Done tidak dihapus');
+        } else if ($status == 'Canceled') {
+            return redirect()->route('booking.index')
+                ->with('error', 'Data booking dengan status Canceled tidak dihapus');
+        } else {
+            if ($booking) {
+                $booking->delete();
+                return redirect()->route('booking.index')
+                    ->with('success', 'Berhasil menghapus data booking');
+            }
         }
     }
 }
