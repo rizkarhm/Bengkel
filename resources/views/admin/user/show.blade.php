@@ -11,6 +11,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card shadow mb-4">
+                <div class="card-header">Detail User</div>
                 <div class="card-body">
                     <div class="form-group">
                         <label for="nama">Nama Lengkap</label>
