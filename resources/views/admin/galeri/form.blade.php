@@ -16,19 +16,11 @@
         {{-- if user exist, method edit: put --}}
         @method(isset($galeris) ? 'PUT' : '')
 
-        {{-- display all error message --}}
-        {{-- @if ($errors->any())
-            <div class="alert alert-danger">
-                @foreach ($errors->all() as $error)
-                    {{ $error }}
-                @endforeach
-            </div>
-        @endif --}}
-
         <div class="row">
             <div class="col-12">
                 <div class="card shadow mb-4">
-                    <div class="card-body">                        
+                    <div class="card-header">Detail Galeri</div>
+                    <div class="card-body">
                         <div class="form-group">
                             <label for="gambar">Gambar</label><br>
                             {{-- isset untuk menentukan apakah create / update

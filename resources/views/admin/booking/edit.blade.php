@@ -16,6 +16,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card shadow mb-4">
+                    <div class="card-header">Detail Booking</div>
                     <div class="card-body">
                         <div class="form-group">
                             <label for="user_id">Nama Customer<span class="text-danger">*</span></label>

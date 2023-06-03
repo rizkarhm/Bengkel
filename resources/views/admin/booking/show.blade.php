@@ -12,6 +12,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card shadow mb-4">
+                <div class="card-header">Detail Booking</div>
                 <div class="card-body">
                     @if (auth()->user()->role != 'Customer')
                         <div class="form-group">

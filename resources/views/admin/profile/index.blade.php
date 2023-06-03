@@ -10,6 +10,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card shadow mb-4">
+                <div class="card-header">Detail User</div>
                 <div class="card-body">
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success">
