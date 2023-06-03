@@ -29,10 +29,11 @@
                     <thead class="text-bold text-center" style="color:blue">
                         <tr>
                             {{-- <th style="width: 40px;">No</th> --}}
-                            <th style="width: 100px;">ID Booking</th>
+                            <th style="width: 90px;">ID Booking</th>
                             <th>Nama Customer</th>
                             <th style="width: 60px;">Rating</th>
                             <th>Feedback</th>
+                            <th style="width: 150px;">Created At</th>
                             <th style="width: 200px; color:blue">Aksi</th>
                         </tr>
                     </thead>
@@ -41,12 +42,13 @@
                         @foreach ($feedbacks as $key => $row)
                             <tr>
                                 {{-- <td class="text-center">{{ $no++ }}</td> --}}
-                                <td>{{ $row->booking_id }}</td>
+                                <td class="text-center">{{ $row->booking_id }}</td>
                                 <td>{{ $row->booking->user->nama }}</td>
-                                <td>{{ $row->rating }}</td>
+                                <td class="text-center">{{ $row->rating }}</td>
                                 <td>{{ $row->feedback }}</td>
+                                <td>{{ $row->created_at }}</td>
                                 <td class="text-center">
-                                    <form action="{{ route('feedback.destroy', $row->id) }}" method="post">
+                                    <form action="{{ route('feedback.destroy', $row->booking_id) }}" method="post">
                                         <a href="{{ route('feedback.show', $row->id) }}"
                                             class="btn btn-success">Detail</a>
                                         @csrf
