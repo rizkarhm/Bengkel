@@ -8,6 +8,7 @@ use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\KontakController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,5 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('kontak', KontakController::class);
     Route::resource('feedback', FeedbackController::class);
     Route::resource('kendaraan', KendaraanController::class);
+
+    Route::resource('profile', ProfileController::class);
 
 });
