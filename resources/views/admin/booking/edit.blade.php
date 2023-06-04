@@ -114,7 +114,7 @@
                             </div>
                             <div class="form-group" id="ket_pembatalan" style="display:none">
                                 <label for="ket_pembatalan">Keterangan Pembatalan</label>
-                                <input type="text" class="form-control" id="ket_pembatalan" name="pesan"
+                                <input type="text" class="form-control" id="ket_pembatalan" name="ket_pembatalan"
                                     value="{{ isset($bookings) ? $bookings->ket_pembatalan : old('pesan') }}">
                                 @error('ket_pembatalan')
                                     <span class="text-danger">{{ $message }}</span>
@@ -132,6 +132,22 @@
                                 <label for="ket_pembatalan">Keterangan Pembatalan</label>
                                 <input type="text" class="form-control" id="ket_pembatalan" name="ket_pembatalan"
                                     value="{{ isset($bookings) ? $bookings->ket_pembatalan : old('ket_pembatalan') }}">
+                                @error('ket_pembatalan')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        @else
+                            <div class="form-group" id="penanganan" style="display:none">
+                                <label for="penanganan">Penanganan</label>
+                                <textarea type="text" class="form-control" id="penanganan" name="penanganan" value="">{{ isset($bookings) ? $bookings->penanganan : '' }}</textarea>
+                                @error('penanganan')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group" id="ket_pembatalan" style="display:none">
+                                <label for="ket_pembatalan">Keterangan Pembatalan</label>
+                                <input type="text" class="form-control" id="ket_pembatalan" name="ket_pembatalan"
+                                    value="{{ isset($bookings) ? $bookings->ket_pembatalan : old('pesan') }}">
                                 @error('ket_pembatalan')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror

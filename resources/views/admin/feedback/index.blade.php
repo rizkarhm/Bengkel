@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </form>
-            {{-- <a href="{{ route('kontak.create') }}" class="btn btn-primary">Tambah Kontak</a> --}}
+            <a href="{{ route('feedback.create') }}" class="btn btn-primary">Tambah Feedback</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -48,7 +48,7 @@
                                 <td>{{ $row->feedback }}</td>
                                 <td>{{ $row->created_at }}</td>
                                 <td class="text-center">
-                                    <form action="{{ route('feedback.destroy', $row->booking_id) }}" method="post">
+                                    <form action="{{ route('feedback.destroy', $row->id) }}" method="post">
                                         <a href="{{ route('feedback.show', $row->id) }}"
                                             class="btn btn-success">Detail</a>
                                         @csrf

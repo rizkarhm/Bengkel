@@ -138,14 +138,28 @@
                         </div>
                     @endif
                 </div>
+
                 {{-- @if (auth()->user()->role != 'Customer') --}}
                 @if (auth()->user()->role != 'Magang')
                     <div class="card-footer">
-                        <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning">Edit Data Booking</a>
+                        @if ($bookings->status == 'Done')
+                            <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning disabled">Edit Data
+                                Booking</a>
+                            <a href="{{ route('feedback.edit', $bookings) }}" class="btn btn-info">Isi
+                                Feedback</a>
+                        @elseif ($bookings->status == 'Canceled')
+                            <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning disabled">Edit
+                                Data
+                                Booking</a>
+                        @else
+                            <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning">Edit Data
+                                Booking</a>
+                        @endif
                     </div>
                 @endif
                 {{-- @endif --}}
             </div>
         </div>
     </div>
+    <p>validasi button tambah feedback -> jika feedback sudah ada, maka seharusnya button feedback disabled</p>
 @endsection

@@ -9,6 +9,12 @@ class Feedback extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'booking_id',
+        'rating',
+        'feedback',
+    ];
+
     // public function bookings()
     // {
     //     return $this->hasMany(Booking::class);

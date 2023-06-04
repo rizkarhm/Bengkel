@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Feedback;
 use App\Models\Kendaraan;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -173,8 +174,6 @@ class BookingController extends Controller
             ->with('success', 'Berhasil menambah appointment baru');
     }
 
-
-
     public function show($id)
     {
         //get data user all
@@ -187,6 +186,9 @@ class BookingController extends Controller
         //get data kendaraan all
         $kendaraans = Kendaraan::all();
 
+        //get data feedback all
+        $feedbacks = Feedback::all();
+
         $booking = Booking::find($id);
         if (!$booking) return redirect()->route('booking.index')
             ->with('error', 'Booking dengan id' . $id . ' tidak ditemukan');
@@ -195,7 +197,8 @@ class BookingController extends Controller
             'bookings' => $booking,
             'cust' => $cust,
             'pic' => $pic,
-            'kendaraans' => $kendaraans
+            'kendaraans' => $kendaraans,
+            'feedbacks' => $feedbacks
         ]);
     }
 
@@ -217,23 +220,23 @@ class BookingController extends Controller
             ->with('error', 'Booking dengan id' . $id . ' tidak ditemukan');
 
         $status = $booking->status;
-        if ($status == 'Proccessed') {
-            return redirect()->route('booking.show', $booking->id)
-                ->with('error', 'Data booking dengan status Proccessed tidak dapat diubah');
-        } else if ($status == 'Done') {
-            return redirect()->route('booking.show', $booking->id)
-                ->with('error', 'Data booking dengan status Done tidak dapat diubah');
-        } else if ($status == 'Canceled') {
-            return redirect()->route('booking.show', $booking->id)
-                ->with('error', 'Data booking dengan status Canceled tidak dapat diubah');
-        } else {
+        // if ($status == 'Proccessed') {
+        //     return redirect()->route('booking.show', $booking->id)
+        //         ->with('error', 'Data booking dengan status Proccessed tidak dapat diubah');
+        // } else if ($status == 'Done') {
+        //     return redirect()->route('booking.show', $booking->id)
+        //         ->with('error', 'Data booking dengan status Done tidak dapat diubah');
+        // } else if ($status == 'Canceled') {
+        //     return redirect()->route('booking.show', $booking->id)
+        //         ->with('error', 'Data booking dengan status Canceled tidak dapat diubah');
+        // } else {
             return view('admin.booking.edit', [
                 'bookings' => $booking,
                 'cust' => $cust,
                 'pic' => $pic,
                 'kendaraans' => $kendaraans
             ]);
-        }
+        // }
     }
 
     public function update(Request $request, $id)

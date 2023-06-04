@@ -13,22 +13,32 @@ class FeedbackController extends Controller
     public function index()
     {
         $feedbacks = Feedback::all();
-        $bookings = Booking::all();
 
         return view('admin.feedback.index', [
             'feedbacks' => $feedbacks,
-            'bookings' => $bookings
         ]);
     }
 
     public function create()
     {
-        //
     }
 
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'booking_id' => 'required',
+            'rating' => 'required',
+            'feedback' => 'required'
+        ]);
+
+        Feedback::create([
+            'booking_id' => $request->booking_id,
+            'rating' => $request->rating,
+            'feedback' => $request->feedback,
+        ]);
+
+        return redirect()->route('booking.index')
+        ->with('success', 'Feedback berhasil ditambahkan');
     }
 
     public function show($id)
@@ -59,9 +69,18 @@ class FeedbackController extends Controller
         ]);
     }
 
+    //get booking id from detail booking for create feedback
     public function edit($id)
     {
-        //
+        $feedbacks = Feedback::all();
+        $booking = Booking::find($id);
+        $booking_id = $booking->id;
+
+        return view('admin.feedback.create', [
+            'feedbacks' => $feedbacks,
+            'booking_id' => $booking_id,
+            'booking' => $booking
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -71,6 +90,11 @@ class FeedbackController extends Controller
 
     public function destroy($id)
     {
-        //
+        $feedbacks = Feedback::find($id);
+        if ($feedbacks) {
+            $feedbacks->delete();
+            return redirect()->route('booking.index')
+                ->with('success', 'Berhasil menghapus feedback');
+        }
     }
 }
