@@ -39,7 +39,8 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead class="text-bold text-center" style="color:blue">
                         <tr>
-                            <th style="width: 40px;">ID</th>
+                            <th style="width: 40px;">No</th>
+                            {{-- <th style="width: 40px;">ID</th> --}}
                             <th>Nama Customer</th>
                             <th>Merek</th>
                             <th>Model</th>
@@ -51,7 +52,9 @@
                     </thead>
                     <tbody>
                         @if (isset($all))
-                            @php($no = 1)
+                            @php($no = $all->firstItem())
+
+                            {{-- View for role customer --}}
                             @if (auth()->user()->role == 'Customer')
                                 @foreach ($bookings_user as $row)
                                     <tr>
@@ -91,6 +94,8 @@
                                         </td>
                                     </tr>
                                 @endforeach
+
+                            {{-- View for role magang --}}
                             @elseif (auth()->user()->role == 'Magang')
                                 @foreach ($bookings_pic as $row)
                                     <tr>
@@ -130,11 +135,13 @@
                                         </td>
                                     </tr>
                                 @endforeach
+
+                            {{-- View for role admin & mekanik --}}
                             @else
                                 @foreach ($all as $row)
                                     <tr>
-                                        {{-- <td class="text-center">{{ $no++ }}</td> --}}
-                                        <td class="text-center">{{ $row->id }}</td>
+                                        <td class="text-center">{{ $no++ }}</td>
+                                        {{-- <td class="text-center">{{ $row->id }}</td> --}}
                                         <td>{{ $row->user->nama }}</td>
                                         <td>{{ $row->kendaraan->merek }}</td>
                                         <td>{{ $row->model }}</td>

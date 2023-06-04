@@ -11,7 +11,7 @@ class UserController extends Controller
     public function index()
     {
         // $users = User::all();
-        $users = User::orderBy('id', 'asc')->paginate(10);
+        $users = User::orderBy('id', 'asc')->paginate(5);
         // $users = $users->intersect(User::whereIn('role', ['Mekanik', 'Admin', 'Magang'])->get());
         return view('admin.user.index', compact('users'));
     }

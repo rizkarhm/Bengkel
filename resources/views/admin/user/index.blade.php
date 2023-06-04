@@ -41,7 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php($no = 1)
+                        @php($no = $users->firstItem())
                         @foreach ($users as $key => $row)
                             <tr>
                                 <td class="text-center">{{ $no++ }}</td>
