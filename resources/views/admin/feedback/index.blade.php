@@ -39,25 +39,71 @@
                     </thead>
                     <tbody>
                         @php($no = 1)
-                        @foreach ($feedbacks as $key => $row)
-                            <tr>
-                                {{-- <td class="text-center">{{ $no++ }}</td> --}}
-                                <td class="text-center">{{ $row->booking_id }}</td>
-                                <td>{{ $row->booking->user->nama }}</td>
-                                <td class="text-center">{{ $row->rating }}</td>
-                                <td>{{ $row->feedback }}</td>
-                                <td>{{ $row->created_at }}</td>
-                                <td class="text-center">
-                                    <form action="{{ route('feedback.destroy', $row->id) }}" method="post">
-                                        <a href="{{ route('feedback.show', $row->id) }}"
-                                            class="btn btn-success">Detail</a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger ml-2">Hapus</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
+                        @if (auth()->user()->role == 'Customer')
+                            @foreach ($feedbacks as $key => $row)
+                                @if ($row->booking->user_id == auth()->user()->id)
+                                    <tr>
+                                        {{-- <td class="text-center">{{ $no++ }}</td> --}}
+                                        <td class="text-center">{{ $row->booking_id }}</td>
+                                        <td>{{ $row->booking->user->nama }}</td>
+                                        <td class="text-center">{{ $row->rating }}</td>
+                                        <td>{{ $row->feedback }}</td>
+                                        <td>{{ $row->created_at }}</td>
+                                        <td class="text-center">
+                                            <form action="{{ route('feedback.destroy', $row->id) }}" method="post">
+                                                <a href="{{ route('feedback.show', $row->id) }}"
+                                                    class="btn btn-success">Detail</a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger ml-2">Hapus</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                        @elseif (auth()->user()->role == 'Magang')
+                            @foreach ($feedbacks as $key => $row)
+                                @if ($row->booking->pic_id == auth()->user()->id)
+                                    <tr>
+                                        {{-- <td class="text-center">{{ $no++ }}</td> --}}
+                                        <td class="text-center">{{ $row->booking_id }}</td>
+                                        <td>{{ $row->booking->user->nama }}</td>
+                                        <td class="text-center">{{ $row->rating }}</td>
+                                        <td>{{ $row->feedback }}</td>
+                                        <td>{{ $row->created_at }}</td>
+                                        <td class="text-center">
+                                            <form action="{{ route('feedback.destroy', $row->id) }}" method="post">
+                                                <a href="{{ route('feedback.show', $row->id) }}"
+                                                    class="btn btn-success">Detail</a>
+                                                @csrf
+                                                @method('DELETE')
+                                                {{-- <button type="submit" class="btn btn-danger ml-2">Hapus</button> --}}
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                        @else
+                            @foreach ($feedbacks as $key => $row)
+                                <tr>
+                                    {{-- <td class="text-center">{{ $no++ }}</td> --}}
+                                    <td class="text-center">{{ $row->booking_id }}</td>
+                                    <td>{{ $row->booking->user->nama }}</td>
+                                    <td class="text-center">{{ $row->rating }}</td>
+                                    <td>{{ $row->feedback }}</td>
+                                    <td>{{ $row->created_at }}</td>
+                                    <td class="text-center">
+                                        <form action="{{ route('feedback.destroy', $row->id) }}" method="post">
+                                            <a href="{{ route('feedback.show', $row->id) }}"
+                                                class="btn btn-success">Detail</a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger ml-2">Hapus</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>

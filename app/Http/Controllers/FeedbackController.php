@@ -14,8 +14,12 @@ class FeedbackController extends Controller
     {
         $feedbacks = Feedback::all();
 
+        //get user id
+        $user = auth()->user()->id;
+
         return view('admin.feedback.index', [
             'feedbacks' => $feedbacks,
+            'user' => $user
         ]);
     }
 

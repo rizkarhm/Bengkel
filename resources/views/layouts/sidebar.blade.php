@@ -37,13 +37,13 @@
             <span>Riwayat Service</span></a>
     </li>
 
-    @if (auth()->user()->role != 'Customer' )
+    {{-- @if (auth()->user()->role != 'Customer' ) --}}
         <li class="nav-item">
             <a class="nav-link" href="{{ route('feedback.index') }}">
                 <i class="fas fa-fw fa-comments"></i>
                 <span>Feedback</span></a>
         </li>
-    @endif
+    {{-- @endif --}}
 
     @if (auth()->user()->role == 'Admin')
     <hr class="sidebar-divider">
