@@ -19,10 +19,17 @@ class KendaraanSeeder extends Seeder
             [
                 'merek' => 'Honda',
                 'gambar' => 'images/logo_honda.jpg',
+                'created_at'=> date('Y-m-d H:i:s')
             ],
             [
                 'merek' => 'BMW',
                 'gambar' => 'images/logo_bmw.png',
+                'created_at'=> date('Y-m-d H:i:s')
+            ],
+            [
+                'merek' => 'Toyo',
+                'gambar' => 'images/logo_toyota.jpeg',
+                'created_at'=> date('Y-m-d H:i:s')
             ],
         ]);
     }
