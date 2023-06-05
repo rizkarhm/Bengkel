@@ -4,7 +4,7 @@
 
 @section('contents')
     <ol class="breadcrumb px-3 py-2 rounded mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
         <li class="breadcrumb-item"><a href="{{ route('galeri.index') }}">Master Data Galeri</a></li>
         <li class="breadcrumb-item active">
             {{ isset($galeris) ? 'Edit' : 'Tambah' }}</li>

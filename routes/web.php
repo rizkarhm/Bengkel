@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\HistoryController;
@@ -24,13 +25,12 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::get('/', function () {
-    return view('auth/login');
+    return view('auth.login');
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+
+    Route::resource('dashboard', DashboardController::class);
 
     Route::resource('user', UserController::class);
     Route::resource('customer', CustomerController::class);
@@ -42,5 +42,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('kendaraan', KendaraanController::class);
 
     Route::resource('profile', ProfileController::class);
+    // Route::resource('dashboard', DashboardController::class);
 
 });

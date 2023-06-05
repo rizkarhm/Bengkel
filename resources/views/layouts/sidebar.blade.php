@@ -14,7 +14,7 @@
     <!-- Nav Item - Dashboard -->
     @if (auth()->user()->role == 'Admin')
         <li class="nav-item">
-            <a class="nav-link {{ request()->routeIs('dashboard.*') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+            <a class="nav-link {{ request()->routeIs('dashboard.*') ? 'active' : '' }}" href="{{ route('dashboard.index') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
