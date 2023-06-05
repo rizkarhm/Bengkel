@@ -67,7 +67,7 @@
                     </div>
                     <div class="form-group">
                         <label for="tgl_masuk">Tanggal Masuk</label>
-                        <input type="date" class="form-control" id="tgl_masuk" name="tgl_masuk" disabled
+                        <input type="text" class="form-control" id="tgl_masuk" name="tgl_masuk" disabled
                             value="{{ isset($bookings) ? $bookings->tgl_masuk : old('tgl_masuk') }}">
                         @error('tgl_masuk')
                             <span class="text-danger">{{ $message }}</span>
