@@ -109,7 +109,7 @@
     <script>
         $(document).ready(function() {
             $('#status').change(function() {
-            var selectedStatus = $(this).val();
+                var selectedStatus = $(this).val();
                 if (selectedStatus === 'Proccessed') {
                     $('#pic_id').show();
                     $('#penanganan').hide();
@@ -159,6 +159,6 @@
     <script>
         $('#tgl_masuk').val(new Date().toJSON().slice(0, 10));
     </script>
-    </body>
 
+    </body>
 </html>
