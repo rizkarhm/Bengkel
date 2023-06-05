@@ -21,7 +21,6 @@
                     </div>
                 </div>
             </form>
-            <a href="{{ route('feedback.create') }}" class="btn btn-primary">Tambah Feedback</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -39,6 +38,7 @@
                     </thead>
                     <tbody>
                         @php($no = 1)
+                        {{-- list untuk customer, feedback yg ditampilkan sesuai dengan user auth id --}}
                         @if (auth()->user()->role == 'Customer')
                             @foreach ($feedbacks as $key => $row)
                                 @if ($row->booking->user_id == auth()->user()->id)
@@ -61,6 +61,8 @@
                                     </tr>
                                 @endif
                             @endforeach
+
+                        {{-- menampilkan feedback dengan PIC == user auth --}}
                         @elseif (auth()->user()->role == 'Magang')
                             @foreach ($feedbacks as $key => $row)
                                 @if ($row->booking->pic_id == auth()->user()->id)
@@ -83,6 +85,8 @@
                                     </tr>
                                 @endif
                             @endforeach
+
+                        {{-- menampilkan all feedback, untuk role admin & mekanik --}}
                         @else
                             @foreach ($feedbacks as $key => $row)
                                 <tr>
