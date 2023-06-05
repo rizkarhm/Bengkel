@@ -53,7 +53,7 @@
                                             {{ $row->created_at }}
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('user.show', $row->id) }}" class="btn btn-success">Detail</a>
+                                            <a href="{{ route('customer.show', $row->id) }}" class="btn btn-success">Detail</a>
                                         </td>
                                     </tr>
                                 @endif

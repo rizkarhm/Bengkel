@@ -17,17 +17,11 @@
                         <label for="nama">Nama Lengkap</label>
                         <input type="text" class="form-control" id="nama" name="nama"
                             value="{{ isset($users) ? $users->nama : '' }}" disabled>
-                        @error('nama')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="telepon">Nomor Whatsapp</label>
                         <input type="number" class="form-control" id="telepon" name="telepon"
                             value="{{ isset($users) ? $users->telepon : '' }}" disabled>
-                        @error('telepon')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
@@ -38,29 +32,25 @@
                         <label for="role">Role</label>
                         <select name="role" id="role" class="custom-select" disabled>
                             <option value="" selected disabled hidden>-- Pilih Role --</option>
-                            <option value="Customer" {{ isset($users) ? ($users->role ? 'selected' : '') : '' }}>
+                            <option value="Customer" @selected(isset($users) ? $users->role == 'Customer' : old('status') == 'Customer')>
                                 Customer</option>
-                            <option value="Admin" {{ isset($users) ? ($users->role ? 'selected' : '') : '' }}>Admin
+                            <option value="Admin" @selected(isset($users) ? $users->role == 'Admin' : old('status') == 'Admin')>Admin
                             </option>
-                            <option value="Mekanik" {{ isset($users) ? ($users->role ? 'selected' : '') : '' }}>Mekanik
+                            <option value="Mekanik" @selected(isset($users) ? $users->role == 'Mekanik' : old('status') == 'Mekanik')>Mekanik
                             </option>
-                            <option value="Magang" {{ isset($users) ? ($users->role ? 'selected' : '') : '' }}>Magang
+                            <option value="Magang" @selected(isset($users) ? $users->role == 'Magang' : old('status') == 'Magang')>Magang
                             </option>
                         </select>
-                        @error('role')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
                 </div>
 
-                @if (auth()->user()->telepon != $users->telepon)
+                @if (auth()->user()->id == $users->id)
                     <div class="card-footer">
                         <form action="{{ route('user.destroy', $users->id) }}" method="post">
-                            <a href="{{ route('user.edit', $users) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('user.edit', $users) }}" class="btn btn-warning disabled">Edit</a>
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger ml-2">Hapus</button>
-
+                            <button type="submit" class="btn btn-danger ml-2 disabled">Hapus</button>
                         </form>
                     </div>
                 @endif

@@ -37,64 +37,76 @@
             <span>Riwayat Service</span></a>
     </li>
 
-    {{-- @if (auth()->user()->role != 'Customer' ) --}}
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('feedback.index') }}">
-                <i class="fas fa-fw fa-comments"></i>
-                <span>Feedback</span></a>
-        </li>
+    {{-- @if (auth()->user()->role != 'Customer') --}}
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('feedback.index') }}">
+            <i class="fas fa-fw fa-comments"></i>
+            <span>Feedback</span></a>
+    </li>
     {{-- @endif --}}
 
     @if (auth()->user()->role == 'Admin')
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-        Data Management
-    </div>
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('kendaraan.index') }}">
-            <i class="fas fa-fw fa-car-alt"></i>
-            <span>Kendaraan</span></a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Master Data</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"
-            style="">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('galeri.index') }}">Galeri</a>
-                <a class="collapse-item" href="{{ route('kontak.index') }}">Kontak</a>
-            </div>
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Data Management
         </div>
-    </li>
 
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-        User Management
-    </div>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('customer.index') }}">
-            <i class="fas fa-fw fa-user-alt"></i>
-            <span>Customer</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('user.index') }}">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Users</span></a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('kendaraan.index') }}">
+                <i class="fas fa-fw fa-car-alt"></i>
+                <span>Kendaraan</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Master Data</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"
+                style="">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ route('galeri.index') }}">Galeri</a>
+                    <a class="collapse-item" href="{{ route('kontak.index') }}">Kontak</a>
+                </div>
+            </div>
+        </li>
     @endif
 
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
+    @if (auth()->user()->role == 'Admin')
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            User Management
+        </div>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('customer.index') }}">
+                <i class="fas fa-fw fa-user-alt"></i>
+                <span>Customer</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('user.index') }}">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Users</span></a>
+        </li>
 
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+    @elseif (auth()->user()->role == 'Mekanik')
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            User Management
+        </div>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('customer.index') }}">
+                <i class="fas fa-fw fa-user-alt"></i>
+                <span>Customer</span></a>
+        </li>
+    @endif
 </ul>
 
 

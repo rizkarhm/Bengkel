@@ -230,29 +230,17 @@ class BookingController extends Controller
         //     return redirect()->route('booking.show', $booking->id)
         //         ->with('error', 'Data booking dengan status Canceled tidak dapat diubah');
         // } else {
-            return view('admin.booking.edit', [
-                'bookings' => $booking,
-                'cust' => $cust,
-                'pic' => $pic,
-                'kendaraans' => $kendaraans
-            ]);
+        return view('admin.booking.edit', [
+            'bookings' => $booking,
+            'cust' => $cust,
+            'pic' => $pic,
+            'kendaraans' => $kendaraans
+        ]);
         // }
     }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'user_id' => 'required',
-            'kendaraan_id' => 'required',
-            'model' => 'required',
-            'nopol' => 'required|min:7',
-            'tgl_masuk' => 'required|date',
-            'tgl_selesai' => 'nullable',
-            'pic_id' => 'nullable',
-            'ket_pembatalan' => 'nullable',
-            'penanganan' => 'nullable',
-            'status' => 'required'
-        ]);
 
         if ($request->status == "Done") {
             $tglKeluar = date('Y-m-d');
@@ -268,15 +256,44 @@ class BookingController extends Controller
             $penanganan = null;
         }
 
+        $user_id = auth()->user()->id;
+
         $booking = Booking::find($id);
-        $booking->user_id = $request->user_id;
+        if (auth()->user()->role == "Customer") {
+            $request->validate([
+                'kendaraan_id' => 'required',
+                'model' => 'required',
+                'nopol' => 'required|min:7',
+                'tgl_masuk' => 'required|date',
+                'tgl_selesai' => 'nullable',
+                'pic_id' => 'nullable',
+                'ket_pembatalan' => 'nullable',
+                'penanganan' => 'nullable',
+            ]);
+            $booking->user_id = $user_id;
+            $booking->status = "Booked";
+        } else {
+            $request->validate([
+                'user_id' => 'required',
+                'kendaraan_id' => 'required',
+                'model' => 'required',
+                'nopol' => 'required|min:7',
+                'tgl_masuk' => 'required|date',
+                'tgl_selesai' => 'nullable',
+                'pic_id' => 'nullable',
+                'ket_pembatalan' => 'nullable',
+                'penanganan' => 'nullable',
+                'status' => 'required'
+            ]);
+            $booking->user_id = $request->user_id;
+            $booking->status = $request->status;
+        }
         $booking->kendaraan_id = $request->kendaraan_id;
         $booking->model = $request->model;
         $booking->nopol = $request->nopol;
         $booking->tgl_masuk = $request->tgl_masuk;
         $booking->tgl_selesai = $tglKeluar;
         $booking->pic_id = $request->pic_id;
-        $booking->status = $request->status;
         $booking->penanganan = $penanganan;
         $booking->ket_pembatalan = $ket_pembatalan;
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
@@ -49,40 +50,54 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        if (!$user) return redirect()->route('customer.index')
+            ->with('error', 'User dengan id' . $id . ' tidak ditemukan');
+
+        return view('admin.customer.show', [
+            'users' => $user
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        if (!$user) return redirect()->route('customer.index')
+            ->with('error', 'Customer dengan id' . $id . ' tidak ditemukan');
+
+        return view('admin.customer.edit', [
+            'users' => $user
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'telepon' => 'required|unique:users,telepon,' . $id,
+            'alamat' => 'nullable',
+        ]);
+
+        $user = User::find($id);
+        $user->nama = $request->nama;
+        $user->telepon = $request->telepon;
+        $user->alamat = $request->alamat;
+        $user->role = "Customer";
+
+        $user->save();
+
+        return redirect()->route('user.index')
+            ->with('success', 'Berhasil mengubah customer');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        if ($user) {
+            $user->delete();
+            return redirect()->route('customer.index')
+                ->with('success', 'Berhasil menghapus customer');
+        }
     }
 }

@@ -20,7 +20,8 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="user_id">Nama Customer<span class="text-danger">*</span></label>
-                            <select name="user_id" id="user_id_edit" class="custom-select">
+                            <select name="user_id" id="user_id_edit" class="custom-select"
+                                @if (auth()->user()->role == 'Customer') disabled @endif>
                                 <option value="" selected disabled hidden>Pilih Customer</option>
                                 @foreach ($cust as $customer)
                                     <option value="{{ $customer->id }}" @selected(isset($bookings) ? $customer->id == $bookings->user_id : '')>{{ $customer->nama }}
@@ -70,26 +71,27 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="status">Status<span class="text-danger">*</span></label>
-                            <select name="status" id="status" class="custom-select">
-                                <option value="" selected disabled hidden>Pilih Status</option>
-                                <option value="Booked" @selected(isset($bookings) ? $bookings->status == 'Booked' : old('status') == 'Booked')>Booked
-                                </option>
-                                <option value="In Queue" @selected(isset($bookings) ? $bookings->status == 'In Queue' : old('status') == 'In Queue')>In Queue
-                                </option>
-                                <option value="Proccessed" @selected(isset($bookings) ? $bookings->status == 'Proccessed' : old('status') == 'Proccessed')>Proccessed
-                                </option>
-                                <option value="Done" @selected(isset($bookings) ? $bookings->status == 'Done' : old('status') == 'Done')>Done
-                                </option>
-                                <option value="Canceled" @selected(isset($bookings) ? $bookings->status == 'Canceled' : old('status') == 'Canceled')>Canceled
-                                </option>
-                            </select>
-                            @error('status')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
+                        @if (auth()->user()->role != 'Customer')
+                            <div class="form-group">
+                                <label for="status">Status<span class="text-danger">*</span></label>
+                                <select name="status" id="status" class="custom-select">
+                                    <option value="" selected disabled hidden>Pilih Status</option>
+                                    <option value="Booked" @selected(isset($bookings) ? $bookings->status == 'Booked' : old('status') == 'Booked')>Booked
+                                    </option>
+                                    <option value="In Queue" @selected(isset($bookings) ? $bookings->status == 'In Queue' : old('status') == 'In Queue')>In Queue
+                                    </option>
+                                    <option value="Proccessed" @selected(isset($bookings) ? $bookings->status == 'Proccessed' : old('status') == 'Proccessed')>Proccessed
+                                    </option>
+                                    <option value="Done" @selected(isset($bookings) ? $bookings->status == 'Done' : old('status') == 'Done')>Done
+                                    </option>
+                                    <option value="Canceled" @selected(isset($bookings) ? $bookings->status == 'Canceled' : old('status') == 'Canceled')>Canceled
+                                    </option>
+                                </select>
+                                @error('status')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        @endif
                         <div class="form-group" id="pic_id"
                             @if ($bookings->pic_id == null) style="display:none" @endif>
                             <label for="pic_id">PIC<span class="text-danger">*</span></label>
