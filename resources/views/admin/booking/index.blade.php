@@ -95,7 +95,7 @@
                                     </tr>
                                 @endforeach
 
-                            {{-- View for role magang --}}
+                                {{-- View for role magang --}}
                             @elseif (auth()->user()->role == 'Magang')
                                 @foreach ($bookings_pic as $row)
                                     <tr>
@@ -136,7 +136,7 @@
                                     </tr>
                                 @endforeach
 
-                            {{-- View for role admin & mekanik --}}
+                                {{-- View for role admin & mekanik --}}
                             @else
                                 @foreach ($all as $row)
                                     <tr>
@@ -185,13 +185,16 @@
                     </tbody>
                 </table>
             </div>
-            @if ($all->count() != 0)
-                <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
-                    <div class="datatable-info">Showing {{ $all->firstItem() }} to {{ $all->lastItem() }} of
-                        {{ $all->total() }} entries</div>
-                    <nav class="datatable-pagination">
-                        {!! $all->links() !!}</nav>
-                </div>
+
+            @if (auth()->user()->role == 'Admin')
+                @if ($all->count() != 0)
+                    <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+                        <div class="datatable-info">Showing {{ $all->firstItem() }} to {{ $all->lastItem() }} of
+                            {{ $all->total() }} entries</div>
+                        <nav class="datatable-pagination">
+                            {!! $all->links() !!}</nav>
+                    </div>
+                @endif
             @endif
         </div>
     </div>

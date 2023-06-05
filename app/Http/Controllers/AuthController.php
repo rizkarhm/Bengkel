@@ -48,13 +48,18 @@ class AuthController extends Controller
 
 		if (!Auth::attempt($request->only('telepon', 'password'), $request->boolean('remember'))) {
 			throw ValidationException::withMessages([
-				'telepon' => trans('auth.failed')
+				'telepon' => trans('Nomor Whatsapp atau Password salah')
 			]);
 		}
 
 		$request->session()->regenerate();
 
-        return redirect()->route('dashboard.index');
+
+        if(auth()->user()->role == "Admin"){
+            return redirect()->route('dashboard.index');
+        } else {
+            return redirect()->route('booking.index');
+        }
 	}
 
 	public function logout(Request $request)

@@ -28,7 +28,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('booking.index') }}">
             <i class="fas fa-fw fa-calendar-alt"></i>
-            <span>Booking</span></a>
+            <span>Book Appointment</span></a>
     </li>
 
     <li class="nav-item">
