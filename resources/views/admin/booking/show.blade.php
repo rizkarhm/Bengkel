@@ -73,14 +73,6 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="tgl_selesai">Tanggal Selesai</label>
-                        <input type="date" class="form-control" id="tgl_selesai" name="tgl_selesai" disabled
-                            value="{{ isset($bookings) ? $bookings->tgl_selesai : old('tgl_selesai') }}">
-                        @error('tgl_selesai')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
 
                     @if (auth()->user()->role != 'Customer')
                         <div class="form-group" id="pic_id">

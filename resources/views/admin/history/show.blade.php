@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Booking')
+@section('title', 'Detail Riwayat Service')
 
 @section('contents')
     <ol class="breadcrumb px-3 py-2 rounded mb-4">
         <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('history.index') }}">Riwayat Booking</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('history.index') }}">Riwayat Service</a></li>
         <li class="breadcrumb-item active">Detail</li>
     </ol>
 
@@ -61,9 +61,17 @@
                     </div>
                     <div class="form-group">
                         <label for="tgl_masuk">Tanggal Masuk</label>
-                        <input type="date" class="form-control" id="tgl_masuk" name="tgl_masuk" disabled
+                        <input type="text" class="form-control" id="tgl_masuk" name="tgl_masuk" disabled
                             value="{{ isset($bookings) ? $bookings->tgl_masuk : old('tgl_masuk') }}">
                         @error('tgl_masuk')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="tgl_selesai">Tanggal Selesai</label>
+                        <input type="text" class="form-control" id="tgl_selesai" name="tgl_selesai" disabled
+                            value="{{ isset($bookings) ? $bookings->tgl_selesai : old('tgl_selesai') }}">
+                        @error('tgl_selesai')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
