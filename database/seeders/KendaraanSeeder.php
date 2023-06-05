@@ -27,7 +27,7 @@ class KendaraanSeeder extends Seeder
                 'created_at'=> date('Y-m-d H:i:s')
             ],
             [
-                'merek' => 'Toyo',
+                'merek' => 'Toyota',
                 'gambar' => 'images/logo_toyota.jpeg',
                 'created_at'=> date('Y-m-d H:i:s')
             ],

@@ -10,9 +10,9 @@ class UserController extends Controller
 {
     public function index()
     {
-        // $users = User::all();
-        $users = User::orderBy('id', 'asc')->paginate(5);
-        // $users = $users->intersect(User::whereIn('role', ['Mekanik', 'Admin', 'Magang'])->get());
+        $users = User::whereIn('role', ['Mekanik', 'Admin', 'Magang'])
+            ->paginate(10);
+
         return view('admin.user.index', compact('users'));
     }
 

@@ -138,7 +138,7 @@
 
                                 {{-- View for role admin & mekanik --}}
                             @else
-                                @foreach ($all as $row)
+                                @foreach ($bookings as $row)
                                     <tr>
                                         <td class="text-center">{{ $no++ }}</td>
                                         {{-- <td class="text-center">{{ $row->id }}</td> --}}
@@ -187,12 +187,42 @@
             </div>
 
             @if (auth()->user()->role == 'Admin')
-                @if ($all->count() != 0)
+                @if ($bookings->count() != 0)
                     <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
-                        <div class="datatable-info">Showing {{ $all->firstItem() }} to {{ $all->lastItem() }} of
-                            {{ $all->total() }} entries</div>
+                        <div class="datatable-info">Showing {{ $bookings->firstItem() }} to {{ $bookings->lastItem() }} of
+                            {{ $bookings->total() }} entries</div>
                         <nav class="datatable-pagination">
-                            {!! $all->links() !!}</nav>
+                            {!! $bookings->links() !!}</nav>
+                    </div>
+                @endif
+            @elseif (auth()->user()->role == 'Customer')
+                @if ($bookings_user->count() != 0)
+                    <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+                        <div class="datatable-info">Showing {{ $bookings_user->firstItem() }} to
+                            {{ $bookings_user->lastItem() }} of
+                            {{ $bookings_user->total() }} entries</div>
+                        <nav class="datatable-pagination">
+                            {!! $bookings_user->links() !!}</nav>
+                    </div>
+                @endif
+                @elseif (auth()->user()->role == 'Magang')
+                @if ($bookings_pic->count() != 0)
+                    <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+                        <div class="datatable-info">Showing {{ $bookings_pic->firstItem() }} to
+                            {{ $bookings_pic->lastItem() }} of
+                            {{ $bookings_pic->total() }} entries</div>
+                        <nav class="datatable-pagination">
+                            {!! $bookings_pic->links() !!}</nav>
+                    </div>
+                @endif
+                @else
+                @if ($bookings->count() != 0)
+                    <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+                        <div class="datatable-info">Showing {{ $bookings->firstItem() }} to
+                            {{ $bookings->lastItem() }} of
+                            {{ $bookings->total() }} entries</div>
+                        <nav class="datatable-pagination">
+                            {!! $bookings->links() !!}</nav>
                     </div>
                 @endif
             @endif

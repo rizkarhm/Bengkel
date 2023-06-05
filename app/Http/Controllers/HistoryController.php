@@ -6,6 +6,7 @@ use App\Models\Booking;
 use App\Models\Kendaraan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HistoryController extends Controller
 {
@@ -16,10 +17,27 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::all();
-        $historys = $bookings->intersect(Booking::whereIn('status', ['Done', 'Canceled'])->get());
+        //get user id
+        $user = auth()->user()->id;
+
+        //get all booking data with status canceled or done
+        $history_all = Booking::whereIn('status', ['Canceled', 'Done'])
+            ->paginate(10);
+
+        //get history booking where user_id == customer id
+        $history_customer = Booking::whereIn('status', ['Canceled', 'Done'])
+            ->where('user_id', $user)
+            ->paginate(10);
+
+        //get history booking where user_id == PIC id
+        $history_pic = Booking::whereIn('status', ['Canceled', 'Done'])
+            ->where('pic_id', $user)
+            ->paginate(10);
+
         return view('admin.history.index', [
-            'historys' => $historys
+            'historys' => $history_all,
+            'history_customer' => $history_customer,
+            'history_pic' => $history_pic,
         ]);
     }
 

@@ -13,24 +13,26 @@ class BookingController extends Controller
 {
     public function index()
     {
-        //get all data
-        $all = Booking::all();
-
         //all with paginate
         $all = Booking::orderBy('id', 'asc')->paginate(10);
 
         //get user id
         $user = auth()->user()->id;
 
-        //admin
-        // $bookings = Booking::where('status', ['Booked', 'In Queue', 'Proccessed'])->get();
-        $bookings = $all->intersect(Booking::whereIn('status', ['Booked', 'In Queue', 'Proccessed'])->get());
+        //get all booking data with status Booked, In Queue, and Proccessed
+        $bookings = Booking::whereIn('status', ['Booked', 'In Queue', 'Proccessed'])
+            ->paginate(10);
 
         //customer
-        $bookings_user = Booking::where('user_id', $user)->get();
+        $bookings_user = Booking::whereIn('status', ['Booked', 'In Queue', 'Proccessed'])
+            ->where('user_id', $user)
+            ->paginate(4);
 
-        //mekanik dan magang
-        $bookings_pic = Booking::where('pic_id', $user)->get();
+        //magang
+        $bookings_pic = Booking::whereIn('status', ['Booked', 'In Queue','Proccessed'])
+            ->where('pic_id', $user)
+            ->paginate(4);
+
         return view('admin.booking.index', [
             'all' => $all,
             'bookings' => $bookings,

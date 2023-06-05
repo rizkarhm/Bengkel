@@ -12,7 +12,7 @@ class FeedbackController extends Controller
 {
     public function index()
     {
-        $feedbacks = Feedback::all();
+        $feedbacks = Feedback::orderBy('id', 'asc')->paginate(10);
 
         //get user id
         $user = auth()->user()->id;

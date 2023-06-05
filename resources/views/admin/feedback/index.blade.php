@@ -107,6 +107,13 @@
                     </tbody>
                 </table>
             </div>
+            <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+                <div class="datatable-info">Showing {{ $feedbacks->firstItem() }} to
+                    {{ $feedbacks->lastItem() }} of
+                    {{ $feedbacks->total() }} entries</div>
+                <nav class="datatable-pagination">
+                    {!! $feedbacks->links() !!}</nav>
+            </div>
             <div class="footer">
                 <h5 class="text-danger">*confirmation delete data</h5>
             </div>

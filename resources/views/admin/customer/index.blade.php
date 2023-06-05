@@ -62,6 +62,13 @@
                     </tbody>
                 </table>
             </div>
+            <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+                <div class="datatable-info">Showing {{ $users->firstItem() }} to
+                    {{ $users->lastItem() }} of
+                    {{ $users->total() }} entries</div>
+                <nav class="datatable-pagination">
+                    {!! $users->links() !!}</nav>
+            </div>
             <div class="footer">
                 <h5 class="text-danger">*confirmation delete data | user yang memiliki kaitan dengan tabel lain tidak dapat dihapus</h5>
             </div>

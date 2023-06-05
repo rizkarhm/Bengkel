@@ -124,7 +124,24 @@
                                 @enderror
                             </div>
                         @endif
+                    @endif
                 </div>
+                @if (auth()->user()->role == 'Customer')
+                    <div class="card-footer">
+                        @if ($bookings->status == 'Done')
+                            <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning disabled">Edit Data
+                                Booking</a>
+                            <a href="{{ route('feedback.edit', $bookings) }}" class="btn btn-info">Isi
+                                Feedback</a>
+                        @elseif ($bookings->status == 'Canceled')
+                            <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning disabled">Edit
+                                Data
+                                Booking</a>
+                        @else
+                            <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning">Edit Data
+                                Booking</a>
+                        @endif
+                    </div>
                 @endif
             </div>
         </div>

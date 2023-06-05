@@ -59,7 +59,7 @@ class BookingSeeder extends Seeder
             ],
 
             [
-                'user_id' => '2',
+                'user_id' => '5',
                 'kendaraan_id' => '2',
                 'model' => 'Z3',
                 'nopol' => 'AG 9182 AGJ',
@@ -73,7 +73,7 @@ class BookingSeeder extends Seeder
             ],
 
             [
-                'user_id' => '2',
+                'user_id' => '5',
                 'kendaraan_id' => '1',
                 'model' => 'HRV 2019',
                 'nopol' => 'N 9182 GJ',
@@ -128,7 +128,7 @@ class BookingSeeder extends Seeder
             ],
 
             [
-                'user_id' => '2',
+                'user_id' => '5',
                 'kendaraan_id' => '2',
                 'model' => 'Z3',
                 'nopol' => 'AG 9182 AGJ',
@@ -142,7 +142,7 @@ class BookingSeeder extends Seeder
             ],
 
             [
-                'user_id' => '2',
+                'user_id' => '5',
                 'kendaraan_id' => '1',
                 'model' => 'HRV 2019',
                 'nopol' => 'N 9182 GJ',
@@ -197,7 +197,7 @@ class BookingSeeder extends Seeder
             ],
 
             [
-                'user_id' => '2',
+                'user_id' => '5',
                 'kendaraan_id' => '2',
                 'model' => 'Z3',
                 'nopol' => 'AG 9182 AGJ',
@@ -211,7 +211,7 @@ class BookingSeeder extends Seeder
             ],
 
             [
-                'user_id' => '2',
+                'user_id' => '5',
                 'kendaraan_id' => '1',
                 'model' => 'HRV 2019',
                 'nopol' => 'N 9182 GJ',
