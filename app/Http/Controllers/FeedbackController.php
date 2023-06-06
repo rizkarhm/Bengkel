@@ -17,9 +17,13 @@ class FeedbackController extends Controller
         //get user id
         $user = auth()->user()->id;
 
+        //customer
+        $feedbacks_user = Feedback::where('created_by', $user)
+            ->paginate(4);
+
         return view('admin.feedback.index', [
             'feedbacks' => $feedbacks,
-            'user' => $user
+            'feedbacks_user' => $feedbacks_user,
         ]);
     }
 
@@ -39,6 +43,7 @@ class FeedbackController extends Controller
             'booking_id' => $request->booking_id,
             'rating' => $request->rating,
             'feedback' => $request->feedback,
+            'created_by' => auth()->user()->id,
         ]);
 
         return redirect()->route('booking.index')

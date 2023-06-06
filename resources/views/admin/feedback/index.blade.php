@@ -40,29 +40,27 @@
                         @php($no = 1)
                         {{-- list untuk customer, feedback yg ditampilkan sesuai dengan user auth id --}}
                         @if (auth()->user()->role == 'Customer')
-                            @foreach ($feedbacks as $key => $row)
-                                @if ($row->booking->user_id == auth()->user()->id)
-                                    <tr>
-                                        {{-- <td class="text-center">{{ $no++ }}</td> --}}
-                                        <td class="text-center">{{ $row->booking_id }}</td>
-                                        <td>{{ $row->booking->user->nama }}</td>
-                                        <td class="text-center">{{ $row->rating }}</td>
-                                        <td>{{ $row->feedback }}</td>
-                                        <td>{{ $row->created_at }}</td>
-                                        <td class="text-center">
-                                            <form action="{{ route('feedback.destroy', $row->id) }}" method="post">
-                                                <a href="{{ route('feedback.show', $row->id) }}"
-                                                    class="btn btn-success">Detail</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger ml-2">Hapus</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endif
+                            @foreach ($feedbacks_user as $key => $row)
+                                <tr>
+                                    {{-- <td class="text-center">{{ $no++ }}</td> --}}
+                                    <td class="text-center">{{ $row->booking_id }}</td>
+                                    <td>{{ $row->booking->user->nama }}</td>
+                                    <td class="text-center">{{ $row->rating }}</td>
+                                    <td>{{ $row->feedback }}</td>
+                                    <td>{{ $row->created_at }}</td>
+                                    <td class="text-center">
+                                        <form action="{{ route('feedback.destroy', $row->id) }}" method="post">
+                                            <a href="{{ route('feedback.show', $row->id) }}"
+                                                class="btn btn-success">Detail</a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger ml-2">Hapus</button>
+                                        </form>
+                                    </td>
+                                </tr>
                             @endforeach
 
-                        {{-- menampilkan feedback dengan PIC == user auth --}}
+                            {{-- menampilkan feedback dengan PIC == user auth --}}
                         @elseif (auth()->user()->role == 'Magang')
                             @foreach ($feedbacks as $key => $row)
                                 @if ($row->booking->pic_id == auth()->user()->id)
@@ -86,7 +84,7 @@
                                 @endif
                             @endforeach
 
-                        {{-- menampilkan all feedback, untuk role admin & mekanik --}}
+                            {{-- menampilkan all feedback, untuk role admin & mekanik --}}
                         @else
                             @foreach ($feedbacks as $key => $row)
                                 <tr>
@@ -111,16 +109,29 @@
                     </tbody>
                 </table>
             </div>
-            <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
-                <div class="datatable-info">Showing {{ $feedbacks->firstItem() }} to
-                    {{ $feedbacks->lastItem() }} of
-                    {{ $feedbacks->total() }} entries</div>
-                <nav class="datatable-pagination">
-                    {!! $feedbacks->links() !!}</nav>
-            </div>
-            <div class="footer">
-                <h5 class="text-danger">*confirmation delete data</h5>
-            </div>
+            @if (auth()->user()->role == 'Customer')
+                <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+                    <div class="datatable-info">Showing {{ $feedbacks_user->firstItem() }} to
+                        {{ $feedbacks_user->lastItem() }} of
+                        {{ $feedbacks_user->total() }} entries</div>
+                    <nav class="datatable-pagination">
+                        {!! $feedbacks_user->links() !!}</nav>
+                </div>
+            @elseif (auth()->user()->role == 'Magang')
+                {{-- no pagination --}}
+                <div></div>
+            @else
+                <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+                    <div class="datatable-info">Showing {{ $feedbacks->firstItem() }} to
+                        {{ $feedbacks->lastItem() }} of
+                        {{ $feedbacks->total() }} entries</div>
+                    <nav class="datatable-pagination">
+                        {!! $feedbacks->links() !!}</nav>
+                </div>
+            @endif
         </div>
+    </div>
+    <div class="footer">
+        <h5 class="text-danger">*confirmation delete data</h5>
     </div>
 @endsection

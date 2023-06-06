@@ -13,6 +13,7 @@ class Feedback extends Model
         'booking_id',
         'rating',
         'feedback',
+        'created_by',
     ];
 
     // public function bookings()
@@ -23,5 +24,10 @@ class Feedback extends Model
     public function booking()
     {
         return $this->belongsTo(Booking::class);
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
     }
 }
