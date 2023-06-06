@@ -57,6 +57,38 @@ class UserSeeder extends Seeder
                 'role' => 'Customer',
                 'created_at'=> date('Y-m-d H:i:s')
             ],
+
+            [
+                'nama' => 'Liana',
+                'telepon' => '222',
+                'password' => Hash::make('customer123'),
+                'role' => 'Customer',
+                'created_at'=> date('Y-m-d H:i:s')
+            ],
+
+            [
+                'nama' => 'Venita',
+                'telepon' => '333',
+                'password' => Hash::make('customer123'),
+                'role' => 'Customer',
+                'created_at'=> date('Y-m-d H:i:s')
+            ],
+
+            [
+                'nama' => 'Sulianto',
+                'telepon' => '444',
+                'password' => Hash::make('customer123'),
+                'role' => 'Customer',
+                'created_at'=> date('Y-m-d H:i:s')
+            ],
+
+            [
+                'nama' => 'Susan',
+                'telepon' => '555',
+                'password' => Hash::make('customer123'),
+                'role' => 'Customer',
+                'created_at'=> date('Y-m-d H:i:s')
+            ],
         ]);
     }
 }

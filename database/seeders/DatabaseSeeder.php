@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             KontakSeeder::class,
             BookingSeeder::class,
             KendaraanSeeder::class,
+            FeedbackSeeder::class,
         ]);
     }
 }

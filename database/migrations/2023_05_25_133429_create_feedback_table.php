@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('booking_id')->unsigned();
             $table->string('rating');
             $table->longText('feedback');
+            $table->bigInteger('created_by')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });
