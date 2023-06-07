@@ -120,11 +120,6 @@ class BookingController extends Controller
             ]);
         } else {
             $this->validate($request, [
-                //validasi new customer
-                // 'nama' => 'required',
-                // 'telepon' => 'required|unique:users',
-                // 'alamat' => 'nullable',
-
                 //validasi new booking
                 'kendaraan_id' => 'required',
                 'model' => 'required',
