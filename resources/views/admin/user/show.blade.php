@@ -46,21 +46,42 @@
 
                 @if (auth()->user()->id == $users->id)
                     <div class="card-footer">
-                        <form action="{{ route('user.destroy', $users->id) }}" method="post">
-                            <a href="{{ route('user.edit', $users) }}" class="btn btn-warning disabled">Edit</a>
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger ml-2 disabled">Hapus</button>
-                        </form>
+                        <a href="{{ route('user.edit', $users) }}" class="btn btn-warning disabled">Edit</a>
+                        <button type="submit" class="btn btn-danger ml-2 disabled">Hapus</button>
                     </div>
-                    @else
+                @else
                     <div class="card-footer">
-                        <form action="{{ route('user.destroy', $users->id) }}" method="post">
-                            <a href="{{ route('user.edit', $users) }}" class="btn btn-warning">Edit</a>
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger ml-2">Hapus</button>
-                        </form>
+                        <a href="{{ route('user.edit', $users->id) }}" class="btn btn-warning">Edit</a>
+                        <button class="btn btn-danger ml-2" data-toggle="modal"
+                            data-target="#deleteModal-{{ $users->id }}" class="delete-item">
+                            Hapus
+                        </button>
+                        <div class="modal fade text-left" id="deleteModal-{{ $users->id }}" tabindex="-1" role="dialog"
+                            aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Anda yakin ingin menghapus data user {{ $users->nama }}?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                        <form action="{{ route('user.destroy', $users->id) }}" method="POST"
+                                            style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 @endif
             </div>

@@ -41,8 +41,13 @@ class UserController extends Controller
             'role' => $request->role
         ]);
 
-        return redirect()->route('user.index')
-            ->with('success', 'Berhasil menambah user baru');
+        if ($request->role == 'Customer') {
+            return redirect()->route('customer.index')
+                ->with('success', 'Berhasil menambah customer baru');
+        } else {
+            return redirect()->route('user.index')
+                ->with('success', 'Berhasil menambah user baru');
+        }
     }
 
     public function show($id)
