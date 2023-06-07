@@ -84,13 +84,40 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            <form action="{{ route('booking.destroy', $row->id) }}" method="post">
-                                                <a href="{{ route('booking.show', $row->id) }}"
-                                                    class="btn btn-success">Detail</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger ml-2">Hapus</button>
-                                            </form>
+                                            <a href="{{ route('booking.show', $row->id) }}" class="btn btn-success">Detail</a>
+                                            <button class="btn btn-danger ml-2" data-toggle="modal"
+                                                data-target="#deleteModal-{{ $row->id }}" class="delete-item">
+                                                Hapus
+                                            </button>
+
+                                            <div class="modal fade text-left" id="deleteModal-{{ $row->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Anda yakin ingin menghapus data booking dengan ID {{ $row->id }}?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Batal</button>
+                                                            <form action="{{ route('booking.destroy', $row->id) }}"
+                                                                method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -165,17 +192,42 @@
                                                     {{ $row->status }}</div>
                                             @endif
                                         </td>
-                                        <td class="text-center">
-                                            {{-- <a href="{{ route('booking.show', $row->id) }}"
-                                                class="btn btn-success">Detail</a> --}}
 
-                                            <form action="{{ route('booking.destroy', $row->id) }}" method="post">
-                                                <a href="{{ route('booking.show', $row->id) }}"
-                                                    class="btn btn-success">Detail</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger ml-2">Hapus</button>
-                                            </form>
+                                        <td class="text-center">
+                                            <a href="{{ route('booking.show', $row->id) }}" class="btn btn-success">Detail</a>
+                                            <button class="btn btn-danger ml-2" data-toggle="modal"
+                                                data-target="#deleteModal-{{ $row->id }}" class="delete-item">
+                                                Hapus
+                                            </button>
+
+                                            <div class="modal fade text-left" id="deleteModal-{{ $row->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Anda yakin ingin menghapus data booking customer {{ $row->user->nama }}?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Batal</button>
+                                                            <form action="{{ route('booking.destroy', $row->id) }}"
+                                                                method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -227,8 +279,5 @@
                 @endif
             @endif
         </div>
-    </div>
-    <div class="footer">
-        <h5 class="text-danger">*confirmation delete data</h5>
     </div>
 @endsection

@@ -24,6 +24,11 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p class="mb-0">{{ $message }}</p>
+                    </div>
+                @endif
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead class="text-bold text-center" style="color:blue">
                         <tr>
@@ -49,18 +54,45 @@
                                     <td>{{ $row->feedback }}</td>
                                     <td>{{ $row->created_at }}</td>
                                     <td class="text-center">
-                                        <form action="{{ route('feedback.destroy', $row->id) }}" method="post">
-                                            <a href="{{ route('feedback.show', $row->id) }}"
-                                                class="btn btn-success">Detail</a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger ml-2">Hapus</button>
-                                        </form>
+                                        <a href="{{ route('feedback.show', $row->id) }}" class="btn btn-success">Detail</a>
+                                        <button class="btn btn-danger ml-2" data-toggle="modal"
+                                            data-target="#deleteModal-{{ $row->id }}" class="delete-item">
+                                            Hapus
+                                        </button>
+
+                                        <div class="modal fade text-left" id="deleteModal-{{ $row->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Anda yakin ingin menghapus data feedback untuk ID Booking {{ $row->booking_id }}?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Batal</button>
+                                                        <form action="{{ route('feedback.destroy', $row->id) }}"
+                                                            method="POST" style="display: inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
 
-                            {{-- menampilkan feedback dengan PIC == user auth --}}
+                        {{-- menampilkan feedback dengan PIC == user auth --}}
                         @elseif (auth()->user()->role == 'Magang')
                             @foreach ($feedbacks as $key => $row)
                                 @if ($row->booking->pic_id == auth()->user()->id)
@@ -72,13 +104,40 @@
                                         <td>{{ $row->feedback }}</td>
                                         <td>{{ $row->created_at }}</td>
                                         <td class="text-center">
-                                            <form action="{{ route('feedback.destroy', $row->id) }}" method="post">
-                                                <a href="{{ route('feedback.show', $row->id) }}"
-                                                    class="btn btn-success">Detail</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                {{-- <button type="submit" class="btn btn-danger ml-2">Hapus</button> --}}
-                                            </form>
+                                            <a href="{{ route('feedback.show', $row->id) }}" class="btn btn-success">Detail</a>
+                                            <button class="btn btn-danger ml-2" data-toggle="modal"
+                                                data-target="#deleteModal-{{ $row->id }}" class="delete-item">
+                                                Hapus
+                                            </button>
+
+                                            <div class="modal fade text-left" id="deleteModal-{{ $row->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Anda yakin ingin menghapus data feedback dari customer {{ $row->booking->user->nama }}?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Batal</button>
+                                                            <form action="{{ route('feedback.destroy', $row->id) }}"
+                                                                method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endif
@@ -95,13 +154,40 @@
                                     <td>{{ $row->feedback }}</td>
                                     <td>{{ $row->created_at }}</td>
                                     <td class="text-center">
-                                        <form action="{{ route('feedback.destroy', $row->id) }}" method="post">
-                                            <a href="{{ route('feedback.show', $row->id) }}"
-                                                class="btn btn-success">Detail</a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger ml-2">Hapus</button>
-                                        </form>
+                                        <a href="{{ route('feedback.show', $row->id) }}" class="btn btn-success">Detail</a>
+                                        <button class="btn btn-danger ml-2" data-toggle="modal"
+                                            data-target="#deleteModal-{{ $row->id }}" class="delete-item">
+                                            Hapus
+                                        </button>
+
+                                        <div class="modal fade text-left" id="deleteModal-{{ $row->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Anda yakin ingin menghapus data feedback dari customer {{ $row->booking->user->nama }}?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Batal</button>
+                                                        <form action="{{ route('feedback.destroy', $row->id) }}"
+                                                            method="POST" style="display: inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -130,8 +216,5 @@
                 </div>
             @endif
         </div>
-    </div>
-    <div class="footer">
-        <h5 class="text-danger">*confirmation delete data</h5>
     </div>
 @endsection

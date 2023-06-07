@@ -102,7 +102,7 @@ class FeedbackController extends Controller
         $feedbacks = Feedback::find($id);
         if ($feedbacks) {
             $feedbacks->delete();
-            return redirect()->route('booking.index')
+            return redirect()->route('feedback.index')
                 ->with('success', 'Berhasil menghapus feedback');
         }
     }

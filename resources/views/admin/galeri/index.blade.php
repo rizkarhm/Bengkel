@@ -58,13 +58,40 @@
                                     </td>
                                     <td>{{ $row->keterangan }}</td>
                                     <td class="text-center">
-                                        {{-- <a href="{{ route('galeri.edit', $row->id) }}" class="btn btn-warning mt-2">Edit</a><br> --}}
-                                        <form action="{{ route('galeri.destroy', $row->id) }}" method="post">
-                                            <a href="{{ route('galeri.edit', $row->id) }}" class="btn btn-warning">Edit</a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Hapus</button>
-                                        </form>
+                                        <a href="{{ route('galeri.edit', $row->id) }}" class="btn btn-warning">Edit</a>
+                                        <button class="btn btn-danger ml-2" data-toggle="modal"
+                                            data-target="#deleteModal-{{ $row->id }}" class="delete-item">
+                                            Hapus
+                                        </button>
+
+                                        <div class="modal fade text-left" id="deleteModal-{{ $row->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Anda yakin ingin menghapus data {{ $row->keterangan }}?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Batal</button>
+                                                        <form action="{{ route('galeri.destroy', $row->id) }}"
+                                                            method="POST" style="display: inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -81,8 +108,5 @@
             </div>
             @endif
         </div>
-    </div>
-    <div class="footer">
-        <h5 class="text-danger">*confirmation delete data</h5>
     </div>
 @endsection
