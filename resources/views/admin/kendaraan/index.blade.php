@@ -29,6 +29,10 @@
                     <div class="alert alert-success">
                         <p class="mb-0">{{ $message }}</p>
                     </div>
+                @elseif ($message = Session::get('error'))
+                    <div class="alert alert-danger">
+                        <p class="mb-0">{{ $message }}</p>
+                    </div>
                 @endif
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead class="text-bold text-center" style="color:blue">
@@ -84,7 +88,6 @@
         </div>
     </div>
     <div class="footer">
-        <h5 class="text-danger">*confirmation delete data | kendaraan yang memiliki kaitan dengan tabel lain tidak dapat
-            dihapus</h5>
+        <h5 class="text-danger">*confirmation delete data</h5>
     </div>
 @endsection

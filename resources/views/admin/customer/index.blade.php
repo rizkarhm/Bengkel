@@ -12,8 +12,8 @@
             <!-- Topbar Search -->
             <form class="d-none d-sm-inline-block form-inline mr-auto md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
-                    <input type="text" class="form-control border-2 small" placeholder="Cari" id="cari" aria-label="Search"
-                        aria-describedby="basic-addon2">
+                    <input type="text" class="form-control border-2 small" placeholder="Cari" id="cari"
+                        aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button">
                             <i class="fas fa-search fa-sm"></i>
@@ -27,6 +27,10 @@
             <div class="table-responsive">
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success">
+                        <p class="mb-0">{{ $message }}</p>
+                    </div>
+                @elseif ($message = Session::get('error'))
+                    <div class="alert alert-danger">
                         <p class="mb-0">{{ $message }}</p>
                     </div>
                 @endif
@@ -53,7 +57,8 @@
                                             {{ $row->created_at }}
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('customer.show', $row->id) }}" class="btn btn-success">Detail</a>
+                                            <a href="{{ route('customer.show', $row->id) }}"
+                                                class="btn btn-success">Detail</a>
                                         </td>
                                     </tr>
                                 @endif
@@ -69,9 +74,9 @@
                 <nav class="datatable-pagination">
                     {!! $users->links() !!}</nav>
             </div>
-            <div class="footer">
-                <h5 class="text-danger">*confirmation delete data | user yang memiliki kaitan dengan tabel lain tidak dapat dihapus</h5>
-            </div>
         </div>
+    </div>
+    <div class="footer">
+        <h5 class="text-danger">*confirmation delete data</h5>
     </div>
 @endsection

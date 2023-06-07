@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
+use App\Models\Booking;
 use App\Models\Kendaraan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class KendaraanController extends Controller
@@ -75,7 +77,7 @@ class KendaraanController extends Controller
         if ($request->file('gambar') != null || $request->file('gambar') != '') {
             $kendaraan->gambar = $request->file('gambar')->store('images');
             Storage::delete($pathFoto);
-        } else if ($request->file('gambar') == $pathFoto ){
+        } else if ($request->file('gambar') == $pathFoto) {
             $kendaraan->gambar = $pathFoto;
         }
 
@@ -87,17 +89,24 @@ class KendaraanController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        $isUsed = DB::table('bookings')->where('kendaraan_id', $id)->exists();
+
         $kendaraan = Kendaraan::find($id);
-
         $pathFoto = $kendaraan->gambar;
-        if ($pathFoto != null || $pathFoto != '') {
-            Storage::delete($pathFoto);
-        }
 
-        if ($kendaraan) {
-            $kendaraan->delete();
+        if ($isUsed == 1) {
             return redirect()->route('kendaraan.index')
-                ->with('success', 'Berhasil menghapus data kendaraan');
+                ->with('error', 'Hapus gagal. Data memiliki relasi dengan tabel lain');
+        } else {
+            if ($pathFoto != null || $pathFoto != '') {
+                Storage::delete($pathFoto);
+            }
+
+            if ($kendaraan) {
+                $kendaraan->delete();
+                return redirect()->route('kendaraan.index')
+                    ->with('success', 'Berhasil menghapus data kendaraan');
+            }
         }
     }
 }

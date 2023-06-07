@@ -26,10 +26,14 @@
         <div class="card-body">
             <div class="table-responsive">
                 @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        <p class="mb-0">{{ $message }}</p>
-                    </div>
-                @endif
+                <div class="alert alert-success">
+                    <p class="mb-0">{{ $message }}</p>
+                </div>
+            @elseif ($message = Session::get('error'))
+                <div class="alert alert-danger">
+                    <p class="mb-0">{{ $message }}</p>
+                </div>
+            @endif
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead class="text-bold text-center" style="color:blue">
                         <tr>
@@ -85,7 +89,6 @@
     </div>
 
     <div class="footer">
-        <h5 class="text-danger">*confirmation delete data | user yang memiliki kaitan dengan tabel lain tidak dapat
-            dihapus</h5>
+        <h5 class="text-danger">*confirmation delete data </h5>
     </div>
 @endsection

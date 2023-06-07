@@ -198,9 +198,6 @@
                 @endif
 
             @endif
-            <div class="footer">
-                <h5 class="text-danger">*confirmation delete data</h5>
-            </div>
         </div>
     </div>
 @endsection

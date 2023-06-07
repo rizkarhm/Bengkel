@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -94,12 +95,18 @@ class UserController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        $isUsed = DB::table('bookings')->where('pic_id', $id)->exists();
         $user = User::find($id);
 
-        if ($user) {
-            $user->delete();
+        if ($isUsed == 1) {
             return redirect()->route('user.index')
-                ->with('success', 'Berhasil menghapus user');
+                ->with('error', 'Hapus gagal. Data memiliki relasi dengan tabel lain');
+        } else {
+            if ($user) {
+                $user->delete();
+                return redirect()->route('user.index')
+                    ->with('success', 'Berhasil menghapus user');
+            }
         }
     }
 }

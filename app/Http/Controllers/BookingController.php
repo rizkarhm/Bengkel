@@ -7,6 +7,7 @@ use App\Models\Feedback;
 use App\Models\Kendaraan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class BookingController extends Controller
@@ -29,7 +30,7 @@ class BookingController extends Controller
             ->paginate(4);
 
         //magang
-        $bookings_pic = Booking::whereIn('status', ['Booked', 'In Queue','Proccessed'])
+        $bookings_pic = Booking::whereIn('status', ['Booked', 'In Queue', 'Proccessed'])
             ->where('pic_id', $user)
             ->paginate(4);
 
@@ -280,7 +281,12 @@ class BookingController extends Controller
         $booking = Booking::find($id);
         $status = $booking->status;
 
-        if ($status == 'Proccessed') {
+        $isUsed = DB::table('feedback')->where('booking_id', $id)->exists();
+
+        if ($isUsed == 1) {
+            return redirect()->route('booking.index')
+                ->with('error', 'Hapus gagal. Data memiliki relasi dengan tabel lain');
+        } else if ($status == 'Proccessed') {
             return redirect()->route('booking.index')
                 ->with('error', 'Data booking dengan status Proccessed tidak dapat dihapus');
         } else if ($status == 'Done') {

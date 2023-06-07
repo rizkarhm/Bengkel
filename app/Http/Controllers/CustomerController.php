@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
@@ -21,33 +22,6 @@ class CustomerController extends Controller
         return view('admin.customer.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $user = User::find($id);
@@ -92,12 +66,18 @@ class CustomerController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        $isUsed = DB::table('bookings')->where('user_id', $id)->exists();
         $user = User::find($id);
-
-        if ($user) {
-            $user->delete();
+        
+        if ($isUsed == 1) {
             return redirect()->route('customer.index')
-                ->with('success', 'Berhasil menghapus customer');
+                ->with('error', 'Hapus gagal. Data memiliki relasi dengan tabel lain');
+        } else {
+            if ($user) {
+                $user->delete();
+                return redirect()->route('customer.index')
+                    ->with('success', 'Berhasil menghapus customer');
+            }
         }
     }
 }
