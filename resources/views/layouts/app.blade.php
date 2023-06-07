@@ -155,6 +155,7 @@
         });
     </script>
 
+    {{-- autofill data customer at add new booking from dashboard --}}
     <script>
         $(document).ready(function() {
             $('#cust_id').on('change', function() {
