@@ -76,7 +76,4 @@
             </div>
         </div>
     </div>
-    <div class="footer">
-        <h5 class="text-danger">*confirmation delete data</h5>
-    </div>
 @endsection
