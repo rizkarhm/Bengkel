@@ -87,9 +87,4 @@
         </div>
     </div>
 </form>
-
-    <div class="footer">
-        <h5 class="text-danger">*confirmation delete data | user yang memiliki kaitan dengan tabel lain tidak dapat
-            dihapus</h5>
-    </div>
 @endsection

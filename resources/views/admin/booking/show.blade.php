@@ -158,5 +158,4 @@
             </div>
         </div>
     </div>
-    <p>validasi button tambah feedback -> jika feedback sudah ada, maka seharusnya button feedback disabled</p>
 @endsection

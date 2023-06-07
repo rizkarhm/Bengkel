@@ -24,6 +24,10 @@ class BookingController extends Controller
         $bookings = Booking::whereIn('status', ['Booked', 'In Queue', 'Proccessed'])
             ->paginate(10);
 
+        //mekanik
+        $bookings_mekanik = Booking::whereIn('status', ['In Queue', 'Proccessed'])
+            ->paginate(10);
+
         //customer
         $bookings_user = Booking::whereIn('status', ['Booked', 'In Queue', 'Proccessed'])
             ->where('user_id', $user)
@@ -39,6 +43,7 @@ class BookingController extends Controller
             'bookings' => $bookings,
             'bookings_user' => $bookings_user,
             'bookings_pic' => $bookings_pic,
+            'bookings_mekanik' => $bookings_mekanik
         ]);
     }
 

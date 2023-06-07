@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </form>
-            @if (auth()->user()->role != 'Magang')
+            @if (auth()->user()->role != 'Magang' && auth()->user()->role != 'Mekanik')
                 <a href="{{ route('booking.create') }}" class="btn btn-primary">Buat Appointment</a>
             @endif
         </div>
@@ -84,18 +84,21 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('booking.show', $row->id) }}" class="btn btn-success">Detail</a>
+                                            <a href="{{ route('booking.show', $row->id) }}"
+                                                class="btn btn-success">Detail</a>
                                             <button class="btn btn-danger ml-2" data-toggle="modal"
                                                 data-target="#deleteModal-{{ $row->id }}" class="delete-item">
                                                 Hapus
                                             </button>
 
-                                            <div class="modal fade text-left" id="deleteModal-{{ $row->id }}" tabindex="-1"
-                                                role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                            <div class="modal fade text-left" id="deleteModal-{{ $row->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                                                aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data
+                                                            <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus
+                                                                Data
                                                             </h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
@@ -103,7 +106,8 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <p>Anda yakin ingin menghapus data booking dengan ID {{ $row->id }}?</p>
+                                                            <p>Anda yakin ingin menghapus data booking dengan ID
+                                                                {{ $row->id }}?</p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
@@ -163,6 +167,80 @@
                                     </tr>
                                 @endforeach
 
+                                {{-- View for role mekanik --}}
+                            @elseif (auth()->user()->role == 'Mekanik')
+                                @foreach ($bookings_mekanik as $row)
+                                    <tr>
+                                        <td class="text-center">{{ $no++ }}</td>
+                                        {{-- <td class="text-center">{{ $row->id }}</td> --}}
+                                        <td>{{ $row->user->nama }}</td>
+                                        <td>{{ $row->kendaraan->merek }}</td>
+                                        <td>{{ $row->model }}</td>
+                                        <td>{{ $row->nopol }}</td>
+                                        <td>{{ $row->tgl_masuk }}</td>
+                                        <td>
+                                            @if ($row->status == 'Booked')
+                                                <div class="text-white rounded-pill py-2 px-2 badge bg-secondary">
+                                                    {{ $row->status }}</div>
+                                            @elseif ($row->status == 'Done')
+                                                <div class="text-white rounded-pill py-2 px-2 badge bg-success">
+                                                    {{ $row->status }}</div>
+                                            @elseif ($row->status == 'In Queue')
+                                                <div class="text-white rounded-pill py-2 px-2 badge bg-warning">
+                                                    {{ $row->status }}</div>
+                                            @elseif ($row->status == 'Proccessed')
+                                                <div class="text-white rounded-pill py-2 px-2 badge bg-info">
+                                                    {{ $row->status }}</div>
+                                            @elseif ($row->status == 'Canceled')
+                                                <div class="text-white rounded-pill py-2 px-2 badge bg-danger">
+                                                    {{ $row->status }}</div>
+                                            @endif
+                                        </td>
+
+                                        <td class="text-center">
+                                            <a href="{{ route('booking.show', $row->id) }}"
+                                                class="btn btn-success">Detail</a>
+                                            {{-- <button class="btn btn-danger ml-2" data-toggle="modal"
+                                                data-target="#deleteModal-{{ $row->id }}" class="delete-item">
+                                                Hapus
+                                            </button> --}}
+
+                                            <div class="modal fade text-left" id="deleteModal-{{ $row->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus
+                                                                Data
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Anda yakin ingin menghapus data booking customer
+                                                                {{ $row->user->nama }}?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Batal</button>
+                                                            <form action="{{ route('booking.destroy', $row->id) }}"
+                                                                method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit"
+                                                                    class="btn btn-danger">Hapus</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
                                 {{-- View for role admin & mekanik --}}
                             @else
                                 @foreach ($bookings as $row)
@@ -194,18 +272,21 @@
                                         </td>
 
                                         <td class="text-center">
-                                            <a href="{{ route('booking.show', $row->id) }}" class="btn btn-success">Detail</a>
+                                            <a href="{{ route('booking.show', $row->id) }}"
+                                                class="btn btn-success">Detail</a>
                                             <button class="btn btn-danger ml-2" data-toggle="modal"
                                                 data-target="#deleteModal-{{ $row->id }}" class="delete-item">
                                                 Hapus
                                             </button>
 
-                                            <div class="modal fade text-left" id="deleteModal-{{ $row->id }}" tabindex="-1"
-                                                role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                            <div class="modal fade text-left" id="deleteModal-{{ $row->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                                                aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data
+                                                            <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus
+                                                                Data
                                                             </h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
@@ -213,7 +294,8 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <p>Anda yakin ingin menghapus data booking customer {{ $row->user->nama }}?</p>
+                                                            <p>Anda yakin ingin menghapus data booking customer
+                                                                {{ $row->user->nama }}?</p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
@@ -222,7 +304,8 @@
                                                                 method="POST" style="display: inline;">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-danger">Hapus</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -241,7 +324,8 @@
             @if (auth()->user()->role == 'Admin')
                 @if ($bookings->count() != 0)
                     <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
-                        <div class="datatable-info">Showing {{ $bookings->firstItem() }} to {{ $bookings->lastItem() }} of
+                        <div class="datatable-info">Showing {{ $bookings->firstItem() }} to {{ $bookings->lastItem() }}
+                            of
                             {{ $bookings->total() }} entries</div>
                         <nav class="datatable-pagination">
                             {!! $bookings->links() !!}</nav>
@@ -257,7 +341,7 @@
                             {!! $bookings_user->links() !!}</nav>
                     </div>
                 @endif
-                @elseif (auth()->user()->role == 'Magang')
+            @elseif (auth()->user()->role == 'Magang')
                 @if ($bookings_pic->count() != 0)
                     <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
                         <div class="datatable-info">Showing {{ $bookings_pic->firstItem() }} to
@@ -267,7 +351,17 @@
                             {!! $bookings_pic->links() !!}</nav>
                     </div>
                 @endif
-                @else
+            @elseif (auth()->user()->role == 'Mekanik')
+                @if ($bookings_mekanik->count() != 0)
+                    <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
+                        <div class="datatable-info">Showing {{ $bookings_mekanik->firstItem() }} to
+                            {{ $bookings_mekanik->lastItem() }} of
+                            {{ $bookings_mekanik->total() }} entries</div>
+                        <nav class="datatable-pagination">
+                            {!! $bookings_mekanik->links() !!}</nav>
+                    </div>
+                @endif
+            @else
                 @if ($bookings->count() != 0)
                     <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
                         <div class="datatable-info">Showing {{ $bookings->firstItem() }} to
