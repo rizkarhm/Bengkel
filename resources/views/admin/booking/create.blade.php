@@ -46,9 +46,9 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="padding-bottom:7.5rem">
                             <label for="alamat">Alamat</label>
-                            <textarea type="text" row=5 class="form-control" id="alamat" disabled name="alamat">{{ isset($users) ? $users->alamat : old('alamat') }}</textarea>
+                            <textarea type="text" class="form-control" id="alamat" disabled name="alamat">{{ isset($users) ? $users->alamat : old('alamat') }}</textarea>
                             @error('alamat')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
