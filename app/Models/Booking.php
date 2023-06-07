@@ -14,6 +14,7 @@ class Booking extends Model
         'kendaraan_id',
         'model',
         'nopol',
+        'masalah',
         'tgl_masuk',
         'tgl_selesai',
         'status',
@@ -36,5 +37,5 @@ class Booking extends Model
     {
         return $this->hasOne(Feedback::class);
     }
-    
+
 }

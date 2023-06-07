@@ -50,7 +50,7 @@
 										</div>
 										@endif
                     <div class="form-group">
-                      <input name="telepon" type="number" class="form-control form-control-user" id="exampleInputTelepon" aria-describedby="emailHelp" placeholder="Nomor Whatsapp">
+                      <input name="telepon" type="number" class="form-control form-control-user" id="exampleInputTelepon" aria-describedby="emailHelp" placeholder="Nomor Whatsapp" autofocus>
                     </div>
                     <div class="form-group">
                       <input name="password" type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">

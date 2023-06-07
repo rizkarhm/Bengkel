@@ -65,6 +65,13 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    <div class="form-group" id="masalah">
+                        <label for="masalah">Kerusakan</label>
+                        <textarea disabled type="text" class="form-control" id="masalah" name="masalah" value="">{{ isset($bookings) ? $bookings->masalah : old('masalah') }}</textarea>
+                        @error('masalah')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
                     <div class="form-group">
                         <label for="tgl_masuk">Tanggal Masuk</label>
                         <input type="text" class="form-control" id="tgl_masuk" name="tgl_masuk" disabled
@@ -74,7 +81,7 @@
                         @enderror
                     </div>
 
-                    @if (auth()->user()->role != 'Customer')
+                    @if (auth()->user()->role != 'Customer' && $bookings->status != 'Booked' && $bookings->status != 'In Queue')
                         <div class="form-group" id="pic_id">
                             <label for="pic_id">PIC</label>
                             <select name="pic_id" id="pic_id" class="custom-select" disabled>

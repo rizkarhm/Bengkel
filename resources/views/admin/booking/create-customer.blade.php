@@ -46,6 +46,13 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    <div class="form-group" id="masalah">
+                        <label for="masalah">Kerusakan<span class="text-danger">*</span></label>
+                        <textarea type="text" class="form-control" id="masalah" name="masalah" value="">{{ isset($bookings) ? $bookings->masalah : old('masalah')}}</textarea>
+                        @error('masalah')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
                     <div class="form-group">
                         <label for="tgl_masuk">Tanggal Masuk<span class="text-danger">*</span></label>
                         <input type="date" class="form-control" id="tgl_masuk" name="tgl_masuk"

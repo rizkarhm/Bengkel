@@ -60,43 +60,6 @@ class BookingController extends Controller
         }
     }
 
-    //Store to Booking only
-    // public function store(Request $request)
-    // {
-    //     $this->validate($request, [
-    //         'user_id' => 'required',
-    //         'kendaraan_id' => 'required',
-    //         'model' => 'required',
-    //         'nopol' => 'required|min:7',
-    //         'tgl_masuk' => 'required|date',
-    //         'tgl_selesai' => 'nullable',
-    //         'pic_id' => 'nullable',
-    //         'status' => 'required'
-    //     ]);
-
-    //     if ($request->status == "Done"){
-    //         $tglKeluar = date('Y-m-d');
-    //     } else if ($request->status == "Canceled"){
-    //         $tglKeluar = "-";
-    //     } else {
-    //         $tglKeluar = null;
-    //     }
-
-    //     Booking::create([
-    //         'user_id' => $request->user_id,
-    //         'kendaraan_id' => $request->kendaraan_id,
-    //         'model' => $request->model,
-    //         'nopol' => $request->nopol,
-    //         'tgl_masuk' => $request->tgl_masuk,
-    //         'tgl_selesai' => $tglKeluar,
-    //         'pic_id' => $request->pic_id,
-    //         'status' => $request->status,
-    //     ]);
-
-    //     return redirect()->route('booking.index')
-    //         ->with('success', 'Berhasil menambah appointment baru');
-    // }
-
     //Store Booking + Create customer
     public function store(Request $request)
     {
@@ -125,6 +88,7 @@ class BookingController extends Controller
                 'kendaraan_id' => 'required',
                 'model' => 'required',
                 'nopol' => 'required|min:7',
+                'masalah' => 'required',
                 'tgl_masuk' => 'required|date',
             ]);
 
@@ -141,6 +105,7 @@ class BookingController extends Controller
                 'kendaraan_id' => $request->kendaraan_id,
                 'model' => $request->model,
                 'nopol' => $request->nopol,
+                'masalah' => $request->masalah,
                 'tgl_masuk' => $request->tgl_masuk,
                 'tgl_selesai' => $tglKeluar,
                 'pic_id' => $request->pic_id,
@@ -157,6 +122,7 @@ class BookingController extends Controller
                 'kendaraan_id' => 'required',
                 'model' => 'required',
                 'nopol' => 'required|min:7',
+                'masalah' => 'required',
                 'tgl_masuk' => 'required|date',
             ]);
 
@@ -165,6 +131,7 @@ class BookingController extends Controller
                 'kendaraan_id' => $request->kendaraan_id,
                 'model' => $request->model,
                 'nopol' => $request->nopol,
+                'masalah' => $request->masalah,
                 'tgl_masuk' => $request->tgl_masuk,
                 'tgl_selesai' => $tglKeluar,
                 'pic_id' => $request->pic_id,
@@ -268,6 +235,7 @@ class BookingController extends Controller
                 'nopol' => 'required|min:7',
                 'tgl_masuk' => 'required|date',
                 'tgl_selesai' => 'nullable',
+                'masalah' => 'required',
                 'pic_id' => 'nullable',
                 'ket_pembatalan' => 'nullable',
                 'penanganan' => 'nullable',
@@ -280,6 +248,7 @@ class BookingController extends Controller
                 'kendaraan_id' => 'required',
                 'model' => 'required',
                 'nopol' => 'required|min:7',
+                'masalah' => 'required',
                 'tgl_masuk' => 'required|date',
                 'tgl_selesai' => 'nullable',
                 'pic_id' => 'nullable',
@@ -293,6 +262,7 @@ class BookingController extends Controller
         $booking->kendaraan_id = $request->kendaraan_id;
         $booking->model = $request->model;
         $booking->nopol = $request->nopol;
+        $booking->masalah = $request->masalah;
         $booking->tgl_masuk = $request->tgl_masuk;
         $booking->tgl_selesai = $tglKeluar;
         $booking->pic_id = $request->pic_id;
