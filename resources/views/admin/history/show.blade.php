@@ -139,8 +139,13 @@
                         @if ($bookings->status == 'Done')
                             <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning disabled">Edit Data
                                 Booking</a>
-                            <a href="{{ route('feedback.edit', $bookings) }}" class="btn btn-info">Isi
-                                Feedback</a>
+                            @if ($isExist != 1)
+                                <a href="{{ route('feedback.edit', $bookings) }}" class="btn btn-info">Isi
+                                    Feedback</a>
+                            @else
+                                <a href="{{ route('feedback.edit', $bookings) }}" class="btn btn-info disabled">Isi
+                                    Feedback</a>
+                            @endif
                         @elseif ($bookings->status == 'Canceled')
                             <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning disabled">Edit
                                 Data

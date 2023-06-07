@@ -168,7 +168,7 @@ class BookingController extends Controller
             'cust' => $cust,
             'pic' => $pic,
             'kendaraans' => $kendaraans,
-            'feedbacks' => $feedbacks
+            'feedbacks' => $feedbacks,
         ]);
     }
 

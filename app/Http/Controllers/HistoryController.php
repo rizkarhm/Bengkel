@@ -80,6 +80,8 @@ class HistoryController extends Controller
         //get data kendaraan all
         $kendaraans = Kendaraan::all();
 
+        $isExist = DB::table('feedback')->where('booking_id', $id)->exists();
+
         $booking = Booking::find($id);
         if (!$booking) return redirect()->route('booking.index')
             ->with('error', 'Riwayat dengan id' . $id . ' tidak ditemukan');
@@ -88,7 +90,8 @@ class HistoryController extends Controller
             'bookings' => $booking,
             'cust' => $cust,
             'pic' => $pic,
-            'kendaraans' => $kendaraans
+            'kendaraans' => $kendaraans,
+            'isExist' => $isExist,
         ]);
     }
 
