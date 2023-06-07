@@ -42,6 +42,12 @@ class BookingController extends Controller
         ]);
     }
 
+    public function getData($id)
+    {
+        $data = User::find($id);
+        return response()->json($data);
+    }
+
     public function create()
     {
         //get data user all

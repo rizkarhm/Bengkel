@@ -34,7 +34,10 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('user', UserController::class);
     Route::resource('customer', CustomerController::class);
+
     Route::resource('booking', BookingController::class);
+    Route::get('/get-data/{id}', [BookingController::class, 'getData'])->name('getData');
+
     Route::resource('history', HistoryController::class);
     Route::resource('galeri', GaleriController::class);
     Route::resource('kontak', KontakController::class);

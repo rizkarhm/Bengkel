@@ -155,10 +155,40 @@
         });
     </script>
 
+    <script>
+        $(document).ready(function() {
+            $('#cust_id').on('change', function() {
+                var selectedId = $(this).val();
+
+                if (selectedId !== '') {
+                    $.ajax({
+                        url: "{{ route('getData', ['id' => '__id__']) }}".replace('__id__',
+                            selectedId),
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('#nama').val(data.nama);
+                            $('#telepon').val(data.telepon);
+                            $('#alamat').val(data.alamat);
+                        },
+                        error: function() {
+                            console.log('Error occurred while fetching data.');
+                        }
+                    });
+                } else {
+                    $('#nama').val('');
+                    $('#telepon').val('');
+                    $('#alamat').val('');
+                }
+            });
+        });
+    </script>
+
     {{-- Add default value for tgl masuk as today --}}
     <script>
         $('#tgl_masuk').val(new Date().toJSON().slice(0, 10));
     </script>
 
     </body>
+
 </html>
