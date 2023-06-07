@@ -47,6 +47,19 @@ class BookingController extends Controller
         ]);
     }
 
+    public function mekanik()
+    {
+        //get user id
+        $user = auth()->user()->id;
+
+        //mekanik
+        $bookings_mekanik = Booking::whereIn('status', ['In Queue', 'Proccessed'])
+            ->where('pic_id', $user)
+            ->paginate(4);
+
+        return view('admin.booking.mekanik', compact('bookings_mekanik'));
+    }
+
     public function getData($id)
     {
         $data = User::find($id);

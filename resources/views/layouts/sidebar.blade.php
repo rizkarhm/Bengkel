@@ -14,7 +14,8 @@
     <!-- Nav Item - Dashboard -->
     @if (auth()->user()->role == 'Admin')
         <li class="nav-item">
-            <a class="nav-link {{ request()->routeIs('dashboard.*') ? 'active' : '' }}" href="{{ route('dashboard.index') }}">
+            <a class="nav-link {{ request()->routeIs('dashboard.*') ? 'active' : '' }}"
+                href="{{ route('dashboard.index') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -37,13 +38,33 @@
             <span>Riwayat Service</span></a>
     </li>
 
-    {{-- @if (auth()->user()->role != 'Customer') --}}
     <li class="nav-item">
         <a class="nav-link" href="{{ route('feedback.index') }}">
             <i class="fas fa-fw fa-comments"></i>
             <span>Feedback</span></a>
     </li>
-    {{-- @endif --}}
+
+    @if (auth()->user()->role == 'Mekanik')
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+        Mekanik
+    </div>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('mekanik.booking') }}">
+                <i class="fas fa-fw fa-list"></i>
+                <span>Task</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('mekanik.history') }}">
+                <i class="fas fa-fw fa-check"></i>
+                <span>Riwayat</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('mekanik.feedback') }}">
+                <i class="fas fa-fw fa-comment"></i>
+                <span>Feedback</span></a>
+        </li>
+    @endif
 
     @if (auth()->user()->role == 'Admin')
         <hr class="sidebar-divider">

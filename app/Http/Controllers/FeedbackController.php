@@ -27,6 +27,15 @@ class FeedbackController extends Controller
         ]);
     }
 
+    public function mekanik()
+    {
+        $feedbacks = Feedback::orderBy('id', 'asc')->paginate(10);
+
+        return view('admin.feedback.mekanik', [
+            'feedbacks' => $feedbacks,
+        ]);
+    }
+
     public function create()
     {
     }

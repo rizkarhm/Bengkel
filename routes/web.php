@@ -32,17 +32,22 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('dashboard', DashboardController::class);
 
+    Route::resource('profile', ProfileController::class);
     Route::resource('user', UserController::class);
     Route::resource('customer', CustomerController::class);
 
     Route::resource('booking', BookingController::class);
     Route::get('/get-data/{id}', [BookingController::class, 'getData'])->name('getData');
+    Route::get('/mekanik-booking', [BookingController::class, 'mekanik'])->name('mekanik.booking');
 
     Route::resource('history', HistoryController::class);
+    Route::get('/mekanik-history', [HistoryController::class, 'mekanik'])->name('mekanik.history');
+
+    Route::resource('feedback', FeedbackController::class);
+    Route::get('/mekanik-feedback', [FeedbackController::class, 'mekanik'])->name('mekanik.feedback');
+
     Route::resource('galeri', GaleriController::class);
     Route::resource('kontak', KontakController::class);
-    Route::resource('feedback', FeedbackController::class);
     Route::resource('kendaraan', KendaraanController::class);
 
-    Route::resource('profile', ProfileController::class);
 });
