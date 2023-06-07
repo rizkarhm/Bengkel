@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Riwayat Service')
+@section('title', 'Riwayat Service Mekanik')
 
 @section('contents')
     <ol class="breadcrumb px-3 py-2 rounded mb-4">
         <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item active">Riwayat Booking</li>
+        <li class="breadcrumb-item"><a href="{{ route('history.index') }}">All Data History</a></li>
+        <li class="breadcrumb-item active">Mekanik History</li>
     </ol>
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex">
