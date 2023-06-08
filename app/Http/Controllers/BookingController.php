@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class BookingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         //all with paginate
         $all = Booking::orderBy('id', 'asc')->paginate(10);
@@ -38,12 +38,21 @@ class BookingController extends Controller
             ->where('pic_id', $user)
             ->paginate(4);
 
+        // Apply filters
+        $query = Booking::query();
+        $status = $request->input('status');
+        if ($status) {
+            $query->where('status', $status)->paginate(10);
+        }
+
+        $bookings = $query->whereIn('status', ['Booked', 'In Queue', 'Proccessed'])->paginate(10);
+
         return view('admin.booking.index', [
             'all' => $all,
             'bookings' => $bookings,
             'bookings_user' => $bookings_user,
             'bookings_pic' => $bookings_pic,
-            'bookings_mekanik' => $bookings_mekanik
+            'bookings_mekanik' => $bookings_mekanik,
         ]);
     }
 
