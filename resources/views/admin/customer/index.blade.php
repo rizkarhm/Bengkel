@@ -46,7 +46,9 @@
                     </thead>
                     <tbody>
                         @if ($users->count())
-                            @php($no = 1)
+                            @php
+                                $no = ($users->currentPage() - 1) * $users->perPage() + 1;
+                            @endphp
                             @foreach ($users as $key => $row)
                                 @if (auth()->user()->telepon != $row->telepon)
                                     <tr>

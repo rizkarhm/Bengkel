@@ -45,7 +45,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php($no = $users->firstItem())
+                        @php
+                        $no = ($users->currentPage() - 1) * $users->perPage() + 1;
+                    @endphp
                         @foreach ($users as $key => $row)
                             <tr>
                                 <td class="text-center">{{ $no++ }}</td>

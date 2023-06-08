@@ -27,7 +27,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead class="text-bold text-center" style="color:blue">
                         <tr>
-                            <th style="width: 40px;">ID</th>
+                            <th style="width: 40px;">ID Booking</th>
                             <th>Nama Customer</th>
                             <th>Merek</th>
                             <th>Model</th>

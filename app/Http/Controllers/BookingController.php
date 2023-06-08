@@ -38,11 +38,13 @@ class BookingController extends Controller
             ->where('pic_id', $user)
             ->paginate(4);
 
-        // Apply filters
+        //call query for filter and search
         $query = Booking::query();
-        $status = $request->input('status');
-        if ($status) {
-            $query->where('status', $status)->paginate(10);
+
+        //filter
+        $filter = $request->input('filter');
+        if ($filter) {
+            $query->where('status', $filter)->paginate(10);
         }
 
         $bookings = $query->whereIn('status', ['Booked', 'In Queue', 'Proccessed'])->paginate(10);

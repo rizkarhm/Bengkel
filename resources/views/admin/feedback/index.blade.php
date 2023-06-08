@@ -33,7 +33,7 @@
                     <thead class="text-bold text-center" style="color:blue">
                         <tr>
                             {{-- <th style="width: 40px;">No</th> --}}
-                            <th style="width: 90px;">ID Booking</th>
+                            <th style="width: 40px;">ID Booking</th>
                             <th>Nama Customer</th>
                             <th style="width: 60px;">Rating</th>
                             <th>Feedback</th>
@@ -42,13 +42,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php($no = 1)
                         {{-- list untuk customer, feedback yg ditampilkan sesuai dengan user auth id --}}
                         @if (auth()->user()->role == 'Customer')
+                            @php
+                                $no = ($feedbacks_user->currentPage() - 1) * $feedbacks_user->perPage() + 1;
+                            @endphp
                             @foreach ($feedbacks_user as $key => $row)
                                 <tr>
-                                    {{-- <td class="text-center">{{ $no++ }}</td> --}}
-                                    <td class="text-center">{{ $row->booking_id }}</td>
+                                    <td class="text-center">{{ $no++ }}</td>
+                                    {{-- <td class="text-center">{{ $row->booking_id }}</td> --}}
                                     <td>{{ $row->booking->user->nama }}</td>
                                     <td class="text-center">{{ $row->rating }}</td>
                                     <td>{{ $row->feedback }}</td>
@@ -60,8 +62,9 @@
                                             Hapus
                                         </button>
 
-                                        <div class="modal fade text-left" id="deleteModal-{{ $row->id }}" tabindex="-1"
-                                            role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal fade text-left" id="deleteModal-{{ $row->id }}"
+                                            tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                                            aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -73,7 +76,8 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Anda yakin ingin menghapus data feedback untuk ID Booking {{ $row->booking_id }}?</p>
+                                                        <p>Anda yakin ingin menghapus data feedback untuk ID Booking
+                                                            {{ $row->booking_id }}?</p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
@@ -92,8 +96,11 @@
                                 </tr>
                             @endforeach
 
-                        {{-- menampilkan feedback dengan PIC == user auth --}}
+                            {{-- menampilkan feedback dengan PIC == user auth --}}
                         @elseif (auth()->user()->role == 'Magang')
+                            @php
+                                $no = ($feedbacks->currentPage() - 1) * $feedbacks->perPage() + 1;
+                            @endphp
                             @foreach ($feedbacks as $key => $row)
                                 @if ($row->booking->pic_id == auth()->user()->id)
                                     <tr>
@@ -104,18 +111,21 @@
                                         <td>{{ $row->feedback }}</td>
                                         <td>{{ $row->created_at }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('feedback.show', $row->id) }}" class="btn btn-success">Detail</a>
+                                            <a href="{{ route('feedback.show', $row->id) }}"
+                                                class="btn btn-success">Detail</a>
                                             <button class="btn btn-danger ml-2" data-toggle="modal"
                                                 data-target="#deleteModal-{{ $row->id }}" class="delete-item">
                                                 Hapus
                                             </button>
 
-                                            <div class="modal fade text-left" id="deleteModal-{{ $row->id }}" tabindex="-1"
-                                                role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                            <div class="modal fade text-left" id="deleteModal-{{ $row->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                                                aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data
+                                                            <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus
+                                                                Data
                                                             </h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
@@ -123,7 +133,8 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <p>Anda yakin ingin menghapus data feedback dari customer {{ $row->booking->user->nama }}?</p>
+                                                            <p>Anda yakin ingin menghapus data feedback dari customer
+                                                                {{ $row->booking->user->nama }}?</p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
@@ -132,7 +143,8 @@
                                                                 method="POST" style="display: inline;">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-danger">Hapus</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -145,6 +157,9 @@
 
                             {{-- menampilkan all feedback, untuk role admin & mekanik --}}
                         @else
+                            @php
+                                $no = ($feedbacks->currentPage() - 1) * $feedbacks->perPage() + 1;
+                            @endphp
                             @foreach ($feedbacks as $key => $row)
                                 <tr>
                                     {{-- <td class="text-center">{{ $no++ }}</td> --}}
@@ -154,18 +169,21 @@
                                     <td>{{ $row->feedback }}</td>
                                     <td>{{ $row->created_at }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('feedback.show', $row->id) }}" class="btn btn-success">Detail</a>
+                                        <a href="{{ route('feedback.show', $row->id) }}"
+                                            class="btn btn-success">Detail</a>
                                         <button class="btn btn-danger ml-2" data-toggle="modal"
                                             data-target="#deleteModal-{{ $row->id }}" class="delete-item">
                                             Hapus
                                         </button>
 
-                                        <div class="modal fade text-left" id="deleteModal-{{ $row->id }}" tabindex="-1"
-                                            role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal fade text-left" id="deleteModal-{{ $row->id }}"
+                                            tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                                            aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data
+                                                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus
+                                                            Data
                                                         </h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
@@ -173,7 +191,8 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Anda yakin ingin menghapus data feedback dari customer {{ $row->booking->user->nama }}?</p>
+                                                        <p>Anda yakin ingin menghapus data feedback dari customer
+                                                            {{ $row->booking->user->nama }}?</p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"

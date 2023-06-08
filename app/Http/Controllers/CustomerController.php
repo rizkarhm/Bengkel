@@ -68,7 +68,7 @@ class CustomerController extends Controller
     {
         $isUsed = DB::table('bookings')->where('user_id', $id)->exists();
         $user = User::find($id);
-        
+
         if ($isUsed == 1) {
             return redirect()->route('customer.index')
                 ->with('error', 'Hapus gagal. Data memiliki relasi dengan tabel lain');

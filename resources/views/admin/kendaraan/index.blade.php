@@ -45,7 +45,9 @@
                     </thead>
                     <tbody>
                         @if ($kendaraans->count())
-                            @php($no = 1)
+                            @php
+                                $no = ($kendaraans->currentPage() - 1) * $kendaraans->perPage() + 1;
+                            @endphp
                             @foreach ($kendaraans as $key => $row)
                                 <tr>
                                     <td class="text-center">{{ $no++ }}</td>
@@ -68,8 +70,9 @@
                                             Hapus
                                         </button>
 
-                                        <div class="modal fade text-left" id="deleteModal-{{ $row->id }}" tabindex="-1"
-                                            role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal fade text-left" id="deleteModal-{{ $row->id }}"
+                                            tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                                            aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

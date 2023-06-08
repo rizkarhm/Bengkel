@@ -38,7 +38,7 @@
             <!-- Topbar Search -->
             <form class="d-none d-sm-inline-block form-inline my-2 my-md-0 mw-50 navbar-search mr-2">
                 <div class="input-group">
-                    <input type="text" class="form-control border-2 small" placeholder="Cari" id="cari"
+                    <input type="text" class="form-control border-2 small" placeholder="Cari" name="search"
                         aria-label="Search" aria-describedby="basic-addon2" style="max-width: 400px">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button">
@@ -49,16 +49,17 @@
             </form>
 
             <div class="right">
+                @if (auth()->user()->role == "Admin")
                 <form class="d-none d-sm-inline-block form-inline my-md-0 mr-2 mw-100" action="{{ route('booking.index') }}"
                     method="GET">
                     <div class="input-group filter">
-                        <select name="status" class="form-control">
+                        <select name="filter" class="form-control">
                             <option value="" selected disabled hidden>Filter by Status</option>
-                            <option value="Booked" {{ request('status') == 'Booked' ? ' selected' : '' }}>Booked
+                            <option value="Booked" {{ request('filter') == 'Booked' ? ' selected' : '' }}>Booked
                             </option>
-                            <option value="In Queue" {{ request('status') == 'In Queue' ? ' selected' : '' }}>In Queue
+                            <option value="In Queue" {{ request('filter') == 'In Queue' ? ' selected' : '' }}>In Queue
                             </option>
-                            <option value="Proccessed" {{ request('status') == 'Proccessed' ? ' selected' : '' }}>
+                            <option value="Proccessed" {{ request('filter') == 'Proccessed' ? ' selected' : '' }}>
                                 Proccessed
                             </option>
                             {{-- <option value="Done" {{ request('filter') ==  'Done' ? ' selected' : '' }}>Done
@@ -73,6 +74,7 @@
                         </div>
                     </div>
                 </form>
+                @endif
 
                 @if (auth()->user()->role != 'Magang' && auth()->user()->role != 'Mekanik')
                     <a href="{{ route('booking.create') }}" class="btn btn-primary ">Buat Appointment</a>
@@ -113,8 +115,8 @@
                             @endphp
                             @foreach ($bookings_user as $row)
                                 <tr>
-                                    {{-- <td class="text-center">{{ $no++ }}</td> --}}
-                                    <td class="text-center">{{ $row->id }}</td>
+                                    <td class="text-center">{{ $no++ }}</td>
+                                    {{-- <td class="text-center">{{ $row->id }}</td> --}}
                                     <td>{{ $row->user->nama }}</td>
                                     <td>{{ $row->kendaraan->merek }}</td>
                                     <td>{{ $row->model }}</td>
@@ -187,8 +189,8 @@
                             @endphp
                             @foreach ($bookings_pic as $row)
                                 <tr>
-                                    {{-- <td class="text-center">{{ $no++ }}</td> --}}
-                                    <td class="text-center">{{ $row->id }}</td>
+                                    <td class="text-center">{{ $no++ }}</td>
+                                    {{-- <td class="text-center">{{ $row->id }}</td> --}}
                                     <td>{{ $row->user->nama }}</td>
                                     <td>{{ $row->kendaraan->merek }}</td>
                                     <td>{{ $row->model }}</td>
