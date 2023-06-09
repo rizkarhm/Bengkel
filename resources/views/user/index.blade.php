@@ -18,7 +18,7 @@
 	<meta name="twitter:card" content="summary_large_image"> <!-- to have large image post format in Twitter -->
 
     <!-- Webpage Title -->
-    <title>Yavin Webpage Title</title>
+    <title>Bengkel Kalil Auto Service</title>
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
 	<link href="{{ asset('user/css/styles.css') }}" rel="stylesheet">
 
 	<!-- Favicon  -->
-    <link rel="icon" href="{{ asset('user/images/favicon.png') }}">
+    <link rel="icon" href="{{ asset('img/logo_only.svg') }}">
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbarExample">
 
@@ -37,7 +37,7 @@
         <div class="container">
 
             <!-- Image Logo -->
-            <a class="navbar-brand logo-image" href="index.html"><img src="{{ asset('user/images/favicon.png') }}" alt="alternative"></a>
+            <a class="navbar-brand logo-image" href="{{ url('/') }}"><img src="{{ asset('user/images/logo.svg') }}" alt="alternative"></a>
 
             <!-- Text Logo - Use this if you don't have a graphic logo -->
             <!-- <a class="navbar-brand logo-text" href="index.html">Yavin</a> -->
@@ -49,7 +49,7 @@
             <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav ms-auto navbar-nav-scroll">
                     <li class="nav-item">
-                        <a class="nav-link" href="#header">Home</a>
+                        <a class="nav-link" href="#header">Beranda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#details">Details</a>
@@ -62,7 +62,7 @@
                     </li>
                 </ul>
                 <span class="nav-item">
-                    <a class="btn-outline-sm" href="#contact">Contact us</a>
+                    <a class="btn-outline-sm" href="{{ route('login') }}">Login</a>
                 </span>
             </div> <!-- end of navbar-collapse -->
         </div> <!-- end of container -->
@@ -78,15 +78,14 @@
             <div class="row">
                 <div class="col-lg-7 col-xl-5">
                     <div class="text-container">
-                        <h1 class="h1-large">Beautifying office spaces</h1>
+                        <h1 class="h1-large">Kalil Auto Service</h1>
                         <p class="p-large">Is education residence conveying and sore. Suppose shyness say ten behaved morning had. Any propose assist compliment occasional too reasonably</p>
                         <a class="btn-solid-lg" href="#introduction">More details</a>
-                        <a class="btn-outline-lg" href="#contact">Contact us</a>
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
-                <div class="col-lg-5 col-xl-7">
+                <div class="col-lg-5 col-xl-7 px-5 pt-2 ml-4">
                     <div class="image-container">
-                        <img class="img-fluid" src="{{ asset('user/images/header.png') }}" alt="alternative">
+                        <img class="img-fluid" src="{{ asset('user/images/img-header.png') }}" alt="alternative">
                     </div> <!-- end of image-container -->
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
