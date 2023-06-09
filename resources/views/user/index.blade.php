@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,27 +10,29 @@
     <meta name="author" content="Your name">
 
     <!-- OG Meta Tags to improve the way the post looks when you share the page on Facebook, Twitter, LinkedIn -->
-	<meta property="og:site_name" content="" /> <!-- website name -->
-	<meta property="og:site" content="" /> <!-- website link -->
-	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
-	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
-	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
-	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
-	<meta name="twitter:card" content="summary_large_image"> <!-- to have large image post format in Twitter -->
+    <meta property="og:site_name" content="" /> <!-- website name -->
+    <meta property="og:site" content="" /> <!-- website link -->
+    <meta property="og:title" content="" /> <!-- title shown in the actual shared post -->
+    <meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+    <meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+    <meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+    <meta name="twitter:card" content="summary_large_image"> <!-- to have large image post format in Twitter -->
 
     <!-- Webpage Title -->
     <title>Bengkel Kalil Auto Service</title>
 
     <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link href="{{ asset('user/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('user/css/fontawesome-all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('user/css/swiper.css') }}" rel="stylesheet">
-	<link href="{{ asset('user/css/styles.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('user/css/style.css') }}">
 
-	<!-- Favicon  -->
+    <!-- Favicon  -->
     <link rel="icon" href="{{ asset('img/logo_only.svg') }}">
 </head>
+
 <body data-bs-spy="scroll" data-bs-target="#navbarExample">
 
     <!-- Navigation -->
@@ -37,12 +40,14 @@
         <div class="container">
 
             <!-- Image Logo -->
-            <a class="navbar-brand logo-image" href="{{ url('/') }}"><img src="{{ asset('user/images/logo.svg') }}" alt="alternative"></a>
+            <a class="navbar-brand logo-image" href="{{ url('/') }}"><img src="{{ asset('user/images/logo.svg') }}"
+                    alt="alternative"></a>
 
             <!-- Text Logo - Use this if you don't have a graphic logo -->
             <!-- <a class="navbar-brand logo-text" href="index.html">Yavin</a> -->
 
-            <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+            <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -52,17 +57,20 @@
                         <a class="nav-link" href="#header">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#details">Details</a>
+                        <a class="nav-link" href="#details">Tentang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
+                        <a class="nav-link" href="#services">Layanan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#projects">Projects</a>
+                        <a class="nav-link" href="#contact">Kontak</a>
                     </li>
                 </ul>
-                <span class="nav-item">
+                {{-- <span class="nav-item">
                     <a class="btn-outline-sm" href="{{ route('login') }}">Login</a>
+                </span> --}}
+                <span class="nav-item">
+                    <a class="btn-outline-sm" href="{{ route('home.create') }}">Book Now!</a>
                 </span>
             </div> <!-- end of navbar-collapse -->
         </div> <!-- end of container -->
@@ -72,14 +80,16 @@
 
     <!-- Header -->
     <header id="header" class="header">
-        <img class="decoration-star" src="{{ asset('user/images/decoration-star.svg') }}" alt="alternative">
+        {{-- <img class="decoration-star" src="{{ asset('user/images/decoration-star.svg') }}" alt="alternative"> --}}
         <img class="decoration-star-2" src="{{ asset('user/images/decoration-star.svg') }}" alt="alternative">
         <div class="container py-5">
             <div class="row">
                 <div class="col-lg-7 col-xl-5">
                     <div class="text-container">
                         <h1 class="h1-large">Kalil Auto Service</h1>
-                        <p class="p-large">Kalil Auto Service merupakan sebuah layanan bengkel mobil di Kabupaten Malang. Berdiri pada tahun 2019, kini Bengkel Kalil Auto Service telah memiliki berbagai macam customer, dan mulai menjalin kerja sama dengan lini bisnis lain sebagai vendor.</p>
+                        <p class="p-large">Kalil Auto Service merupakan sebuah layanan bengkel mobil di Kabupaten
+                            Malang. Berdiri pada tahun 2019, kini Bengkel Kalil Auto Service telah memiliki berbagai
+                            macam customer, dan mulai menjalin kerja sama dengan lini bisnis lain sebagai vendor.</p>
                         <a class="btn-solid-lg" href="#introduction">Details</a>
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
@@ -95,7 +105,7 @@
 
 
     <!-- Statistics -->
-    <div class="counter">
+    <div class="counter" style="padding-top:10rem" id="details">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -103,19 +113,23 @@
                     <!-- Counter -->
                     <div class="counter-container">
                         <div class="counter-cell">
-                            <div data-purecounter-start="0" data-purecounter-end="231" data-purecounter-duration="3" class="purecounter">1</div>
+                            <div data-purecounter-start="0" data-purecounter-end="231" data-purecounter-duration="3"
+                                class="purecounter">1</div>
                             <div class="counter-info">Happy Customers</div>
                         </div> <!-- end of counter-cell -->
                         <div class="counter-cell">
-                            <div data-purecounter-start="0" data-purecounter-end="385" data-purecounter-duration="1.5" class="purecounter">1</div>
+                            <div data-purecounter-start="0" data-purecounter-end="385"
+                                data-purecounter-duration="1.5" class="purecounter">1</div>
                             <div class="counter-info">Issues Solved</div>
                         </div> <!-- end of counter-cell -->
                         <div class="counter-cell">
-                            <div data-purecounter-start="0" data-purecounter-end="159" data-purecounter-duration="3" class="purecounter">1</div>
+                            <div data-purecounter-start="0" data-purecounter-end="159" data-purecounter-duration="3"
+                                class="purecounter">1</div>
                             <div class="counter-info">Good Reviews</div>
                         </div> <!-- end of counter-cell -->
                         <div class="counter-cell">
-                            <div data-purecounter-start="0" data-purecounter-end="128" data-purecounter-duration="3" class="purecounter">1</div>
+                            <div data-purecounter-start="0" data-purecounter-end="128" data-purecounter-duration="3"
+                                class="purecounter">1</div>
                             <div class="counter-info">Case Studies</div>
                         </div> <!-- end of counter-cell -->
                     </div> <!-- end of counter-container -->
@@ -134,7 +148,11 @@
             <div class="row">
                 <div class="col-xl-11">
                     <h2>Kualitas pelayanan dan kepuasan customer adalah hal yang kami utamakan!</h2>
-                    <p>Sistem yang kami miliki mendukung transparansi dan efisiensi sehingga kami bisa memberikan harga yang lebih terjangkau. Selain itu, semua layanan kami didukung oleh garansi 1 bulan. Customer dapat mengikuti semua proses pengerjaan menggunakan software maupun perbaikan yang dilakukan langsung dihadapan anda. Semua mekanik kami diseleksi dan diawasi secara ketat oleh profesional di bidangnya sehingga dapat memberikan tingkat pelayanan terbaik.</p>
+                    <p>Sistem yang kami miliki mendukung transparansi dan efisiensi sehingga kami bisa memberikan harga
+                        yang lebih terjangkau. Selain itu, semua layanan kami didukung oleh garansi 1 bulan. Customer
+                        dapat mengikuti semua proses pengerjaan menggunakan software maupun perbaikan yang dilakukan
+                        langsung dihadapan anda. Semua mekanik kami diseleksi dan diawasi secara ketat oleh profesional
+                        di bidangnya sehingga dapat memberikan tingkat pelayanan terbaik.</p>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
@@ -143,13 +161,13 @@
 
 
     <!-- Details 1 -->
-    <div id="details" class="basic-2">
-        <img class="decoration-star" src="{{ asset('user/images/decoration-star.svg')}}" alt="alternative">
+    <div id="services" class="basic-2">
+        <img class="decoration-star" src="{{ asset('user/images/decoration-star.svg') }}" alt="alternative">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-xl-5">
                     <div class="image-container">
-                        <img class="img-fluid" src="{{ asset('user/images/details-1.png')}}" alt="alternative">
+                        <img class="img-fluid" src="{{ asset('user/images/details-1.png') }}" alt="alternative">
                     </div> <!-- end of image-container -->
                 </div> <!-- end of col -->
                 <div class="col-lg-6 col-xl-7">
@@ -158,19 +176,27 @@
                         <ul class="list-unstyled li-space-lg">
                             <li class="d-flex">
                                 <i class="fas fa-square"></i>
-                                <div class="flex-grow-1"><b>Pengecekan, perawatan, dan perbaikan secara berkala</b> <br> Proses perawatan dan perbaikan rutin kendaraan yang meliputi penggantian pelumas pada mesin untuk menjaga performa mesin.</div>
+                                <div class="flex-grow-1"><b>Pengecekan, perawatan, dan perbaikan secara berkala</b>
+                                    <br> Proses perawatan dan perbaikan rutin kendaraan yang meliputi penggantian
+                                    pelumas pada mesin untuk menjaga performa mesin.
+                                </div>
                             </li>
                             <li class="d-flex">
                                 <i class="fas fa-square"></i>
-                                <div class="flex-grow-1"><b> Perawatan mesin </b><br> Perawatan dan perbaikan engine sistem meliputi engine electrical diagnosis, mecanical engine serta sistem pelumasan dan pendinginan mesin.</div>
+                                <div class="flex-grow-1"><b> Perawatan mesin </b><br> Perawatan dan perbaikan engine
+                                    sistem meliputi engine electrical diagnosis, mecanical engine serta sistem pelumasan
+                                    dan pendinginan mesin.</div>
                             </li>
                             <li class="d-flex">
                                 <i class="fas fa-square"></i>
-                                <div class="flex-grow-1"><b>Perawatan Kaki Mobil</b><br>Perbaikan dan perawatan yang meliputi automatic/manual transmission, suspension system, brake system, steering system dan drive sistem.</div>
+                                <div class="flex-grow-1"><b>Perawatan Kaki Mobil</b><br>Perbaikan dan perawatan yang
+                                    meliputi automatic/manual transmission, suspension system, brake system, steering
+                                    system dan drive sistem.</div>
                             </li>
                             <li class="d-flex">
                                 <i class="fas fa-square"></i>
-                                <div class="flex-grow-1"><b>AC / Kelistrikan</b> <br>Perbaikan dan perawatan Air Conditioner, electrical wiring system dan electrical component.</div>
+                                <div class="flex-grow-1"><b>AC / Kelistrikan</b> <br>Perbaikan dan perawatan Air
+                                    Conditioner, electrical wiring system dan electrical component.</div>
                             </li>
                         </ul>
                         {{-- <a class="btn-solid-reg" href="article.html">Get started</a> --}}
@@ -183,14 +209,16 @@
 
 
     <!-- Services -->
-    <div id="services" class="cards-1 bg-gray">
+    <div id="alur" class="cards-1 bg-gray">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5">
                     <div class="text-container">
                         <h2>Alur Pelayanan</h2>
-                        <p>Untuk menunjang pelayanan yang maksimal, kami menawarkan alur kerja efektif kepada customer.</p>
-                        <p>Diharapkan dengan sistem yang kami terapkan, dapat menghemat waktu pengerjaan serta efisiensi setiap langkah yang akan dilakukan</p>
+                        <p>Untuk menunjang pelayanan yang maksimal, kami menawarkan alur kerja efektif kepada customer.
+                        </p>
+                        <p>Diharapkan dengan sistem yang kami terapkan, dapat menghemat waktu pengerjaan serta efisiensi
+                            setiap langkah yang akan dilakukan</p>
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
                 <div class="col-lg-7">
@@ -270,75 +298,23 @@
     <!-- end of services -->
 
     <!-- Projects -->
-    <div id="projects" class="cards-2">
+    <div id="galeri" class="cards-2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="h2-heading">Projects we developed</h2>
+                    <h2 class="h2-heading">Our Gallery</h2>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
             <div class="row">
                 <div class="col-lg-12">
 
-                    <!-- Card -->
-                    <div class="card">
-                        <img class="img-fluid" src="{{ asset('user/images/project-1.jpg')}}" alt="alternative">
-                        <div class="card-body">
-                            <h5 class="card-title">Office space for banking</h5>
-                            <p class="card-text">Suffer should if waited common person little ans words are needed oh <a class="blue no-line" href="article.html">...Read more</a></p>
+                    @foreach ($galeri as $row)
+                        <!-- Card -->
+                        <div class="card">
+                            <img class="img-fluid" src="{{ asset('storage/' . $row->gambar) }}" alt="alternative">
                         </div>
-                    </div>
-                    <!-- end of card -->
-
-                    <!-- Card -->
-                    <div class="card">
-                        <img class="img-fluid" src="{{ asset('user/images/project-2.jpg')}}" alt="alternative">
-                        <div class="card-body">
-                            <h5 class="card-title">Planning and design for startup</h5>
-                            <p class="card-text">In to am attended desirous raptures declared diverted confined at collected <a class="blue no-line" href="article.html">...Read more</a></p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                    <!-- Card -->
-                    <div class="card">
-                        <img class="img-fluid" src="{{ asset('user/images/project-3.jpg')}}" alt="alternative">
-                        <div class="card-body">
-                            <h5 class="card-title">Colors and materials update</h5>
-                            <p class="card-text">Instantly remaining up certainly to necessary as over walk dull into son <a class="blue no-line" href="article.html">...Read more</a></p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                    <!-- Card -->
-                    <div class="card">
-                        <img class="img-fluid" src="{{ asset('user/images/project-4.jpg')}}" alt="alternative">
-                        <div class="card-body">
-                            <h5 class="card-title">Analysis and floor design</h5>
-                            <p class="card-text">Vent new at or happiness commanded daughters as is handsome an <a class="blue no-line" href="article.html">...Read more</a></p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                    <!-- Card -->
-                    <div class="card">
-                        <img class="img-fluid" src="{{ asset('user/images/project-5.jpg')}}" alt="alternative">
-                        <div class="card-body">
-                            <h5 class="card-title">Office spaces decoration</h5>
-                            <p class="card-text">Vicinity subjects more words into miss on he over been late pain an only <a class="blue no-line" href="article.html">...Read more</a></p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
-
-                    <!-- Card -->
-                    <div class="card">
-                        <img class="img-fluid" src="{{ asset('user/images/project-6.jpg')}}" alt="alternative">
-                        <div class="card-body">
-                            <h5 class="card-title">Playground for kinder garden</h5>
-                            <p class="card-text">Match round scale now sex style far times your me past and who now much <a class="blue no-line" href="article.html">...Read more</a></p>
-                        </div>
-                    </div>
-                    <!-- end of card -->
+                        <!-- end of card -->
+                    @endforeach
 
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
@@ -348,8 +324,8 @@
 
 
     <!-- Testimonials -->
-    <div class="slider-1 bg-gray">
-        <img class="quotes-decoration" src="{{ asset('user/images/quotes.svg')}}" alt="alternative">
+    <div class="slider-1 bg-gray" id="feedback">
+        <img class="quotes-decoration" src="{{ asset('user/images/quotes.svg') }}" alt="alternative">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -359,32 +335,17 @@
                         <div class="swiper-container card-slider">
                             <div class="swiper-wrapper">
 
-                                <!-- Slide -->
-                                <div class="swiper-slide">
-                                    <img class="testimonial-image" src="{{ asset('user/images/testimonial-1.jpg')}}" alt="alternative">
-                                    <p class="testimonial-text">“Expense bed any sister depend changer off piqued one. Contented continued any happiness instantly objection yet her allowance. Use correct day new brought tedious. By come this been in. Kept easy or sons my it how about some words here done”</p>
-                                    <div class="testimonial-author">Marlene Visconte</div>
-                                    <div class="testimonial-position">General Manager - Scouter</div>
-                                </div> <!-- end of swiper-slide -->
-                                <!-- end of slide -->
 
-                                <!-- Slide -->
-                                <div class="swiper-slide">
-                                    <img class="testimonial-image" src="{{ asset('user/images/testimonial-2.jpg')}}" alt="alternative">
-                                    <p class="testimonial-text">“Expense bed any sister depend changer off piqued one. Contented continued any happiness instantly objection yet her allowance. Use correct day new brought tedious. By come this been in. Kept easy or sons my it how about some words here done”</p>
-                                    <div class="testimonial-author">John Spiker</div>
-                                    <div class="testimonial-position">Team Leader - Vanquish</div>
-                                </div> <!-- end of swiper-slide -->
-                                <!-- end of slide -->
-
-                                <!-- Slide -->
-                                <div class="swiper-slide">
-                                    <img class="testimonial-image" src="{{ asset('user/images/testimonial-3.jpg')}}" alt="alternative">
-                                    <p class="testimonial-text">“Expense bed any sister depend changer off piqued one. Contented continued any happiness instantly objection yet her allowance. Use correct day new brought tedious. By come this been in. Kept easy or sons my it how about some words here done”</p>
-                                    <div class="testimonial-author">Stella Virtuoso</div>
-                                    <div class="testimonial-position">Design Chief - Bikegirl</div>
-                                </div> <!-- end of swiper-slide -->
-                                <!-- end of slide -->
+                                @foreach ($feedback as $row)
+                                    <!-- Slide -->
+                                    <div class="swiper-slide">
+                                        <p class="testimonial-text">“{{ $row->feedback }}”</p>
+                                        <div class="testimonial-author">{{ $row->booking->user->nama }}</div>
+                                        <div class="testimonial-position">{{ $row->created_at->format('d M Y') }}
+                                        </div>
+                                    </div> <!-- end of swiper-slide -->
+                                    <!-- end of slide -->
+                                @endforeach
 
                             </div> <!-- end of swiper-wrapper -->
 
@@ -406,29 +367,32 @@
 
     <!-- Contact -->
     <div id="contact" class="form-1">
-        <img class="decoration-star" src="{{ asset('user/images/decoration-star.svg')}}" alt="alternative">
-        <img class="decoration-star-2" src="{{ asset('user/images/decoration-star.svg')}}" alt="alternative">
+        {{-- <img class="decoration-star" src="{{ asset('user/images/decoration-star.svg') }}" alt="alternative"> --}}
+        <img class="decoration-star-2" src="{{ asset('user/images/decoration-star.svg') }}" alt="alternative">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 px-3">
                     <div class="image-container">
-                        <img class="img-fluid" src="{{ asset('user/images/contact.png')}}" alt="alternative">
+                        <div class="map-responsive rounded">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3951.8416827977876!2d112.6634778!3d-7.9116016!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd62bfe8b83255f%3A0x4c9d8a296e55bd7b!2sKalil%20Auto%20Service%20-%20Bengkel%20Mobil!5e0!3m2!1sid!2sid!4v1686299267195!5m2!1sid!2sid"
+                                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
                     </div> <!-- end of image-container -->
                 </div> <!-- end of col -->
-                <div class="col-lg-6">
+                <div class="col-lg-6 " style="padding-left: 5rem">
                     <div class="text-container">
-                        <h2>Contact us for a quote using the following form</h2>
-
-                        <!-- Contact Form -->
-                        <form>
+                        <h2>Hubungi kami!</h2>
+                        <form href="" method="POST">
+                            @csrf
                             <div class="form-group">
-                                <input type="text" class="form-control-input" placeholder="Name" required>
+                                <input type="text" class="form-control-input" placeholder="Nama Lengkap"
+                                    required="" name="nama">
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control-input" placeholder="Email" required>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control-textarea" placeholder="Message" required></textarea>
+                                <textarea type="text" fows="6" class="form-control-input" placeholder="Pesan" required=""
+                                    name="pesan"></textarea>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="form-control-submit-button">Submit</button>
@@ -449,43 +413,31 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer-col first">
-                        <h6>About Website</h6>
-                        <p class="p-small">He oppose at thrown desire of no. Announcing impression unaffected day his are unreserved indulgence. Him hard find read are you</p>
+                        <h6>About</h6>
+                        <p class="small">Kalil Auto Service merupakan sebuah layanan bengkel mobil di Kabupaten Malang. Berdiri pada tahun 2019, kini Bengkel Kalil Auto Service telah memiliki berbagai macam customer, dan mulai menjalin kerja sama dengan lini bisnis lain sebagai vendor.</p>
                     </div> <!-- end of footer-col -->
                     <div class="footer-col second">
-                        <h6>Links</h6>
+                        <h6>Kontak</h6>
                         <ul class="list-unstyled li-space-lg p-small">
-                            <li>Important: <a href="terms.html">Terms & Conditions</a>, <a href="privacy.html">Privacy Policy</a></li>
-                            <li>Useful: <a href="#">Colorpicker</a>, <a href="#">Icon Library</a>, <a href="#">Illustrations</a></li>
-                            <li>Menu: <a href="#header">Home</a>, <a href="#details">Details</a>, <a href="#services">Services</a>, <a href="#contact">Contact</a></li>
+                            @foreach ($kontak as $row)
+                                <li>{{ $row->nama }} : {{ $row->isi }}</li>
+                            @endforeach
                         </ul>
                     </div> <!-- end of footer-col -->
                     <div class="footer-col third">
                         <span class="fa-stack">
-                            <a href="#your-link">
+                            <a href="{{ url('https://wa.me/081913211707') }}">
                                 <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-facebook-f fa-stack-1x"></i>
+                                <i class="fab fa-whatsapp fa-stack-1x"></i>
                             </a>
                         </span>
                         <span class="fa-stack">
-                            <a href="#your-link">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-twitter fa-stack-1x"></i>
-                            </a>
-                        </span>
-                        <span class="fa-stack">
-                            <a href="#your-link">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-pinterest-p fa-stack-1x"></i>
-                            </a>
-                        </span>
-                        <span class="fa-stack">
-                            <a href="#your-link">
+                            <a href="{{ url('https://www.instagram.com/kalil.autoservice/') }}">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-instagram fa-stack-1x"></i>
                             </a>
                         </span>
-                        <p class="p-small">We would love to hear from you <a href="mailto:contact@site.com"><strong>contact@site.com</strong></a></p>
+                        <p class="p-small">We would love to hear from you</p>
                     </div> <!-- end of footer-col -->
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
@@ -499,7 +451,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <p class="p-small">Copyright © <a href="#your-link">Your name</a></p>
+                    <p class="p-small">Copyright © <a href="#your-link">Kalil Auto Service</a></p>
                 </div> <!-- end of col -->
             </div> <!-- enf of row -->
         </div> <!-- end of container -->
@@ -509,14 +461,15 @@
 
     <!-- Back To Top Button -->
     <button onclick="topFunction()" id="myBtn">
-        <img src="{{ asset('user/images/up-arrow.png')}}" alt="alternative">
+        <img src="{{ asset('user/images/up-arrow.png') }}" alt="alternative">
     </button>
     <!-- end of back to top button -->
 
     <!-- Scripts -->
-    <script src="{{ asset('user/js/bootstrap.min.js')}}"></script> <!-- Bootstrap framework -->
-    <script src="{{ asset('user/js/swiper.min.js')}}"></script> <!-- Swiper for image and text sliders -->
-    <script src="{{ asset('user/js/purecounter.min.js')}}"></script> <!-- Purecounter counter for statistics numbers -->
-    <script src="{{ asset('user/js/scripts.js')}}"></script> <!-- Custom scripts -->
+    <script src="{{ asset('user/js/bootstrap.min.js') }}"></script> <!-- Bootstrap framework -->
+    <script src="{{ asset('user/js/swiper.min.js') }}"></script> <!-- Swiper for image and text sliders -->
+    <script src="{{ asset('user/js/purecounter.min.js') }}"></script> <!-- Purecounter counter for statistics numbers -->
+    <script src="{{ asset('user/js/scripts.js') }}"></script> <!-- Custom scripts -->
 </body>
+
 </html>
