@@ -11,16 +11,20 @@
         "kyslik/column-sortable": "^6.5",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
-        "laravel/tinker": "^2.7"
+        "laravel/tinker": "^2.7",
+        "symfony/css-selector": "^6.3",
+        "symfony/dom-crawler": "^6.3"
     },
     "require-dev": {
+        "dbrekelmans/bdi": "^1.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
+        "spatie/laravel-ignition": "^1.0",
+        "symfony/panther": "^2.1"
     },
     "autoload": {
         "psr-4": {

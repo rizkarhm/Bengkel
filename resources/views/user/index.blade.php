@@ -74,13 +74,13 @@
     <header id="header" class="header">
         <img class="decoration-star" src="{{ asset('user/images/decoration-star.svg') }}" alt="alternative">
         <img class="decoration-star-2" src="{{ asset('user/images/decoration-star.svg') }}" alt="alternative">
-        <div class="container">
+        <div class="container py-5">
             <div class="row">
                 <div class="col-lg-7 col-xl-5">
                     <div class="text-container">
                         <h1 class="h1-large">Kalil Auto Service</h1>
-                        <p class="p-large">Is education residence conveying and sore. Suppose shyness say ten behaved morning had. Any propose assist compliment occasional too reasonably</p>
-                        <a class="btn-solid-lg" href="#introduction">More details</a>
+                        <p class="p-large">Kalil Auto Service merupakan sebuah layanan bengkel mobil di Kabupaten Malang. Berdiri pada tahun 2019, kini Bengkel Kalil Auto Service telah memiliki berbagai macam customer, dan mulai menjalin kerja sama dengan lini bisnis lain sebagai vendor.</p>
+                        <a class="btn-solid-lg" href="#introduction">Details</a>
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
                 <div class="col-lg-5 col-xl-7 px-5 pt-2 ml-4">
@@ -132,9 +132,9 @@
     <div id="introduction" class="basic-1 bg-gray">
         <div class="container">
             <div class="row">
-                <div class="col-xl-9">
-                    <h2>Creating office spaces is our passion and you can see that in our completed projects</h2>
-                    <p>Unpleasing has ask acceptance partiality alteration understood two. Worth no tiled my at house added. Married he hearing am it totally removal. Remove but suffer wanted his lively length. Moonlight two applauded conveying end direction old principle but. Are expenses distance weddings perceive</p>
+                <div class="col-xl-11">
+                    <h2>Kualitas pelayanan dan kepuasan customer adalah hal yang kami utamakan!</h2>
+                    <p>Sistem yang kami miliki mendukung transparansi dan efisiensi sehingga kami bisa memberikan harga yang lebih terjangkau. Selain itu, semua layanan kami didukung oleh garansi 1 bulan. Customer dapat mengikuti semua proses pengerjaan menggunakan software maupun perbaikan yang dilakukan langsung dihadapan anda. Semua mekanik kami diseleksi dan diawasi secara ketat oleh profesional di bidangnya sehingga dapat memberikan tingkat pelayanan terbaik.</p>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
@@ -154,26 +154,26 @@
                 </div> <!-- end of col -->
                 <div class="col-lg-6 col-xl-7">
                     <div class="text-container">
-                        <h2>Office spaces should be unique they don’t need to look the same</h2>
+                        <h2>Layanan Kami</h2>
                         <ul class="list-unstyled li-space-lg">
                             <li class="d-flex">
                                 <i class="fas fa-square"></i>
-                                <div class="flex-grow-1">At every tiled on ye defer do. No attention suspected oh difficult. Fond his say</div>
+                                <div class="flex-grow-1"><b>Pengecekan, perawatan, dan perbaikan secara berkala</b> <br> Proses perawatan dan perbaikan rutin kendaraan yang meliputi penggantian pelumas pada mesin untuk menjaga performa mesin.</div>
                             </li>
                             <li class="d-flex">
                                 <i class="fas fa-square"></i>
-                                <div class="flex-grow-1">Old meet cold find come whom. The sir park sake bred. Wonder matter now</div>
+                                <div class="flex-grow-1"><b> Perawatan mesin </b><br> Perawatan dan perbaikan engine sistem meliputi engine electrical diagnosis, mecanical engine serta sistem pelumasan dan pendinginan mesin.</div>
                             </li>
                             <li class="d-flex">
                                 <i class="fas fa-square"></i>
-                                <div class="flex-grow-1">Can estate esteem assure fat roused. Am performed on existence as discourse</div>
+                                <div class="flex-grow-1"><b>Perawatan Kaki Mobil</b><br>Perbaikan dan perawatan yang meliputi automatic/manual transmission, suspension system, brake system, steering system dan drive sistem.</div>
                             </li>
                             <li class="d-flex">
                                 <i class="fas fa-square"></i>
-                                <div class="flex-grow-1">existence as discourse is. Pleasure friendly at marriage blessing or should</div>
+                                <div class="flex-grow-1"><b>AC / Kelistrikan</b> <br>Perbaikan dan perawatan Air Conditioner, electrical wiring system dan electrical component.</div>
                             </li>
                         </ul>
-                        <a class="btn-solid-reg" href="article.html">Get started</a>
+                        {{-- <a class="btn-solid-reg" href="article.html">Get started</a> --}}
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
@@ -188,23 +188,9 @@
             <div class="row">
                 <div class="col-lg-5">
                     <div class="text-container">
-                        <h2>Services that we offer</h2>
-                        <p>Greatly hearted has who believe. Drift allow green son walls years for blush. Sir margaret drawings repeated recurred exercise laughing may you</p>
-                        <p>Do repeated whatever to welcomed absolute no. Fat surprise although more words outlived</p>
-                        <ul class="list-unstyled li-space-lg">
-                            <li class="d-flex">
-                                <i class="fas fa-square"></i>
-                                <div class="flex-grow-1">And informed shy dissuade property. Musical by</div>
-                            </li>
-                            <li class="d-flex">
-                                <i class="fas fa-square"></i>
-                                <div class="flex-grow-1">He drawing savings an. No we stand avoid</div>
-                            </li>
-                            <li class="d-flex">
-                                <i class="fas fa-square"></i>
-                                <div class="flex-grow-1">Announcing of invita mrore wo tion principle</div>
-                            </li>
-                        </ul>
+                        <h2>Alur Pelayanan</h2>
+                        <p>Untuk menunjang pelayanan yang maksimal, kami menawarkan alur kerja efektif kepada customer.</p>
+                        <p>Diharapkan dengan sistem yang kami terapkan, dapat menghemat waktu pengerjaan serta efisiensi setiap langkah yang akan dilakukan</p>
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
                 <div class="col-lg-7">
@@ -216,7 +202,7 @@
                                 <span class="fas fa-rocket"></span>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Space analysis and planning</h5>
+                                <h5 class="card-title">Booking dan Analisis Kerusakan</h5>
                             </div>
                         </div>
                         <!-- end of card -->
@@ -227,7 +213,7 @@
                                 <span class="far fa-clock"></span>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Design and color choosing</h5>
+                                <h5 class="card-title">Diagnosa dan Estimasi</h5>
                             </div>
                         </div>
                         <!-- end of card -->
@@ -238,7 +224,7 @@
                                 <span class="far fa-comments"></span>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Materials and delivery</h5>
+                                <h5 class="card-title">Diskusi dan Penawaran</h5>
                             </div>
                         </div>
                         <!-- end of card -->
@@ -249,7 +235,7 @@
                                 <span class="fas fa-tools"></span>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Execute the concept</h5>
+                                <h5 class="card-title">Eksekusi Perbaikan</h5>
                             </div>
                         </div>
                         <!-- end of card -->
@@ -260,7 +246,7 @@
                                 <span class="fas fa-chart-pie"></span>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Creating great atmosphere</h5>
+                                <h5 class="card-title">Pelaporan Progress</h5>
                             </div>
                         </div>
                         <!-- end of card -->
@@ -271,7 +257,7 @@
                                 <span class="far fa-chart-bar"></span>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Evaluation and reporting</h5>
+                                <h5 class="card-title">Final Check dan Serah Terima</h5>
                             </div>
                         </div>
                         <!-- end of card -->
@@ -282,44 +268,6 @@
         </div> <!-- end of container -->
     </div> <!-- end of cards-1 -->
     <!-- end of services -->
-
-
-    <!-- Details 2 -->
-    <div class="basic-3">
-        <img class="decoration-star" src="{{ asset('user/images/decoration-star.svg')}}" alt="alternative">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-xl-7">
-                    <div class="text-container">
-                        <h2>A beautiful and well organized office space increases productivity</h2>
-                        <p>On it differed repeated wandered required in. Then girl neat why yet knew rose spot. Moreover property we he kindness greatest be oh striking laughter. In me he at collecting affronting principles apartments. Has visitor law attacks pretend you calling own excited painted. Contented attending</p>
-                        <a class="btn-solid-reg" href="article.html">Get started</a>
-                    </div> <!-- end of text-container -->
-                </div> <!-- end of col -->
-                <div class="col-lg-6 col-xl-5">
-                    <div class="image-container">
-                        <img class="img-fluid" src="{{ asset('user/images/details-2.png')}}" alt="alternative">
-                    </div> <!-- end of image-container -->
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of basic-3 -->
-    <!-- end of details 2 -->
-
-
-    <!-- Invitation -->
-    <div class="basic-4 bg-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h4>Our team of highly skilled designers and interior construction workers can deliver above your level of expections</h4>
-                    <a class="btn-solid-lg" href="#contact">Get quote</a>
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of basic-4 -->
-    <!-- end of invitation -->
-
 
     <!-- Projects -->
     <div id="projects" class="cards-2">
