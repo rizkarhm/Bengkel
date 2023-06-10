@@ -40,7 +40,7 @@
         <div class="container">
 
             <!-- Image Logo -->
-            <a class="navbar-brand logo-image" href="{{ url('/') }}"><img src="{{ asset('user/images/logo.svg') }}"
+            <a class="navbar-brand logo-image" href="{{ route('home') }}"><img src="{{ asset('user/images/logo.svg') }}"
                     alt="alternative"></a>
 
             <!-- Text Logo - Use this if you don't have a graphic logo -->
