@@ -90,7 +90,7 @@
                         <p class="p-large">Kalil Auto Service merupakan sebuah layanan bengkel mobil di Kabupaten
                             Malang. Berdiri pada tahun 2019, kini Bengkel Kalil Auto Service telah memiliki berbagai
                             macam customer, dan mulai menjalin kerja sama dengan lini bisnis lain sebagai vendor.</p>
-                        <a class="btn-solid-lg" href="#introduction">Details</a>
+                        <a class="btn-solid-lg" href="#details">Details</a>
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
                 <div class="col-lg-5 col-xl-7 px-5 pt-2 ml-4">
@@ -143,7 +143,7 @@
 
 
     <!-- Introduction -->
-    <div id="introduction" class="basic-1 bg-gray">
+    <div class="basic-1 bg-gray">
         <div class="container">
             <div class="row">
                 <div class="col-xl-11">
@@ -371,35 +371,16 @@
         <img class="decoration-star-2" src="{{ asset('user/images/decoration-star.svg') }}" alt="alternative">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 px-3">
+                <div class="col-12">
+                    <h2 class="text-center w-100">Lokasi Kami!</h2>
                     <div class="image-container">
-                        <div class="map-responsive rounded">
+                        <div class="map-responsive">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3951.8416827977876!2d112.6634778!3d-7.9116016!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd62bfe8b83255f%3A0x4c9d8a296e55bd7b!2sKalil%20Auto%20Service%20-%20Bengkel%20Mobil!5e0!3m2!1sid!2sid!4v1686299267195!5m2!1sid!2sid"
-                                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                width="1115" height="450" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div> <!-- end of image-container -->
-                </div> <!-- end of col -->
-                <div class="col-lg-6 " style="padding-left: 5rem">
-                    <div class="text-container">
-                        <h2>Hubungi kami!</h2>
-                        <form href="" method="POST">
-                            @csrf
-                            <div class="form-group">
-                                <input type="text" class="form-control-input" placeholder="Nama Lengkap"
-                                    required="" name="nama">
-                            </div>
-                            <div class="form-group">
-                                <textarea type="text" fows="6" class="form-control-input" placeholder="Pesan" required=""
-                                    name="pesan"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="form-control-submit-button">Submit</button>
-                            </div>
-                        </form>
-                        <!-- end of contact form -->
-                    </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
@@ -414,7 +395,9 @@
                 <div class="col-lg-12">
                     <div class="footer-col first">
                         <h6>About</h6>
-                        <p class="small">Kalil Auto Service merupakan sebuah layanan bengkel mobil di Kabupaten Malang. Berdiri pada tahun 2019, kini Bengkel Kalil Auto Service telah memiliki berbagai macam customer, dan mulai menjalin kerja sama dengan lini bisnis lain sebagai vendor.</p>
+                        <p class="small">Kalil Auto Service merupakan sebuah layanan bengkel mobil di Kabupaten
+                            Malang. Berdiri pada tahun 2019, kini Bengkel Kalil Auto Service telah memiliki berbagai
+                            macam customer, dan mulai menjalin kerja sama dengan lini bisnis lain sebagai vendor.</p>
                     </div> <!-- end of footer-col -->
                     <div class="footer-col second">
                         <h6>Kontak</h6>
