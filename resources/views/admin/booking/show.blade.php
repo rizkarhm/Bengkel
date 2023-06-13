@@ -65,23 +65,6 @@
                                 @enderror
                             </div>
 
-                            @if (auth()->user()->role != 'Customer' && $bookings->status != 'Booked' && $bookings->status != 'In Queue')
-                                <div class="form-group" id="pic_id">
-                                    <label for="pic_id">PIC</label>
-                                    <select name="pic_id" id="pic_id" class="custom-select" disabled>
-                                        <option value="" selected disabled hidden>Pilih PIC</option>
-                                        @foreach ($pic as $pic_id)
-                                            <option value="{{ $bookings->pic_id }}" @selected(isset($bookings) ? $pic_id->id == $bookings->pic_id : '')>
-                                                {{ $pic_id->nama }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('pic_id')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            @endif
-
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select name="status" id="status" class="custom-select" disabled>
@@ -122,6 +105,24 @@
                             @endif
                         </div>
                     </div>
+
+
+                    @if (auth()->user()->role != 'Customer' && $bookings->status != 'Booked' && $bookings->status != 'In Queue')
+                    <div class="form-group" id="pic_id">
+                        <label for="pic_id">PIC</label>
+                        <select name="pic_id" id="pic_id" class="custom-select" disabled>
+                            <option value="" selected disabled hidden>Pilih PIC</option>
+                            @foreach ($pic as $pic_id)
+                                <option value="{{ $bookings->pic_id }}" @selected(isset($bookings) ? $pic_id->id == $bookings->pic_id : '')>
+                                    {{ $pic_id->nama }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('pic_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                @endif
                 </div>
 
                 {{-- @if (auth()->user()->role != 'Customer') --}}
