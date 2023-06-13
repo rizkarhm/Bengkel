@@ -297,73 +297,76 @@
     </div> <!-- end of cards-1 -->
     <!-- end of services -->
 
-    <!-- Projects -->
-    <div id="galeri" class="cards-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="h2-heading">Our Gallery</h2>
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-            <div class="row">
-                <div class="col-lg-12">
+    @isset($galeri)
+        <!-- Projects -->
+        <div id="galeri" class="cards-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="h2-heading">Our Gallery</h2>
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+                <div class="row">
+                    <div class="col-lg-12">
 
-                    @foreach ($galeri as $row)
-                        <!-- Card -->
-                        <div class="card">
-                            <img class="img-fluid" src="{{ asset('storage/' . $row->gambar) }}" alt="alternative">
-                        </div>
-                        <!-- end of card -->
-                    @endforeach
+                        @foreach ($galeri as $row)
+                            <!-- Card -->
+                            <div class="card">
+                                <img class="img-fluid" src="{{ asset('storage/' . $row->gambar) }}"
+                                    alt="alternative">
+                            </div>
+                            <!-- end of card -->
+                        @endforeach
 
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of cards-2 -->
-    <!-- end of projects -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of cards-2 -->
+        <!-- end of projects -->
+    @endisset
+
+    @isset($feedback)
+        <!-- Testimonials -->
+        <div class="slider-1 bg-gray" id="feedback">
+            <img class="quotes-decoration" src="{{ asset('user/images/quotes.svg') }}" alt="alternative">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <!-- Card Slider -->
+                        <div class="slider-container">
+                            <div class="swiper-container card-slider">
+                                <div class="swiper-wrapper">
 
 
-    <!-- Testimonials -->
-    <div class="slider-1 bg-gray" id="feedback">
-        <img class="quotes-decoration" src="{{ asset('user/images/quotes.svg') }}" alt="alternative">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
+                                    @foreach ($feedback as $row)
+                                        <!-- Slide -->
+                                        <div class="swiper-slide">
+                                            <p class="testimonial-text">“{{ $row->feedback }}”</p>
+                                            <div class="testimonial-author">{{ $row->booking->user->nama }}</div>
+                                            <div class="testimonial-position">{{ $row->created_at->format('d M Y') }}</div>
+                                            {{-- <div class="testimonial-position">{{ $row->created_at}}</div> --}}
+                                        </div> <!-- end of swiper-slide -->
+                                        <!-- end of slide -->
+                                    @endforeach
 
-                    <!-- Card Slider -->
-                    <div class="slider-container">
-                        <div class="swiper-container card-slider">
-                            <div class="swiper-wrapper">
+                                </div> <!-- end of swiper-wrapper -->
 
+                                <!-- Add Arrows -->
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                                <!-- end of add arrows -->
 
-                                @foreach ($feedback as $row)
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
-                                        <p class="testimonial-text">“{{ $row->feedback }}”</p>
-                                        <div class="testimonial-author">{{ $row->booking->user->nama }}</div>
-                                        <div class="testimonial-position">{{ $row->created_at->format('d M Y') }}
-                                        </div>
-                                    </div> <!-- end of swiper-slide -->
-                                    <!-- end of slide -->
-                                @endforeach
+                            </div> <!-- end of swiper-container -->
+                        </div> <!-- end of slider-container -->
+                        <!-- end of card slider -->
 
-                            </div> <!-- end of swiper-wrapper -->
-
-                            <!-- Add Arrows -->
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <!-- end of add arrows -->
-
-                        </div> <!-- end of swiper-container -->
-                    </div> <!-- end of slider-container -->
-                    <!-- end of card slider -->
-
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of slider-1 -->
-    <!-- end of testimonials -->
-
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of slider-1 -->
+        <!-- end of testimonials -->
+    @endisset
 
     <!-- Contact -->
     <div id="contact" class="form-1">
@@ -399,14 +402,16 @@
                             Malang. Berdiri pada tahun 2019, kini Bengkel Kalil Auto Service telah memiliki berbagai
                             macam customer, dan mulai menjalin kerja sama dengan lini bisnis lain sebagai vendor.</p>
                     </div> <!-- end of footer-col -->
-                    <div class="footer-col second">
-                        <h6>Kontak</h6>
-                        <ul class="list-unstyled li-space-lg p-small">
-                            @foreach ($kontak as $row)
-                                <li>{{ $row->nama }} : {{ $row->isi }}</li>
-                            @endforeach
-                        </ul>
-                    </div> <!-- end of footer-col -->
+                    @isset($kontak)
+                        <div class="footer-col second">
+                            <h6>Kontak</h6>
+                            <ul class="list-unstyled li-space-lg p-small">
+                                @foreach ($kontak as $row)
+                                    <li>{{ $row->nama }} : {{ $row->isi }}</li>
+                                @endforeach
+                            </ul>
+                        </div> <!-- end of footer-col -->
+                    @endisset
                     <div class="footer-col third">
                         <span class="fa-stack">
                             <a href="{{ url('https://wa.me/081913211707') }}">

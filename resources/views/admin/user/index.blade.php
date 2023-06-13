@@ -26,14 +26,14 @@
         <div class="card-body">
             <div class="table-responsive">
                 @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p class="mb-0">{{ $message }}</p>
-                </div>
-            @elseif ($message = Session::get('error'))
-                <div class="alert alert-danger">
-                    <p class="mb-0">{{ $message }}</p>
-                </div>
-            @endif
+                    <div class="alert alert-success">
+                        <p class="mb-0">{{ $message }}</p>
+                    </div>
+                @elseif ($message = Session::get('error'))
+                    <div class="alert alert-danger">
+                        <p class="mb-0">{{ $message }}</p>
+                    </div>
+                @endif
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead class="text-bold text-center" style="color:blue">
                         <tr>
@@ -46,8 +46,8 @@
                     </thead>
                     <tbody>
                         @php
-                        $no = ($users->currentPage() - 1) * $users->perPage() + 1;
-                    @endphp
+                            $no = ($users->currentPage() - 1) * $users->perPage() + 1;
+                        @endphp
                         @foreach ($users as $key => $row)
                             <tr>
                                 <td class="text-center">{{ $no++ }}</td>
@@ -76,6 +76,11 @@
                                 </td>
                             </tr>
                         @endforeach
+                        {{-- @empty($row)
+                            <tr>
+                                <td colspan="10" class="text-center">No Data</td>
+                            </tr>
+                        @endempty --}}
                     </tbody>
                 </table>
             </div>

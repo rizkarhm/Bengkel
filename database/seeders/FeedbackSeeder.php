@@ -20,7 +20,8 @@ class FeedbackSeeder extends Seeder
                 'booking_id' => '1',
                 'rating' => '5',
                 'feedback' => 'Bagus',
-                'created_by'=> '5'
+                'created_by'=> '5',
+                'created_at' => date('Y-m-d H:i:s'),
             ],
         ]);
     }

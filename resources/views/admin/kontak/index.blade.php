@@ -89,6 +89,11 @@
                                 </tr>
                             @endforeach
                         @endif
+                        @empty($row)
+                                    <tr>
+                                        <td colspan="4" class="text-center">No Data</td>
+                                    </tr>
+                                @endempty
                     </tbody>
                 </table>
             </div>

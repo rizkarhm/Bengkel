@@ -12,7 +12,10 @@
     <div class="row">
         <div class="col-12">
             <div class="card shadow mb-4">
-                <div class="card-header">Detail Booking @if(auth()->user()->role != 'Customer') — Customer {{ $bookings->user->nama }} @endif </div>
+                <div class="card-header">Detail Booking @if (auth()->user()->role != 'Customer')
+                        — Customer {{ $bookings->user->nama }}
+                    @endif
+                </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-6">
@@ -51,7 +54,8 @@
                         <div class="col-6">
                             <div class="form-group" id="masalah">
                                 <label for="masalah">Kerusakan</label>
-                                <input disabled type="text" class="form-control" id="masalah" name="masalah" value="{{ isset($bookings) ? $bookings->masalah : old('masalah') }}">
+                                <input disabled type="text" class="form-control" id="masalah" name="masalah"
+                                    value="{{ isset($bookings) ? $bookings->masalah : old('masalah') }}">
                                 @error('masalah')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -108,21 +112,21 @@
 
 
                     @if (auth()->user()->role != 'Customer' && $bookings->status != 'Booked' && $bookings->status != 'In Queue')
-                    <div class="form-group" id="pic_id">
-                        <label for="pic_id">PIC</label>
-                        <select name="pic_id" id="pic_id" class="custom-select" disabled>
-                            <option value="" selected disabled hidden>Pilih PIC</option>
-                            @foreach ($pic as $pic_id)
-                                <option value="{{ $bookings->pic_id }}" @selected(isset($bookings) ? $pic_id->id == $bookings->pic_id : '')>
-                                    {{ $pic_id->nama }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('pic_id')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                @endif
+                        <div class="form-group" id="pic_id">
+                            <label for="pic_id">PIC</label>
+                            <select name="pic_id" id="pic_id" class="custom-select" disabled>
+                                <option value="" selected disabled hidden>Pilih PIC</option>
+                                @foreach ($pic as $pic_id)
+                                    <option value="{{ $bookings->pic_id }}" @selected(isset($bookings) ? $pic_id->id == $bookings->pic_id : '')>
+                                        {{ $pic_id->nama }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('pic_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    @endif
                 </div>
 
                 {{-- @if (auth()->user()->role != 'Customer') --}}
@@ -195,12 +199,18 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+
+                                @empty($row)
+                                    <tr>
+                                        <td colspan="5" class="text-center">No Data</td>
+                                    </tr>
+                                @endempty
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-        @endif
-    </div>
+        </div>
+    @endif
+</div>
 @endsection

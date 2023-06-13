@@ -165,6 +165,11 @@
                                 @endforeach
                             @endif
                         @endif
+                        @empty($row)
+                                    <tr>
+                                        <td colspan="9" class="text-center">No Data</td>
+                                    </tr>
+                                @endempty
                     </tbody>
                 </table>
             </div>
