@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('booking', BookingController::class);
     Route::get('/get-data/{id}', [BookingController::class, 'getData'])->name('getData');
     Route::get('/mekanik-booking', [BookingController::class, 'mekanik'])->name('mekanik.booking');
+    Route::get('/detail/{id}/{nopol}', [BookingController::class, 'showRiwayat'])->name('detail.booking');
 
     Route::resource('history', HistoryController::class);
     Route::get('/mekanik-history', [HistoryController::class, 'mekanik'])->name('mekanik.history');

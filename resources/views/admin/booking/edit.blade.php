@@ -18,7 +18,7 @@
                 <div class="card shadow mb-4">
                     <div class="card-header">Detail Booking</div>
                     <div class="card-body">
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="user_id">Nama Customer<span class="text-danger">*</span></label>
                             <select name="user_id" id="user_id_edit" class="custom-select"
                                 @if (auth()->user()->role == 'Customer') disabled @endif>
@@ -31,7 +31,7 @@
                             @error('user_id')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="kendaraan_id">Merek Kendaraan<span class="text-danger">*</span></label>
                             <select name="kendaraan_id" id="kendaraan_id" class="custom-select">

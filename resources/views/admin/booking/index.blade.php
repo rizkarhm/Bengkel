@@ -49,31 +49,31 @@
             </form>
 
             <div class="right">
-                @if (auth()->user()->role == "Admin")
-                <form class="d-none d-sm-inline-block form-inline my-md-0 mr-2 mw-100" action="{{ route('booking.index') }}"
-                    method="GET">
-                    <div class="input-group filter">
-                        <select name="filter" class="form-control">
-                            <option value="" selected disabled hidden>Filter by Status</option>
-                            <option value="Booked" {{ request('filter') == 'Booked' ? ' selected' : '' }}>Booked
-                            </option>
-                            <option value="In Queue" {{ request('filter') == 'In Queue' ? ' selected' : '' }}>In Queue
-                            </option>
-                            <option value="Proccessed" {{ request('filter') == 'Proccessed' ? ' selected' : '' }}>
-                                Proccessed
-                            </option>
-                            {{-- <option value="Done" {{ request('filter') ==  'Done' ? ' selected' : '' }}>Done
+                @if (auth()->user()->role == 'Admin')
+                    <form class="d-none d-sm-inline-block form-inline my-md-0 mr-2 mw-100"
+                        action="{{ route('booking.index') }}" method="GET">
+                        <div class="input-group filter">
+                            <select name="filter" class="form-control">
+                                <option value="" selected disabled hidden>Filter by Status</option>
+                                <option value="Booked" {{ request('filter') == 'Booked' ? ' selected' : '' }}>Booked
+                                </option>
+                                <option value="In Queue" {{ request('filter') == 'In Queue' ? ' selected' : '' }}>In Queue
+                                </option>
+                                <option value="Proccessed" {{ request('filter') == 'Proccessed' ? ' selected' : '' }}>
+                                    Proccessed
+                                </option>
+                                {{-- <option value="Done" {{ request('filter') ==  'Done' ? ' selected' : '' }}>Done
                             </option>
                             <option value="Canceled" {{ request('filter') ==  'Canceled' ? ' selected' : '' }}>Canceled
                             </option> --}}
-                        </select>
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit">
-                                <i class="fas fa-filter fa-sm"></i>
-                            </button>
+                            </select>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-filter fa-sm"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
                 @endif
 
                 @if (auth()->user()->role != 'Magang' && auth()->user()->role != 'Mekanik')
@@ -97,7 +97,9 @@
                         <tr>
                             <th style="width: 40px;">No</th>
                             {{-- <th style="width: 40px;">ID</th> --}}
-                            <th>Nama Customer
+                            @if (auth()->user()->role != 'Customer')
+                                <th>Nama Customer</th>
+                            @endif
                             <th>Merek</th>
                             <th>Model</th>
                             <th>Nomor Polisi</th>
@@ -117,7 +119,7 @@
                                 <tr>
                                     <td class="text-center">{{ $no++ }}</td>
                                     {{-- <td class="text-center">{{ $row->id }}</td> --}}
-                                    <td>{{ $row->user->nama }}</td>
+                                    {{-- <td>{{ $row->user->nama }}</td> --}}
                                     <td>{{ $row->kendaraan->merek }}</td>
                                     <td>{{ $row->model }}</td>
                                     <td>{{ $row->nopol }}</td>
@@ -309,8 +311,8 @@
                             @endphp
                             @foreach ($bookings as $row)
                                 <tr>
-                                    <td class="text-center">{{ $no++ }}</td>
-                                    {{-- <td class="text-center">{{ $row->id }}</td> --}}
+                                    {{-- <td class="text-center">{{ $no++ }}</td> --}}
+                                    <td class="text-center">{{ $row->id }}</td>
                                     <td>{{ $row->user->nama }}</td>
                                     <td>{{ $row->kendaraan->merek }}</td>
                                     <td>{{ $row->model }}</td>
@@ -336,7 +338,7 @@
                                     </td>
 
                                     <td class="text-center">
-                                        <a href="{{ route('booking.show', $row->id) }}"
+                                        <a href="{{ route('detail.booking', ['id' => $row->id, 'nopol' => $row->nopol]) }}"
                                             class="btn btn-success">Detail</a>
                                         <button class="btn btn-danger ml-2" data-toggle="modal"
                                             data-target="#deleteModal-{{ $row->id }}" class="delete-item">

@@ -202,6 +202,37 @@ class BookingController extends Controller
         ]);
     }
 
+    public function showRiwayat($id, $nopol)
+    {
+        //get data user all
+        $users = User::all();
+        //get data user dengan role customer
+        $cust = $users->intersect(User::whereIn('role', ['customer'])->get());
+        //get data user dengan role magang & mekanik
+        $pic = $users->intersect(User::whereIn('role', ['Magang', 'Mekanik'])->get());
+
+        //get data kendaraan all
+        $kendaraans = Kendaraan::all();
+
+        //get data feedback all
+        $feedbacks = Feedback::all();
+
+        $history_kendaraan = Booking::whereIn('status', ['Canceled', 'Done'])->where('nopol', $nopol)->get();
+
+        $booking = Booking::find($id);
+        if (!$booking) return redirect()->route('booking.index')
+            ->with('error', 'Booking dengan id' . $id . ' tidak ditemukan');
+
+        return view('admin.booking.show', [
+            'bookings' => $booking,
+            'cust' => $cust,
+            'pic' => $pic,
+            'kendaraans' => $kendaraans,
+            'feedbacks' => $feedbacks,
+            'history_kendaraan' => $history_kendaraan,
+        ]);
+    }
+
     public function edit($id)
     {
         //get data user all
@@ -275,7 +306,7 @@ class BookingController extends Controller
             $booking->status = "Booked";
         } else {
             $request->validate([
-                'user_id' => 'required',
+                // 'user_id' => 'required',
                 'kendaraan_id' => 'required',
                 'model' => 'required',
                 'nopol' => 'required|min:7',
@@ -287,7 +318,7 @@ class BookingController extends Controller
                 'penanganan' => 'nullable',
                 'status' => 'required'
             ]);
-            $booking->user_id = $request->user_id;
+            // $booking->user_id = $request->user_id;
             $booking->status = $request->status;
         }
         $booking->kendaraan_id = $request->kendaraan_id;
