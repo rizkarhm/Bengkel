@@ -113,10 +113,10 @@
                                         <td class="text-center">
                                             <a href="{{ route('feedback.show', $row->id) }}"
                                                 class="btn btn-success">Detail</a>
-                                            <button class="btn btn-danger ml-2" data-toggle="modal"
+                                            {{-- <button class="btn btn-danger ml-2" data-toggle="modal"
                                                 data-target="#deleteModal-{{ $row->id }}" class="delete-item">
                                                 Hapus
-                                            </button>
+                                            </button> --}}
 
                                             <div class="modal fade text-left" id="deleteModal-{{ $row->id }}"
                                                 tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
