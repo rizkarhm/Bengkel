@@ -27,8 +27,10 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead class="text-bold text-center" style="color:blue">
                         <tr>
-                            <th style="width: 40px;">ID Booking</th>
-                            <th>Nama Customer</th>
+                            <th style="width: 100px;">ID Booking</th>
+                            @if (auth()->user()->role != 'Customer')
+                                <th>Nama Customer</th>
+                            @endif
                             <th>Merek</th>
                             <th>Model</th>
                             <th>Nomor Polisi</th>
@@ -46,7 +48,7 @@
                                     <tr>
                                         {{-- <td class="text-center">{{ $no++ }}</td> --}}
                                         <td class="text-center">{{ $row->id }}</td>
-                                        <td>{{ $row->user->nama }}</td>
+                                        {{-- <td>{{ $row->user->nama }}</td> --}}
                                         <td>{{ $row->kendaraan->merek }}</td>
                                         <td>{{ $row->model }}</td>
                                         <td>{{ $row->nopol }}</td>
