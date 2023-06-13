@@ -2,22 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class AkunController extends Controller
 {
     public function index()
-    {
-        $users = User::whereIn('role', ['Mekanik', 'Admin', 'Magang'])
-            ->paginate(10);
-
-        return view('admin.user.index', compact('users'));
-    }
-
-    public function view()
     {
         $users = User::whereIn('role', ['Mekanik', 'Admin', 'Magang'])
             ->paginate(10);
@@ -29,7 +21,6 @@ class UserController extends Controller
     {
         return view('admin.user.form');
     }
-
 
     public function store(Request $request)
     {
@@ -53,7 +44,7 @@ class UserController extends Controller
             return redirect()->route('customer.index')
                 ->with('success', 'Berhasil menambah customer baru');
         } else {
-            return redirect()->route('users')
+            return redirect()->route('akun.index')
                 ->with('success', 'Berhasil menambah user baru');
         }
     }
@@ -61,7 +52,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        if (!$user) return redirect()->route('users')
+        if (!$user) return redirect()->route('akun.index')
             ->with('error', 'User dengan id' . $id . ' tidak ditemukan');
 
         return view('admin.user.show', [
@@ -72,7 +63,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        if (!$user) return redirect()->route('users')
+        if (!$user) return redirect()->route('akun.index')
             ->with('error', 'User dengan id' . $id . ' tidak ditemukan');
 
         return view('admin.user.form', [
@@ -102,7 +93,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('users')
+        return redirect()->route('akun.index')
             ->with('success', 'Berhasil mengubah user');
     }
 
@@ -112,14 +103,15 @@ class UserController extends Controller
         $user = User::find($id);
 
         if ($isUsed == 1) {
-            return redirect()->route('users')
+            return redirect()->route('akun.index')
                 ->with('error', 'Hapus gagal. Data memiliki relasi dengan tabel lain');
         } else {
             if ($user) {
                 $user->delete();
-                return redirect()->route('users')
+                return redirect()->route('akun.index')
                     ->with('success', 'Berhasil menghapus user');
             }
         }
     }
 }
+

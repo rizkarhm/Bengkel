@@ -5,11 +5,11 @@
 @section('contents')
     <ol class="breadcrumb px-3 py-2 rounded mb-4">
         <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('users') }}">User</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('akun.index') }}">User</a></li>
         <li class="breadcrumb-item active">
             {{ isset($users) ? 'Edit' : 'Tambah' }}</li>
     </ol>
-    <form action="{{ isset($users) ? route('user.update', $users->id) : route('user.store') }}" method="post">
+    <form action="{{ isset($users) ? route('akun.update', $users->id) : route('akun.store') }}" method="post">
         @csrf
 
         {{-- if user exist, method edit: put --}}

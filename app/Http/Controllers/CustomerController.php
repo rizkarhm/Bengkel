@@ -62,7 +62,7 @@ class CustomerController extends Controller
 
         $user->save();
 
-        return redirect()->route('user.index')
+        return redirect()->route('akun.index')
             ->with('success', 'Berhasil mengubah customer');
     }
 

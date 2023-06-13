@@ -5,7 +5,7 @@
 @section('contents')
     <ol class="breadcrumb px-3 py-2 rounded mb-4">
         <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('users') }}">User</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('akun.index') }}">User</a></li>
         <li class="breadcrumb-item active">Detail</li>
     </ol>
     <div class="row">
@@ -46,12 +46,12 @@
 
                 @if (auth()->user()->id == $users->id)
                     <div class="card-footer">
-                        <a href="{{ route('user.edit', $users) }}" class="btn btn-warning disabled">Edit</a>
+                        <a href="{{ route('akun.edit', $users) }}" class="btn btn-warning disabled">Edit</a>
                         <button type="submit" class="btn btn-danger ml-2 disabled">Hapus</button>
                     </div>
                 @else
                     <div class="card-footer">
-                        <a href="{{ route('user.edit', $users->id) }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ route('akun.edit', $users->id) }}" class="btn btn-warning">Edit</a>
                         <button class="btn btn-danger ml-2" data-toggle="modal"
                             data-target="#deleteModal-{{ $users->id }}" class="delete-item">
                             Hapus
@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                        <form action="{{ route('user.destroy', $users->id) }}" method="POST"
+                                        <form action="{{ route('akun.destroy', $users->id) }}" method="POST"
                                             style="display: inline;">
                                             @csrf
                                             @method('DELETE')

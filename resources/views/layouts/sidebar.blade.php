@@ -105,7 +105,7 @@
                 <span>Customer</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('users') }}">
+            <a class="nav-link" href="{{ route('akun.index') }}">
                 <i class="fas fa-fw fa-users"></i>
                 <span>Users</span></a>
         </li>

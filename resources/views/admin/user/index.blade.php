@@ -21,7 +21,7 @@
                     </div>
                 </div>
             </form>
-            <a href="{{ route('user.create') }}" class="btn btn-primary">Tambah User</a>
+            <a href="{{ route('akun.create') }}" class="btn btn-primary">Tambah User</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -71,7 +71,7 @@
                                 </td>
                                 <td class="text-center">
 
-                                    <a href="{{ route('user.show', $row->id) }}" class="btn btn-success">Detail</a>
+                                    <a href="{{ route('akun.show', $row->id) }}" class="btn btn-success">Detail</a>
 
                                 </td>
                             </tr>

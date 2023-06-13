@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AkunController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CustomerController;
@@ -39,10 +40,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('dashboard', DashboardController::class);
 
     Route::resource('profile', ProfileController::class);
-    Route::resource('user', UserController::class);
+    // Route::resource('user', UserController::class);
     Route::resource('customer', CustomerController::class);
 
-    Route::get('/users', [UserController::class, 'view'])->name('users');
+    // Route::get('/users', [UserController::class, 'view'])->name('users');
+    Route::resource('akun', AkunController::class);
 
     Route::resource('booking', BookingController::class);
     Route::get('/get-data/{id}', [BookingController::class, 'getData'])->name('getData');
