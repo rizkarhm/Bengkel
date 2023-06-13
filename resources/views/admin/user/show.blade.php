@@ -5,7 +5,7 @@
 @section('contents')
     <ol class="breadcrumb px-3 py-2 rounded mb-4">
         <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('user.index') }}">User</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('users') }}">User</a></li>
         <li class="breadcrumb-item active">Detail</li>
     </ol>
     <div class="row">

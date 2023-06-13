@@ -42,6 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('customer', CustomerController::class);
 
+    Route::get('/users', [UserController::class, 'view'])->name('users');
+
     Route::resource('booking', BookingController::class);
     Route::get('/get-data/{id}', [BookingController::class, 'getData'])->name('getData');
     Route::get('/mekanik-booking', [BookingController::class, 'mekanik'])->name('mekanik.booking');
