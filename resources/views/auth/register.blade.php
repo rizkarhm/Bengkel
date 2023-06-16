@@ -42,20 +42,28 @@
                             </div>
                             <form action="{{ route('register.simpan') }}" method="POST" class="user">
                                 @csrf
+
                                 <div class="form-group">
                                     <input name="nama" type="text"
                                         class="form-control form-control-user @error('nama')is-invalid @enderror"
-                                        id="exampleInputName" placeholder="Nama Lengkap">
+                                        id="exampleInputName" placeholder="Nama Lengkap" value="{{ old('nama') }}">
                                     @error('nama')
-                                        <span class="invalid-feedback">{{ $message }}</span>
+                                        <span class="invalid-feedback">Nama Lengkap wajib diisi</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <input name="telepon" type="number"
                                         class="form-control form-control-user @error('telepon')is-invalid @enderror"
-                                        id="exampleInputTelepon" placeholder="Nomor Whatsapp">
+                                        id="exampleInputTelepon" placeholder="Nomor Whatsapp"
+                                        value="{{ old('telepon') }}">
                                     @error('telepon')
-                                        <span class="invalid-feedback">{{ $message }}</span>
+                                        <span class="invalid-feedback">
+                                            @if ($message == 'validation.unique')
+                                                Nomor Whatsapp telah terdaftar
+                                            @else
+                                                Nomor Whatsapp wajib diisi
+                                            @endif
+                                        </span>
                                     @enderror
                                 </div>
                                 <div class="form-group row">
@@ -64,16 +72,21 @@
                                             class="form-control form-control-user @error('password')is-invalid @enderror"
                                             id="exampleInputPassword" placeholder="Password">
                                         @error('password')
-                                            <span class="invalid-feedback">{{ $message }}</span>
+                                            <span class="invalid-feedback">
+                                                @if ($message == 'validation.min.string')
+                                                    Password minimal 8 karakter
+                                                @elseif ($message == 'validation.confirmed')
+                                                    Konfirmasi password salah
+                                                @else
+                                                    Password wajib diisi
+                                                @endif
+                                            </span>
                                         @enderror
                                     </div>
                                     <div class="col-sm-6">
                                         <input name="password_confirmation" type="password"
                                             class="form-control form-control-user @error('password_confirmation')is-invalid @enderror"
                                             id="exampleRepeatPassword" placeholder="Konfirmasi Password">
-                                        @error('password_confirmation')
-                                            <span class="invalid-feedback">{{ $message }}</span>
-                                        @enderror
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">Register

@@ -20,8 +20,8 @@ class AuthController extends Controller
 	{
 		Validator::make($request->all(), [
 			'nama' => 'required',
-			'telepon' => 'required',
-			'password' => 'required|confirmed'
+            'telepon' => 'required|unique:users',
+            'password' => 'required|min:8|confirmed',
 		])->validate();
 
 		User::create([
@@ -31,7 +31,7 @@ class AuthController extends Controller
 			'role' => 'Customer'
 		]);
 
-		return redirect()->route('login');
+		return redirect()->route('login')->with('success', 'Berhasil membuat akun, silahkan login!');
 	}
 
 	public function login()
@@ -41,14 +41,14 @@ class AuthController extends Controller
 
 	public function loginAksi(Request $request)
 	{
-		Validator::make($request->all(), [
-			'telepon' => 'required',
+        $request->validate([
+            'telepon' => 'required',
 			'password' => 'required'
-		])->validate();
+        ]);
 
-		if (!Auth::attempt($request->only('telepon', 'password'), $request->boolean('remember'))) {
+		if (!Auth::attempt($request->only('telepon', 'password'))) {
 			throw ValidationException::withMessages([
-				'telepon' => trans('Nomor Whatsapp atau Password salah')
+				'Nomor Whatsapp atau password salah',
 			]);
 		}
 

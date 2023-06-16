@@ -49,7 +49,6 @@
                                         @csrf
                                         @if ($errors->any())
                                             <div class="alert alert-danger">
-
                                                 @foreach ($errors->all() as $error)
                                                     {{ $error }}
                                                 @endforeach
@@ -58,12 +57,12 @@
                                         <div class="form-group">
                                             <input name="telepon" type="number" class="form-control form-control-user"
                                                 id="exampleInputTelepon" aria-describedby="emailHelp"
-                                                placeholder="Nomor Whatsapp" autofocus>
+                                                placeholder="Nomor Whatsapp" autofocus required>
                                         </div>
                                         <div class="form-group">
                                             <input name="password" type="password"
                                                 class="form-control form-control-user" id="exampleInputPassword"
-                                                placeholder="Password">
+                                                placeholder="Password" required>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-block btn-user">Login</button>
                                     </form>
