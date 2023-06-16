@@ -197,7 +197,22 @@
                                         {{-- <td class="text-center">{{ $no++ }}</td> --}}
                                         <td class="text-center">{{ $row->booking_id }}</td>
                                         <td>{{ $row->booking->user->nama }}</td>
-                                        <td class="text-center">{{ $row->rating }}</td>
+                                        <td>
+                                            <div class="col">
+                                                <div class="rate p-0">
+                                                    <input type="radio" id="star5" class="rate" name="rating" value="5" @if ( $row->rating == 5)  @checked(true) @endif disabled/><label for="star5" title="text">5 stars</label>
+
+                                                    <input type="radio" id="star4" class="rate" name="rating" value="4" @if ($row->rating == 4)  @checked(true) @endif disabled/>
+                                                    <label for="star4" title="text">4 stars</label>
+
+                                                    <input type="radio" id="star3" class="rate" name="rating" value="3" @if ($row->rating == 3)  @checked(true) @endif disabled/><label for="star3" title="text">3 stars</label>
+
+                                                    <input type="radio" id="star2" class="rate" name="rating" value="2" @if ($row->rating == 2)  @checked(true) @endif disabled/><label for="star2" title="text">2 stars</label>
+
+                                                    <input type="radio" id="star1" class="rate" name="rating" value="1" @if ($row->rating == 1)  @checked(true) @endif disabled/><label for="star1" title="text">1 stars</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <td>{{ $row->feedback }}</td>
                                         <td>{{ $row->created_at }}</td>
                                         <td class="text-center">
@@ -255,7 +270,22 @@
                                     {{-- <td class="text-center">{{ $no++ }}</td> --}}
                                     <td class="text-center">{{ $row->booking_id }}</td>
                                     <td>{{ $row->booking->user->nama }}</td>
-                                    <td class="text-center">{{ $row->rating }}</td>
+                                    <td>
+                                        <div class="col">
+                                            <div class="rate p-0">
+                                                <input type="radio" id="star5" class="rate" name="rating" value="5" @if ( $row->rating == 5)  @checked(true) @endif disabled/><label for="star5" title="text">5 stars</label>
+
+                                                <input type="radio" id="star4" class="rate" name="rating" value="4" @if ($row->rating == 4)  @checked(true) @endif disabled/>
+                                                <label for="star4" title="text">4 stars</label>
+
+                                                <input type="radio" id="star3" class="rate" name="rating" value="3" @if ($row->rating == 3)  @checked(true) @endif disabled/><label for="star3" title="text">3 stars</label>
+
+                                                <input type="radio" id="star2" class="rate" name="rating" value="2" @if ($row->rating == 2)  @checked(true) @endif disabled/><label for="star2" title="text">2 stars</label>
+
+                                                <input type="radio" id="star1" class="rate" name="rating" value="1" @if ($row->rating == 1)  @checked(true) @endif disabled/><label for="star1" title="text">1 stars</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <td>{{ $row->feedback }}</td>
                                     <td>{{ $row->created_at }}</td>
                                     <td class="text-center">
