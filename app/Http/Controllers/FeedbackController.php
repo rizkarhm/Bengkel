@@ -55,7 +55,7 @@ class FeedbackController extends Controller
             'created_by' => auth()->user()->id,
         ]);
 
-        return redirect()->route('booking.index')
+        return redirect()->route('feedback.index')
         ->with('success', 'Feedback berhasil ditambahkan');
     }
 

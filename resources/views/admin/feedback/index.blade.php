@@ -2,6 +2,77 @@
 
 @section('title', 'Data Feedback')
 
+<head>
+    <style>
+        .rate {
+            float: left;
+            height: 30px;
+            padding-top: 0;
+        }
+
+        .rate:not(:checked)>input {
+            position: absolute;
+            display: none;
+        }
+
+        .rate:not(:checked)>label {
+            float: right;
+            width: 1em;
+            overflow: hidden;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 20px;
+            color: #ccc;
+        }
+
+        .rated:not(:checked)>label {
+            float: right;
+            width: 1em;
+            overflow: hidden;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 20px;
+            color: #ccc;
+        }
+
+        .rate:not(:checked)>label:before {
+            content: '★ ';
+        }
+
+        .rate>input:checked~label {
+            color: #ffc700;
+        }
+
+        .star-rating-complete {
+            color: #c59b08;
+        }
+
+        .rating-container,
+        .rating-container .form-control:focus {
+            background: #fff;
+            border: 1px solid #ced4da;
+        }
+
+        .rating-container textarea:focus,
+        .rating-container input:focus {
+            color: #000;
+        }
+
+        .rated {
+            float: left;
+            height: 46px;
+            padding: 0 10px;
+        }
+
+        .rated:not(:checked)>input {
+            position: absolute;
+            display: none;
+        }
+
+
+    </style>
+</head>
+
 @section('contents')
     <ol class="breadcrumb px-3 py-2 rounded mb-4">
         <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
@@ -34,8 +105,10 @@
                         <tr>
                             {{-- <th style="width: 40px;">No</th> --}}
                             <th style="width: 40px;">ID Booking</th>
+                            @if (auth()->user()->role != 'Customer')
                             <th>Nama Customer</th>
-                            <th style="width: 60px;">Rating</th>
+                        @endif
+                            <th>Rating</th>
                             <th>Feedback</th>
                             <th style="width: 150px;">Created At</th>
                             <th style="width: 200px; color:blue">Aksi</th>
@@ -51,8 +124,25 @@
                                 <tr>
                                     <td class="text-center">{{ $no++ }}</td>
                                     {{-- <td class="text-center">{{ $row->booking_id }}</td> --}}
-                                    <td>{{ $row->booking->user->nama }}</td>
-                                    <td class="text-center">{{ $row->rating }}</td>
+                                    {{-- <td>{{ $row->booking->user->nama }}</td> --}}
+                                    {{-- <td class="text-center">{{ $row->rating }}</td> --}}
+                                    <td>
+                                        <div class="col">
+                                            <div class="rate p-0">
+                                                <input type="radio" id="star5" class="rate" name="rating" value="5" @if ( $row->rating == 5)  @checked(true) @endif disabled/><label for="star5" title="text">5 stars</label>
+
+                                                <input type="radio" id="star4" class="rate" name="rating" value="4" @if ($row->rating == 4)  @checked(true) @endif disabled/>
+                                                <label for="star4" title="text">4 stars</label>
+
+                                                <input type="radio" id="star3" class="rate" name="rating" value="3" @if ($row->rating == 3)  @checked(true) @endif disabled/><label for="star3" title="text">3 stars</label>
+
+                                                <input type="radio" id="star2" class="rate" name="rating" value="2" @if ($row->rating == 2)  @checked(true) @endif disabled/><label for="star2" title="text">2 stars</label>
+
+                                                <input type="radio" id="star1" class="rate" name="rating" value="1" @if ($row->rating == 1)  @checked(true) @endif disabled/><label for="star1" title="text">1 stars</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </td>
                                     <td>{{ $row->feedback }}</td>
                                     <td>{{ $row->created_at }}</td>
                                     <td class="text-center">
