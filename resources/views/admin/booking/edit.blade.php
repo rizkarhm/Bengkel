@@ -72,7 +72,7 @@
                         </div>
                         <div class="form-group">
                             <label for="tgl_masuk">Tanggal Masuk<span class="text-danger">*</span></label>
-                            <input type="date" class="form-control" id="tgl_masuk" name="tgl_masuk"
+                            <input type="date" class="form-control" name="tgl_masuk"
                                 value="{{ isset($bookings) ? $bookings->tgl_masuk : old('tgl_masuk') }}">
                             @error('tgl_masuk')
                                 <span class="text-danger">{{ $message }}</span>

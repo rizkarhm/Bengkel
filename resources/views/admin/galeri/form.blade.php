@@ -54,7 +54,7 @@
                             class="btn btn-primary">{{ isset($galeris) ? 'Update' : 'Simpan' }}</button>
                     </div>
                 </div>
-                <p class="text-danger">*script image preview untuk selected new image belum jalan</p>
+                {{-- <p class="text-danger">*script image preview untuk selected new image belum jalan</p> --}}
             </div>
         </div>
     </form>
