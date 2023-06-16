@@ -10,8 +10,9 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><a class="text-success" href="{{ route('customer.index') }}">Customer</a></div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $customer->count() }}</div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><a class="text-success"
+                                    href="{{ route('customer.index') }}">Customer</a></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $customer }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user fa-2x text-gray-300"></i>
@@ -27,8 +28,9 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><a class="text-primary" href="{{ route('akun.index') }}">Pegawai</a></div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $pegawai->count() }}</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><a class="text-primary"
+                                    href="{{ route('akun.index') }}">Pegawai</a></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $pegawai }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -44,19 +46,31 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ route('booking.index') }}">Transaksi</a>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info"
+                                    href="{{ route('booking.index') }}">Transaksi</a>
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                        {{ round(($historys->count() / $all_booking->count()) * 100, 0) }}%</div>
+                                        @if ($history != 0 && $all != 0)
+                                            {{ round(($history / $all) * 100, 0) }}%
+                                        @else
+                                            0%
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="col">
                                     <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar"
-                                            style="width: {{ round(($historys->count() / $all_booking->count()) * 100, 0) }}%"
-                                            aria-valuenow="{{ $historys->count() }}" aria-valuemin="0"
-                                            aria-valuemax="{{ $all_booking->count() }}"></div>
+                                        @if ($history != 0 && $all != 0)
+                                            <div class="progress-bar bg-info" role="progressbar"
+                                                style="width: {{ round(($history / $all) * 100, 0) }}%"
+                                                aria-valuenow="{{ $history }}" aria-valuemin="0"
+                                                aria-valuemax="{{ $all }}"></div>
+                                        @else
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: 0%"
+                                                aria-valuenow="{{ $history }}" aria-valuemin="0"
+                                                aria-valuemax="{{ $all }}"></div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -75,8 +89,9 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold  text-uppercase mb-1"><a class="text-warning" href="{{ route('feedback.index') }}">Feedbacks</a></div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $feedback->count() }}</div>
+                            <div class="text-xs font-weight-bold  text-uppercase mb-1"><a class="text-warning"
+                                    href="{{ route('feedback.index') }}">Feedbacks</a></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $feedback }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -93,7 +108,7 @@
             <div class="card card-header-actions shadow h-100">
                 <div id="grafik"></div>
             </div>
-            <h5 class="text-danger">*Urutan bulan belum sesuai</h5>
+            {{-- <h5 class="text-danger">*Urutan bulan belum sesuai</h5> --}}
         </div>
     </div>
 

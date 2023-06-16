@@ -14,30 +14,38 @@ class DashboardController extends Controller
     {
         //get all data
         $all_booking = Booking::all();
+        $all = count($all_booking);
 
         //get user id
         $user = auth()->user()->id;
 
         //book appointment
         $bookings = $all_booking->intersect(Booking::whereIn('status', ['Booked', 'In Queue', 'Proccessed', 'Canceled'])->get());
+        $booking = count($bookings);
 
         //status booked atau pending
-        $booked = Booking::where('status', 'Booked')->get();
+        $bookeds = Booking::where('status', 'Booked')->get();
+        $booked = count($bookeds);
 
         //history booking
         $historys = $all_booking->intersect(Booking::whereIn('status', ['Done'])->get());
+        $history = count($historys);
 
         //User
-        $user = User::all();
+        $users = User::all();
+        $user = count($users);
 
         //feedback
-        $feedback = Feedback::all();
+        $feedbacks = Feedback::all();
+        $feedback = count($feedbacks);
 
         //customer
-        $customer = User::where('role', 'Customer')->get();
+        $customers = User::where('role', 'Customer')->get();
+        $customer = count($customers);
 
         //mekanik dan magang
-        $pegawai = $user->intersect(User::whereIn('role', ['Mekanik', 'Magang', 'Admin'])->get());
+        $pegawais = $users->intersect(User::whereIn('role', ['Mekanik', 'Magang', 'Admin'])->get());
+        $pegawai = count($pegawais);
 
         $chart = Booking::select(DB::raw("COUNT(*) as count"))
             ->whereYear('tgl_masuk', date('Y'))
@@ -51,11 +59,18 @@ class DashboardController extends Controller
 
         return view('admin.dashboard', compact(
             'all_booking',
+            'all',
             'bookings',
+            'booking',
             'historys',
+            'history',
+            'customers',
             'customer',
+            'pegawais',
             'pegawai',
+            'feedbacks',
             'feedback',
+            'bookeds',
             'booked',
             'chart',
             'bulan'
