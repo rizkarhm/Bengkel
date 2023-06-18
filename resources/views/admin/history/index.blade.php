@@ -36,7 +36,9 @@
                             <th>Nomor Polisi</th>
                             <th>Tanggal Masuk</th>
                             <th>Tanggal Selesai</th>
-                            <th>PIC</th>
+                            @if (auth()->user()->role != 'Customer')
+                                <th>PIC</th>
+                            @endif
                             <th>Status</th>
                             <th style="width: 200px;">Aksi</th>
                         </tr>
@@ -55,11 +57,6 @@
                                         <td>{{ $row->nopol }}</td>
                                         <td>{{ $row->tgl_masuk }}</td>
                                         <td>{{ $row->tgl_selesai }}</td>
-                                        @if ($row->pic_id == null)
-                                            <td>-</td>
-                                        @else
-                                            <td>{{ $row->pic->nama }}</td>
-                                        @endif
                                         <td>
                                             @if ($row->status == 'Booked')
                                                 <div class="text-white rounded-pill py-2 px-2 badge bg-secondary">
