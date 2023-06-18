@@ -23,9 +23,19 @@ class Booking extends Model
         'penanganan',
     ];
 
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
+
+    public function pic()
+    {
+        return $this->belongsTo(User::class, 'pic_id');
+    }
+
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function kendaraan()

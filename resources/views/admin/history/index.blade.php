@@ -36,6 +36,7 @@
                             <th>Nomor Polisi</th>
                             <th>Tanggal Masuk</th>
                             <th>Tanggal Selesai</th>
+                            <th>PIC</th>
                             <th>Status</th>
                             <th style="width: 200px;">Aksi</th>
                         </tr>
@@ -54,6 +55,11 @@
                                         <td>{{ $row->nopol }}</td>
                                         <td>{{ $row->tgl_masuk }}</td>
                                         <td>{{ $row->tgl_selesai }}</td>
+                                        @if ($row->pic_id == null)
+                                            <td>-</td>
+                                        @else
+                                            <td>{{ $row->pic->nama }}</td>
+                                        @endif
                                         <td>
                                             @if ($row->status == 'Booked')
                                                 <div class="text-white rounded-pill py-2 px-2 badge bg-secondary">
@@ -94,6 +100,11 @@
                                         <td>{{ $row->nopol }}</td>
                                         <td>{{ $row->tgl_masuk }}</td>
                                         <td>{{ $row->tgl_selesai }}</td>
+                                        @if ($row->pic_id == null)
+                                            <td>-</td>
+                                        @else
+                                            <td>{{ $row->pic->nama }}</td>
+                                        @endif
                                         <td>
                                             @if ($row->status == 'Booked')
                                                 <div class="text-white rounded-pill py-2 px-2 badge bg-secondary">
@@ -134,6 +145,11 @@
                                         <td>{{ $row->nopol }}</td>
                                         <td>{{ $row->tgl_masuk }}</td>
                                         <td>{{ $row->tgl_selesai }}</td>
+                                        @if ($row->pic_id == null)
+                                            <td>-</td>
+                                        @else
+                                            <td>{{ $row->pic->nama }}</td>
+                                        @endif
                                         <td>
                                             @if ($row->status == 'Booked')
                                                 <div class="text-white rounded-pill py-2 px-2 badge bg-secondary">
@@ -166,10 +182,10 @@
                             @endif
                         @endif
                         @empty($row)
-                                    <tr>
-                                        <td colspan="9" class="text-center">No Data</td>
-                                    </tr>
-                                @endempty
+                            <tr>
+                                <td colspan="9" class="text-center">No Data</td>
+                            </tr>
+                        @endempty
                     </tbody>
                 </table>
             </div>

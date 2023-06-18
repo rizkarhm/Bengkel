@@ -20,17 +20,19 @@ class HistoryController extends Controller
         //get user id
         $user = auth()->user()->id;
 
+        $riwayat = Booking::whereIn('status', ['Canceled', 'Done'])->with('user', 'pic')->get();
+
         //get all booking data with status canceled or done
-        $history_all = Booking::whereIn('status', ['Canceled', 'Done'])
+        $history_all = Booking::whereIn('status', ['Canceled', 'Done'])->with('user', 'pic')
             ->paginate(10);
 
         //get history booking where user_id == customer id
-        $history_customer = Booking::whereIn('status', ['Canceled', 'Done'])
+        $history_customer = Booking::whereIn('status', ['Canceled', 'Done'])->with('user', 'pic')
             ->where('user_id', $user)
             ->paginate(10);
 
         //get history booking where user_id == PIC id
-        $history_pic = Booking::whereIn('status', ['Canceled', 'Done'])
+        $history_pic = Booking::whereIn('status', ['Canceled', 'Done'])->with('user', 'pic')
             ->where('pic_id', $user)
             ->paginate(10);
 
@@ -38,6 +40,7 @@ class HistoryController extends Controller
             'historys' => $history_all,
             'history_customer' => $history_customer,
             'history_pic' => $history_pic,
+            'riwayat' => $riwayat
         ]);
     }
 
