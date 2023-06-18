@@ -217,7 +217,7 @@ class BookingController extends Controller
         //get data feedback all
         $feedbacks = Feedback::all();
 
-        $history_kendaraan = Booking::whereIn('status', ['Canceled', 'Done'])->where('nopol', $nopol)->get();
+        $history_kendaraan = Booking::whereIn('status', ['Canceled', 'Done'])->with('user', 'pic')->where('nopol', $nopol)->get();
 
         $booking = Booking::find($id);
         if (!$booking) return redirect()->route('booking.index')

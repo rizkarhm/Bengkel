@@ -143,7 +143,8 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('booking.show', $row->id) }}" class="btn btn-success">Detail</a>
+                                        <a href="{{ route('detail.booking', ['id' => $row->id, 'nopol' => $row->nopol]) }}"
+                                            class="btn btn-success">Detail</a>
                                         <button class="btn btn-danger ml-2" data-toggle="modal"
                                             data-target="#deleteModal-{{ $row->id }}" class="delete-item">
                                             Hapus
@@ -218,7 +219,7 @@
                                     </td>
                                     <td class="text-center">
                                         <form action="{{ route('booking.destroy', $row->id) }}" method="post">
-                                            <a href="{{ route('booking.show', $row->id) }}"
+                                            <a href="{{ route('detail.booking', ['id' => $row->id, 'nopol' => $row->nopol]) }}"
                                                 class="btn btn-success">Detail</a>
                                             @csrf
                                             @method('DELETE')
@@ -262,12 +263,8 @@
                                     </td>
 
                                     <td class="text-center">
-                                        <a href="{{ route('booking.show', $row->id) }}"
+                                        <a href="{{ route('detail.booking', ['id' => $row->id, 'nopol' => $row->nopol]) }}"
                                             class="btn btn-success">Detail</a>
-                                        {{-- <button class="btn btn-danger ml-2" data-toggle="modal"
-                                                data-target="#deleteModal-{{ $row->id }}" class="delete-item">
-                                                Hapus
-                                            </button> --}}
 
                                         <div class="modal fade text-left" id="deleteModal-{{ $row->id }}"
                                             tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"

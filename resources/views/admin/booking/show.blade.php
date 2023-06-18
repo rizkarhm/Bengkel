@@ -129,23 +129,23 @@
                     @endif
                 </div>
 
-                {{-- @if (auth()->user()->role != 'Customer') --}}
-                @if (auth()->user()->role != 'Magang')
+                @if (auth()->user()->role == 'Customer')
                     <div class="card-footer">
-                        @if ($bookings->status == 'Done')
-                            <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning disabled">Edit Data
-                                Booking</a>
-                        @elseif ($bookings->status == 'Canceled')
-                            <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning disabled">Edit
-                                Data
+                        @if ($bookings->status == 'Booked')
+                            <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning ">Edit Data
                                 Booking</a>
                         @else
-                            <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning">Edit Data
+                            <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning disabled">Edit Data
                                 Booking</a>
                         @endif
                     </div>
+                @elseif (auth()->user()->role == 'Magang')
+                @else<div class="card-footer">
+                        <a href="{{ route('booking.edit', $bookings) }}" class="btn btn-warning">Edit Data
+                            Booking</a>
+                    </div>
+
                 @endif
-                {{-- @endif --}}
             </div>
         </div>
 
@@ -160,9 +160,11 @@
                                     <tr>
                                         <th style="width: 100px;">ID Booking</th>
                                         <th>Tanggal Service</th>
-                                        <th>Kendala</th>
-                                        <th>Keterangan</th>
-                                        <th>Status</th>
+                                        <th>Tanggal Selesai</th>
+                                        <th style="width: 300px">Kendala</th>
+                                        <th style="width: 300px">Keterangan</th>
+                                        <th style="width: 100px">PIC</th>
+                                        <th style="width: 80px">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -171,6 +173,11 @@
                                         <tr>
                                             <td class="text-center">{{ $row->id }}</td>
                                             <td>{{ $row->tgl_masuk }}</td>
+                                            @if ($row->tgl_selesai == null)
+                                                <td>-</td>
+                                            @else
+                                                <td>{{ $row->tgl_selesai }}</td>
+                                            @endif
                                             <td>{{ $row->masalah }}</td>
                                             @if ($row->status == 'Canceled')
                                                 <td>{{ $row->ket_pembatalan }}</td>
@@ -178,6 +185,11 @@
                                                 <td>{{ $row->penanganan }}</td>
                                             @else
                                                 <td></td>
+                                            @endif
+                                            @if ($row->pic_id == null)
+                                                <td>-</td>
+                                            @else
+                                                <td>{{ $row->pic->nama }}</td>
                                             @endif
                                             <td class="text-center">
                                                 @if ($row->status == 'Booked')
