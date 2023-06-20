@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <label for="nama">Nama Lengkap<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="nama" name="nama"
-                            value="{{ auth()->user()->nama }}">
+                            value="{{ auth()->user()->nama }}" required>
                         @error('nama')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -28,7 +28,7 @@
                     <div class="form-group">
                         <label for="telepon">Nomor Whatsapp<span class="text-danger">*</span></label>
                         <input type="number" class="form-control" id="telepon" name="telepon"
-                            value="{{ auth()->user()->telepon }}">
+                            value="{{ auth()->user()->telepon }}" required>
                         @error('telepon')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-group">
                         <label for="role">Role<span class="text-danger">*</span></label>
-                        <select name="role" id="role" class="custom-select">
+                        <select name="role" id="role" class="custom-select" required>
                             <option value="" selected disabled hidden>Pilih Role</option>
                             <option value="Customer" @selected(auth()->user()->role == 'Customer')>Customer
                             </option>
@@ -65,7 +65,7 @@
                         <div class="form-group col-md-6">
                             <label for="password">Password<span class="text-danger">*</span></label>
                             <input type="password" class="form-control" id="password" name="password"
-                                value="{{ old('password') }}">
+                                value="{{ old('password') }}" required minlength="8">
                             @error('password')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -73,7 +73,7 @@
                         <div class="form-group col-md-6">
                             <label for="password_confirmation">Konfirmasi Password<span class="text-danger">*</span></label>
                             <input type="password" class="form-control" id="password_confirmation"
-                                name="password_confirmation" value="{{ old('password_confirmation') }}">
+                                name="password_confirmation" value="{{ old('password_confirmation') }}" required minlength="8">
                         </div>
                         @error('password_confirmation')
                             <span class="text-danger">{{ $message }}</span>

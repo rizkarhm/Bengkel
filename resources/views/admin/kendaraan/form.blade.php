@@ -23,7 +23,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="merek">Merek Kendaraan<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="merek" name="merek"
+                            <input type="text" class="form-control" id="merek" name="merek" required
                                 value="{{ isset($kendaraans) ? $kendaraans->merek : old('merek') }}">
                                 @error('merek')
                                 <span class="text-danger">{{ $message }}</span>
@@ -42,7 +42,7 @@
                                         class="img-account-profile rounded rounded-4 mb-2 img-fluid" style="height:80px" />
                                 @endif
                             @endif
-                            <input type="file" class="form-control" id="gambar" name="gambar"
+                            <input type="file" class="form-control" id="gambar" name="gambar" required
                                 onchange="previewImage()">
                             @error('gambar')
                                 <span class="text-danger">{{ $message }}</span>

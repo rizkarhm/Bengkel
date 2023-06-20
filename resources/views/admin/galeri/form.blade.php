@@ -34,14 +34,14 @@
                                         class="img-account-profile rounded rounded-4 mb-2 img-fluid" style="height:80px" />
                                 @endif
                             @endif
-                            <input type="file" class="form-control" id="gambar" name="gambar"
+                            <input type="file" class="form-control" id="gambar" name="gambar" required
                                 onchange="previewImage()">
                             @error('gambar')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="keterangan">Keterangan<span class="text-danger">*</span></label>
+                            <label for="keterangan">Keterangan</label>
                             <input type="text" class="form-control" id="keterangan" name="keterangan"
                                 value="{{ isset($galeris) ? $galeris->keterangan : old('keterangan') }}">
                                 @error('keterangan')

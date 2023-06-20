@@ -21,7 +21,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="nama">Nama Kontak<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="nama" name="nama"
+                            <input type="text" class="form-control" id="nama" name="nama" required
                                 value="{{ isset($kontaks) ? $kontaks->nama : old('nama') }}">
                             @error('nama')
                                 <span class="text-danger">{{ $message }}</span>
@@ -29,7 +29,7 @@
                         </div>
                         <div class="form-group">
                             <label for="isi">Data<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="isi" name="isi"
+                            <input type="text" class="form-control" id="isi" name="isi" required
                                 value="{{ isset($kontaks) ? $kontaks->isi : old('isi') }}">
                             @error('isi')
                                 <span class="text-danger">{{ $message }}</span>

@@ -153,7 +153,7 @@
                         </div>
                         <div class="form-group" id="feedback">
                             <label for="penanganan">Feedback</label>
-                            <textarea type="text" class="form-control" id="feedback" name="feedback" value=""></textarea>
+                            <textarea type="text" class="form-control" id="feedback" name="feedback" value="" required></textarea>
                         </div>
                 </div>
 
