@@ -25,7 +25,9 @@
                             <input type="text" class="form-control" id="nama" name="nama"
                                 value="{{ isset($users) ? $users->nama : old('nama') }}">
                             @error('nama')
-                                <span class="text-danger">{{ $message }}</span>
+                                <div class="invalid-feedback">
+                                    <span class="text-danger">{{ $message }}</span>
+                                </div>
                             @enderror
                         </div>
                         <div class="form-group">
@@ -76,15 +78,15 @@
                                         class="text-danger">*</span></label>
                                 <input type="password" class="form-control" id="password_confirmation"
                                     name="password_confirmation" value="{{ old('password_confirmation') }}">
-                            </div>
+
                             @error('password_confirmation')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                            <button type="submit"
-                                class="btn btn-primary">{{ isset($users) ? 'Update' : 'Simpan' }}</button>
+                        <button type="submit" class="btn btn-primary">{{ isset($users) ? 'Update' : 'Simpan' }}</button>
 
                     </div>
                 </div>

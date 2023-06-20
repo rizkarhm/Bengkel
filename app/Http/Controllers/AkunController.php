@@ -24,11 +24,12 @@ class AkunController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'nama' => 'required',
             'telepon' => 'required|unique:users',
             'alamat' => 'nullable',
             'password' => 'required|min:8|confirmed',
+            'password_confirmation' => 'required|min:8',
             'role' => 'required'
         ]);
 
