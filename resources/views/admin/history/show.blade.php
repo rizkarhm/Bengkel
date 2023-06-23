@@ -60,6 +60,14 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="no_mesin">Nomor Mesin</label>
+                        <input type="text" class="form-control" id="no_mesin" name="no_mesin" disabled
+                            value="{{ isset($bookings) ? $bookings->no_mesin : old('no_mesin') }}">
+                        @error('no_mesin')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="tgl_masuk">Tanggal Masuk</label>
                         <input type="text" class="form-control" id="tgl_masuk" name="tgl_masuk" disabled
                             value="{{ isset($bookings) ? $bookings->tgl_masuk : old('tgl_masuk') }}">

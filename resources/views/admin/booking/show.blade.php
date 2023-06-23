@@ -49,6 +49,14 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <label for="no_mesin">Nomor Mesin</label>
+                                <input type="text" class="form-control" id="no_mesin" name="no_mesin" disabled
+                                    value="{{ isset($bookings) ? $bookings->no_mesin : old('no_mesin') }}">
+                                @error('no_mesin')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
 
                         <div class="col-6">
@@ -107,26 +115,28 @@
                                     @enderror
                                 </div>
                             @endif
+
+                            @if (auth()->user()->role != 'Customer' && $bookings->status != 'Booked' && $bookings->status != 'In Queue')
+                                <div class="form-group" id="pic_id">
+                                    <label for="pic_id">PIC</label>
+                                    <select name="pic_id" id="pic_id" class="custom-select" disabled>
+                                        <option value="" selected disabled hidden>Pilih PIC</option>
+                                        @foreach ($pic as $pic_id)
+                                            <option value="{{ $bookings->pic_id }}" @selected(isset($bookings) ? $pic_id->id == $bookings->pic_id : '')>
+                                                {{ $pic_id->nama }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('pic_id')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            @endif
                         </div>
                     </div>
 
 
-                    @if (auth()->user()->role != 'Customer' && $bookings->status != 'Booked' && $bookings->status != 'In Queue')
-                        <div class="form-group" id="pic_id">
-                            <label for="pic_id">PIC</label>
-                            <select name="pic_id" id="pic_id" class="custom-select" disabled>
-                                <option value="" selected disabled hidden>Pilih PIC</option>
-                                @foreach ($pic as $pic_id)
-                                    <option value="{{ $bookings->pic_id }}" @selected(isset($bookings) ? $pic_id->id == $bookings->pic_id : '')>
-                                        {{ $pic_id->nama }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('pic_id')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    @endif
+
                 </div>
 
                 @if (auth()->user()->role == 'Customer')

@@ -206,7 +206,7 @@ class BookingController extends Controller
         ]);
     }
 
-    public function showRiwayat($id, $nopol)
+    public function showRiwayat($id, $no_mesin)
     {
         //get data user all
         $users = User::all();
@@ -221,7 +221,7 @@ class BookingController extends Controller
         //get data feedback all
         $feedbacks = Feedback::all();
 
-        $history_kendaraan = Booking::whereIn('status', ['Canceled', 'Done'])->with('user', 'pic')->where('nopol', $nopol)->get();
+        $history_kendaraan = Booking::whereIn('status', ['Canceled', 'Done'])->with('user', 'pic')->where('no_mesin', $no_mesin)->get();
 
         $booking = Booking::find($id);
         if (!$booking) return redirect()->route('booking.index')
@@ -254,17 +254,6 @@ class BookingController extends Controller
         if (!$booking) return redirect()->route('booking.index')
             ->with('error', 'Booking dengan id' . $id . ' tidak ditemukan');
 
-        $status = $booking->status;
-        // if ($status == 'Proccessed') {
-        //     return redirect()->route('booking.show', $booking->id)
-        //         ->with('error', 'Data booking dengan status Proccessed tidak dapat diubah');
-        // } else if ($status == 'Done') {
-        //     return redirect()->route('booking.show', $booking->id)
-        //         ->with('error', 'Data booking dengan status Done tidak dapat diubah');
-        // } else if ($status == 'Canceled') {
-        //     return redirect()->route('booking.show', $booking->id)
-        //         ->with('error', 'Data booking dengan status Canceled tidak dapat diubah');
-        // } else {
         return view('admin.booking.edit', [
             'bookings' => $booking,
             'cust' => $cust,

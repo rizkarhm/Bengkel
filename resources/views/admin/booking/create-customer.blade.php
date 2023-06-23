@@ -46,6 +46,14 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="no_mesin">Nomor Mesin<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="no_mesin" name="no_mesin" placeholder="cth: JF21E1202131"
+                            value="{{ isset($bookings) ? $bookings->no_mesin : old('no_mesin') }}">
+                        @error('no_mesin')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
                     <div class="form-group" id="masalah">
                         <label for="masalah">Kerusakan<span class="text-danger">*</span></label>
                         <textarea type="text" class="form-control" id="masalah" name="masalah" value="">{{ isset($bookings) ? $bookings->masalah : old('masalah')}}</textarea>

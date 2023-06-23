@@ -14,7 +14,7 @@ class Booking extends Model
         'kendaraan_id',
         'model',
         'nopol',
-        'no_mesin'.
+        'no_mesin',
         'masalah',
         'tgl_masuk',
         'tgl_selesai',

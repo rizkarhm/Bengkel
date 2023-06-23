@@ -143,7 +143,7 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('detail.booking', ['id' => $row->id, 'nopol' => $row->nopol]) }}"
+                                        <a href="{{ route('detail.booking', ['id' => $row->id, 'no_mesin' => $row->no_mesin]) }}"
                                             class="btn btn-success">Detail</a>
                                         <button class="btn btn-danger ml-2" data-toggle="modal"
                                             data-target="#deleteModal-{{ $row->id }}" class="delete-item">
@@ -219,7 +219,7 @@
                                     </td>
                                     <td class="text-center">
                                         <form action="{{ route('booking.destroy', $row->id) }}" method="post">
-                                            <a href="{{ route('detail.booking', ['id' => $row->id, 'nopol' => $row->nopol]) }}"
+                                            <a href="{{ route('detail.booking', ['id' => $row->id, 'no_mesin' => $row->no_mesin]) }}"
                                                 class="btn btn-success">Detail</a>
                                             @csrf
                                             @method('DELETE')
@@ -263,7 +263,7 @@
                                     </td>
 
                                     <td class="text-center">
-                                        <a href="{{ route('detail.booking', ['id' => $row->id, 'nopol' => $row->nopol]) }}"
+                                        <a href="{{ route('detail.booking', ['id' => $row->id, 'no_mesin' => $row->no_mesin]) }}"
                                             class="btn btn-success">Detail</a>
 
                                         <div class="modal fade text-left" id="deleteModal-{{ $row->id }}"
@@ -335,7 +335,7 @@
                                     </td>
 
                                     <td class="text-center">
-                                        <a href="{{ route('detail.booking', ['id' => $row->id, 'nopol' => $row->nopol]) }}"
+                                        <a href="{{ route('detail.booking', ['id' => $row->id, 'no_mesin' => $row->no_mesin]) }}"
                                             class="btn btn-success">Detail</a>
                                         <button class="btn btn-danger ml-2" data-toggle="modal"
                                             data-target="#deleteModal-{{ $row->id }}" class="delete-item">
