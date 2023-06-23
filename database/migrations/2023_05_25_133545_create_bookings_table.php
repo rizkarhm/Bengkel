@@ -21,6 +21,7 @@ return new class extends Migration
             $table->bigInteger('pic_id')->unsigned()->nullable();
             $table->string('model');
             $table->string('nopol');
+            $table->string('no_mesin');
             $table->date('tgl_masuk');
             $table->string('masalah');
             $table->string('tgl_selesai')->nullable();

@@ -124,6 +124,7 @@ class BookingController extends Controller
                 'kendaraan_id' => 'required',
                 'model' => 'required',
                 'nopol' => 'required|min:7',
+                'no_mesin' => 'required',
                 'masalah' => 'required',
                 'tgl_masuk' => 'required|date',
             ]);
@@ -141,6 +142,7 @@ class BookingController extends Controller
                 'kendaraan_id' => $request->kendaraan_id,
                 'model' => $request->model,
                 'nopol' => $request->nopol,
+                'no_mesin' => $request->no_mesin,
                 'masalah' => $request->masalah,
                 'tgl_masuk' => $request->tgl_masuk,
                 'tgl_selesai' => $tglKeluar,
@@ -153,6 +155,7 @@ class BookingController extends Controller
                 'kendaraan_id' => 'required',
                 'model' => 'required',
                 'nopol' => 'required|min:7',
+                'no_mesin' => 'required',
                 'masalah' => 'required',
                 'tgl_masuk' => 'required|date',
             ]);
@@ -162,6 +165,7 @@ class BookingController extends Controller
                 'kendaraan_id' => $request->kendaraan_id,
                 'model' => $request->model,
                 'nopol' => $request->nopol,
+                'no_mesin' => $request->no_mesin,
                 'masalah' => $request->masalah,
                 'tgl_masuk' => $request->tgl_masuk,
                 'tgl_selesai' => $tglKeluar,
@@ -295,6 +299,7 @@ class BookingController extends Controller
                 'kendaraan_id' => 'required',
                 'model' => 'required',
                 'nopol' => 'required|min:7',
+                'no_mesin' => 'required',
                 'tgl_masuk' => 'required|date',
                 'tgl_selesai' => 'nullable',
                 'masalah' => 'required',
@@ -310,6 +315,7 @@ class BookingController extends Controller
                 'kendaraan_id' => 'required',
                 'model' => 'required',
                 'nopol' => 'required|min:7',
+                'no_mesin' => 'required',
                 'masalah' => 'required',
                 'tgl_masuk' => 'required|date',
                 'tgl_selesai' => 'nullable',
@@ -324,6 +330,7 @@ class BookingController extends Controller
         $booking->kendaraan_id = $request->kendaraan_id;
         $booking->model = $request->model;
         $booking->nopol = $request->nopol;
+        $booking->no_mesin = $request->no_mesin;
         $booking->masalah = $request->masalah;
         $booking->tgl_masuk = $request->tgl_masuk;
         $booking->tgl_selesai = $tglKeluar;

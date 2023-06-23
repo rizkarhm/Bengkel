@@ -60,9 +60,12 @@
                                         <span class="invalid-feedback">
                                             @if ($message == 'validation.unique')
                                                 Nomor Whatsapp telah terdaftar
+                                                @elseif ($message == 'validation.min.string')
+                                                Nomor Whatsapp minimal terdiri atas 10 digit
                                             @else
                                                 Nomor Whatsapp wajib diisi
                                             @endif
+                                            {{-- {{ $message }} --}}
                                         </span>
                                     @enderror
                                 </div>

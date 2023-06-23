@@ -20,7 +20,7 @@ class AuthController extends Controller
 	{
 		Validator::make($request->all(), [
 			'nama' => 'required',
-            'telepon' => 'required|unique:users',
+            'telepon' => 'required|unique:users|min:8',
             'password' => 'required|min:8|confirmed',
 		])->validate();
 

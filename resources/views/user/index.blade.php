@@ -86,7 +86,7 @@
             <div class="row">
                 <div class="col-lg-7 col-xl-5">
                     <div class="text-container">
-                        <h1 class="h1-large">Kalil Auto Service</h1>
+                        <h1 class="h1-large text-danger" style="color:red">Kalil Auto Service</h1>
                         <p class="p-large">Kalil Auto Service merupakan sebuah layanan bengkel mobil di Kabupaten
                             Malang. Berdiri pada tahun 2019, kini Bengkel Kalil Auto Service telah memiliki berbagai
                             macam customer, dan mulai menjalin kerja sama dengan lini bisnis lain sebagai vendor.</p>
