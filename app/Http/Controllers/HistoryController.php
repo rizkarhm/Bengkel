@@ -46,7 +46,7 @@ class HistoryController extends Controller
         //get user id
         $user = auth()->user()->id;
 
-       //mekanik
+        //mekanik
         $history_pic = Booking::whereIn('status', ['Canceled', 'Done'])
             ->where('pic_id', $user)
             ->paginate(10);
@@ -83,4 +83,25 @@ class HistoryController extends Controller
         ]);
     }
 
+    public function reminderForm($id)
+    {
+        $customer = User::find($id);
+        return view('admin.history.reminder', ['customer' => $customer]);
+    }
+
+    public function redirectToWhatsApp(Request $request)
+    {
+        // Get the input values
+        $phoneNumber = $request->input('telepon');
+        $message = $request->input('pesan');
+
+        // Format the phone number (remove any non-numeric characters)
+        $formattedPhoneNumber = preg_replace('/^0/', '62', $phoneNumber);
+
+        // Create the WhatsApp URL with the custom number and message
+        $whatsAppUrl = "https://api.whatsapp.com/send?phone={$formattedPhoneNumber}&text=" . urlencode($message);
+
+        // Redirect the user to WhatsApp
+        return redirect()->away($whatsAppUrl);
+    }
 }

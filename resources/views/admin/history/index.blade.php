@@ -169,9 +169,9 @@
                                             <form action="{{ route('booking.destroy', $row->id) }}" method="post">
                                                 <a href="{{ route('history.show', $row->id) }}"
                                                     class="btn btn-success">Detail</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                {{-- <button type="submit" class="btn btn-danger ml-2">Hapus</button> --}}
+
+                                                    <a href="{{ route('reminder', ['id' => $row->user->id]) }}"
+                                                        class="btn btn-warning">Reminder</a>
                                             </form>
                                         </td>
                                     </tr>

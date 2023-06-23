@@ -55,4 +55,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('kontak', KontakController::class);
     Route::resource('kendaraan', KendaraanController::class);
 
+    Route::get('/reminder/{id}', [HistoryController::class, 'reminderForm'])->name('reminder');
+    Route::post('/whatsapp/send/', [HistoryController::class, 'redirectToWhatsapp'])->name('whatsapp.send');
 });
